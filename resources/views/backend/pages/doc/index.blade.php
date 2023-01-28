@@ -18,117 +18,80 @@
 @endsection
 
 @section('content')
-    <!-- invoice list -->
-    <section class="invoice-list-wrapper">
-        <!-- create invoice button-->
-        <div class="invoice-create-btn mb-1">
-            <a href="/admin/doc/create" class="btn btn-primary glow invoice-create" role="button"
-               aria-pressed="true">
-                Создать документ</a>
-        </div>
-        <!-- Options and filter dropdown button-->
-        <div class="action-dropdown-btn d-none">
-            <div class="dropdown invoice-filter-action">
-                <button
-                        class="btn border dropdown-toggle mr-1"
-                        type="button"
-                        id="invoice-filter-btn"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    Filter Invoice
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-filter-btn">
-                    <a class="dropdown-item" href="#">Отгул</a>
-                    <a class="dropdown-item" href="#">Sent</a>
-                    <a class="dropdown-item" href="#">Partial Payment</a>
-                    <a class="dropdown-item" href="#">Paid</a>
-                </div>
-            </div>
-            <div class="dropdown invoice-options">
-                <button
-                        class="btn border dropdown-toggle mr-2"
-                        type="button"
-                        id="invoice-options-btn"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    Options
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-options-btn">
-                    <a class="dropdown-item" href="#">Delete</a>
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" href="#">View</a>
-                    <a class="dropdown-item" href="#">Send</a>
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th><span class="align-middle">ID #</span></th>
-                    <th>Название</th>
-                    <th>Дата</th>
-                    <th>Действия</th>
-                </tr>
-                </thead>
-                <tbody>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body card-dashboard">
+                            <a href="{{route('doc.create')}}" class="btn btn-primary mb-1 ">
+                                <i class="bx bx-plus"></i>&nbsp; Добавить
+                            </a>
+                            <div class="table-responsive">
+                                <table class="table zero-configuration">
+                                    <thead>
+                                    <tr>
+                                        <th><span class="align-middle">ID #</span></th>
+                                        <th>Название</th>
+                                        <th>Дата</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                @foreach ($docs as $doc)
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="{{asset('app-invoice-view')}}">{{ $doc->id }}</a>
-                        </td>
-                        <td>
-                            <i class="bx bxs-circle {{($doc->pub)?'success':'danger'}}  font-small-1 mr-50"></i>
-                            <a class="readable-mark-icon" data-toggle="tooltip" data-placement="top" title="{{$doc->name}}"
-                               data-original-title="{{$doc->name}}"
-                               href="{{route('doc.edit',$doc->id)}}">{{ Str::limit(  $doc->getShotName()    , 60)  }}</a></td>
-                        <td><small class="text-muted">{{$doc->created_at->format('d.m.Y')}}</small></td>
+                                    @foreach ($docs as $doc)
+                                        <tr>
+
+                                            <td>
+                                                <a href="{{asset('app-invoice-view')}}">{{ $doc->id }}</a>
+                                            </td>
+                                            <td>
+                                                <i class="bx bxs-circle {{($doc->pub)?'success':'danger'}}  font-small-1 mr-50"></i>
+                                                <a class="readable-mark-icon" href="{{route('doc.edit',$doc->id)}}">
+                                                    {{ Str::limit(  $doc->getShotName() , 90)  }}
+                                                </a>
+                                                <br>
+                                                <small>{{ Str::limit( $doc->name , 400)  }}</small>
+
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">{{$doc->created_at->format('d.m.Y')}}</small>
+                                            </td>
 
 
-                        <td>
-                            <div class="invoice-action">
-                                <a href="/post/{{ $doc->id }}" class="invoice-action-view mr-1">
-                                    <i class="bx bx-show-alt"></i>
-                                </a>
-                                <a href="{{route('doc.edit',$doc->id)}}" class="invoice-action-view mr-1">
-                                    <i class="bx bx-edit"></i>
-                                </a>
-
-                                {{-- <a href="{{asset('app-invoice-edit')}}" class="invoice-action-edit cursor-pointer">
-                                     <i class="bx bx-x"></i>
-                                 </a>--}}
+                                        </tr>
+                                    @endforeach
+                                    </tfoot>
+                                </table>
                             </div>
-                        </td>
-                    </tr>
-
-
-                @endforeach
-
-
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    <!--/ Zero configuration table -->
+
+
+
+
+
+
 @endsection
 
 {{-- vendor scripts --}}
 @section('vendor-scripts')
-    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
-    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
-    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/responsive.bootstrap.min.js')}}"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
-    <script src="{{asset('/adm/app-assets/js/doc.list.js')}}"></script>
+    <script src="/adm/app-assets/js/datatable-log.js"></script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
+use App\Models\Document;
 use App\Models\Post;
 use App\Models\Slider;
 use App\Models\Social;
@@ -33,11 +34,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // QrCodeQRCode::text('QR Code Generator for !')->setOutfile('/dd.svg');
-        $users_chek = DB::table('users')->where('deleted_at', '!=', null)->whereNotNull('tel')->count();
-        $sliders = Slider::where('active', 1)->get();
-        $socials = Social::where('active', 1)->get();
-        return view('frontend.home.index', compact('users_chek', 'sliders', 'socials'));
+        $breadcrumbs = [
+            ['name' => "Главная"],
+        ];
+
+        $countDoc = Document::all()->count();
+        $freshPubDoc = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(5)->get();
+        $freshVstDoc = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(5)->get();
+
+        return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
 
     }
 }

@@ -35,7 +35,6 @@
                             </p>
                             <h2 class="mb-0">
                                 {{$users}}
-
                             </h2>
                         </div>
                     </div>
@@ -50,7 +49,7 @@
                                 <i class="bx bx-user-check font-medium-5"></i>
                             </div>
                             <p class="text-muted mb-0 line-ellipsis">Активированные </p>
-                            <h2 class="mb-0">{{$users_chek}}</h2>
+                            <h2 class="mb-0"></h2>
                         </div>
                     </div>
                 </div>
@@ -63,7 +62,7 @@
                                 <i class="bx bx-user-minus font-medium-5"></i>
                             </div>
                             <p class="text-muted mb-0 line-ellipsis">Неактивированные </p>
-                            <h2 class="mb-0">{{$users_no_chek}}</h2>
+                            <h2 class="mb-0"></h2>
                         </div>
                     </div>
                 </div>

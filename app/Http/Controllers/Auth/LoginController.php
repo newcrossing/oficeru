@@ -44,7 +44,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('frontend.auth.login');
+        return view('front.auth.login');
     }
 
     public function login(Request $request)
@@ -56,16 +56,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             Activity::add('Авторизация на сайте');
-
-            if (Auth::user()->email) {
-                return redirect()->intended('/board/edit/');
-            } else {
-                return redirect()->intended('/profile/settings/');
-            }
+            return redirect()->intended('/admin/');
         }
+
         Activity::add('Авторизации на сайте. Неверные данные.', 'error');
         return back()->withErrors([
-            'email' => 'Неверный логин или пароль.',
+            'login' => 'Неверный логин или пароль.',
         ]);
     }
 

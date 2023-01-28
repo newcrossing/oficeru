@@ -9,7 +9,16 @@
 ==========================================================================================*/
 $(document).ready(function () {
 
+    var groupingTable = $('.zero-configuration').DataTable({
+        "columnDefs": [{
+            "visible": true,
+            "targets": 2
+        }],
+        "order": [
+            [0, 'desc']
+        ],
 
+    });
 
     /********Invoice List ********/
     // ---------------------------

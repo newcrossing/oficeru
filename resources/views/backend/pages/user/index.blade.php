@@ -23,16 +23,9 @@
                         Создать пользователя</a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="invoice-create-btn mb-1">
-                    <a href="{{route('admin.user.create_many')}}" class="btn btn-primary glow invoice-create" role="button"
-                       aria-pressed="true">
-                        Массовое добавление </a>
-                </div>
-            </div>
+
         </div>
     </div>
-
 
 
     <!-- Zero configuration table -->
@@ -51,36 +44,29 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Логин</th>
-                                        <th>Email / тел</th>
-                                        <th>Уведомления</th>
+                                        <th>Email</th>
+                                        <th>Имя</th>
                                         <th>Дата регистрации</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     @foreach ($users as $user)
-                                        <tr>
+                                        <tr class="">
                                             <td>{{$user->id }}</td>
                                             <td>
                                                 <i class="bx bxs-circle {{($user->active)?'success':'danger'}}  font-small-1 mr-50"></i>
                                                 <a href="{{route('user.edit',$user->id)}}">{{$user->login}}</a><br>
-                                                {{$user->name }}
+
                                             </td>
-                                            <td>{{$user->email}}<br> {{$user->tel}}</td>
+                                            <td>{{$user->email}}<br></td>
                                             <td>
-                                                <i class="bx bxs-circle {{($user->active)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                                Email<br>
-                                                <i class="bx bxs-circle {{($user->notify_tel)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                                Телефон<br>
-                                                <i class="bx bxs-circle {{($user->notify_whatsup)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                                Whats Up
-                                                <br>
-                                                <i class="bx bxs-circle {{($user->notify_telegram)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                               Telegram
+                                                {{$user->name }}
 
 
                                             </td>
-                                            <td>{{$user->created_at->format('d.m.Y')}}</td>
+                                            <td>
+                                                <small>{{$user->created_at->format('d.m.Y')}}</small></td>
                                         </tr>
                                     @endforeach
                                     </tfoot>

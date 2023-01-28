@@ -121,6 +121,7 @@ class Config
                     'name'               => 'default',
                     'adapter'            => 'local',
                     'baseUrl'            => '/userfiles/',
+                    'baseUrl'            => '/userfiles/',
                     'chmodFiles'         => 0777,
                     'chmodFolders'       => 0777,
                     'filesystemEncoding' => 'UTF-8'

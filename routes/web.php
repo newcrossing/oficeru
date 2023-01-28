@@ -3,7 +3,8 @@
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
-use App\Http\Controllers\FotoController;
+use App\Http\Controllers\DocumentController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
@@ -25,26 +26,28 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');;
-Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
-Route::get('/contact', [AgreementController::class, 'contact'])->name('contact');;
-Route::get('/help', [AgreementController::class, 'help'])->name('help');;
-Route::get('/privacy-policy', [AgreementController::class, 'privacy'])->name('privacy-policy');
-Route::get('/public-offer', [AgreementController::class, 'public_offer'])->name('public-offer');
-Route::get('/security', [AgreementController::class, 'security'])->name('security');
-Route::get('/board/{id}', [BoardController::class, 'single'])->where('id', '[0-9]+')->name('board.single');
-Route::get('/{slug}', [BoardController::class, 'qr'])->where('slug', 'qr-[A-Za-z0-9]+')->name('qr');
-Route::post('/sendmail', [BoardController::class, 'sendmail'])->name('board.send');
-Route::post('/sendorder', [BoardController::class, 'sendorder'])->name('board.sendorder');
+Route::get('/doc', [DocumentController::class, 'list'])->name('doc.list');
+Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
+//Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
+//Route::get('/contact', [AgreementController::class, 'contact'])->name('contact');;
+//Route::get('/help', [AgreementController::class, 'help'])->name('help');;
+//Route::get('/privacy-policy', [AgreementController::class, 'privacy'])->name('privacy-policy');
+//Route::get('/public-offer', [AgreementController::class, 'public_offer'])->name('public-offer');
+//Route::get('/security', [AgreementController::class, 'security'])->name('security');
+//Route::get('/board/{id}', [BoardController::class, 'single'])->where('id', '[0-9]+')->name('board.single');
+//Route::get('/{slug}', [BoardController::class, 'qr'])->where('slug', 'qr-[A-Za-z0-9]+')->name('qr');
+//Route::post('/sendmail', [BoardController::class, 'sendmail'])->name('board.send');
+//Route::post('/sendorder', [BoardController::class, 'sendorder'])->name('board.sendorder');
 
-Route::get('forgot-password', [UserController::class, 'forgotPassword'])->name('forgot-password');
-Route::get('forgot-password/{token}', [UserController::class, 'forgotPasswordValidate']);
-Route::post('forgot-password', [UserController::class, 'resetPassword'])->name('forgot-password');
+//Route::get('forgot-password', [UserController::class, 'forgotPassword'])->name('forgot-password');
+//Route::get('forgot-password/{token}', [UserController::class, 'forgotPasswordValidate']);
+//Route::post('forgot-password', [UserController::class, 'resetPassword'])->name('forgot-password');
+//
+//Route::put('reset-password', [UserController::class, 'updatePassword'])->name('reset-password');
 
-Route::put('reset-password', [UserController::class, 'updatePassword'])->name('reset-password');
-
-Route::get('/down-qr/{id}', function ($id) {
-    return Storage::download('public/qr/' . $id);
-});
+//Route::get('/down-qr/{id}', function ($id) {
+//    return Storage::download('public/qr/' . $id);
+//});
 
 Route::middleware(['role:admin|user'])->group(
     function () {

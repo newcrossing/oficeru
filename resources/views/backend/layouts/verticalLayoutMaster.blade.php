@@ -1,5 +1,7 @@
 <!-- BEGIN: Body-->
-<body class="vertical-layout vertical-menu-modern 2-columns {{--- menu-collapsed---}} dark-layout
+<body class="vertical-layout vertical-menu-modern 2-columns {{--- menu-collapsed---}}
+menu-collapsed
+    dark-layout
 fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <!-- BEGIN: Header-->
@@ -30,7 +32,8 @@ fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-col
                                     <h5 class="content-header-title float-left pr-1 mb-0">Date &amp; Time Picker</h5>
                                     <div class="breadcrumb-wrapper col-12">
                                         <ol class="breadcrumb p-0 mb-0">
-                                            <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                                            <li class="breadcrumb-item">
+                                                <a href="index.html"><i class="bx bx-home-alt"></i></a>
                                             </li>
                                             <li class="breadcrumb-item"><a href="#">Form Elements</a>
                                             </li>

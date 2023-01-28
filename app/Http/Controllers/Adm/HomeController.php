@@ -16,12 +16,8 @@ class HomeController extends Controller
     public function index()
     {
         $breadcrumbs = [
-
-
         ];
         $users = DB::table('users')->count();
-        $users_chek = DB::table('users')->whereNotNull('tel')->count();
-        $users_no_chek = DB::table('users')->whereNull('tel')->count();
 
         $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
 
@@ -29,10 +25,7 @@ class HomeController extends Controller
             compact(
                 'breadcrumbs',
                 'users',
-                'users_chek',
-                'users_no_chek',
                 'logs',
-
             )
         );
     }
