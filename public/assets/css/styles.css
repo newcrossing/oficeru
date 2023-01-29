@@ -107,6 +107,27 @@ summary {
     margin: 0;
     font-size: 22px;
 }
+.document h2 {
+    color: #21aabd;
+    font-family: initial;
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+.document h3 {
+    color: #21aabd;
+    font-family: initial;
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+}
+.document h4 {
+    color: #000000;
+    font-family: initial;
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+}
 audio,
 canvas,
 progress,
