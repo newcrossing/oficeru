@@ -61,7 +61,7 @@ class DocumentController extends Controller
 
 
         return view(
-            'frontend_old.doc.single',
+            'front.doc.index',
             [
                 'doc' => $doc,
                 'messageTop' => $messageTop,

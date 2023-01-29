@@ -98,6 +98,15 @@ section,
 summary {
   display: block;
 }
+
+
+.document h1 {
+    color: #21aabd;
+    font-family: initial;
+    text-align: center;
+    margin: 0;
+    font-size: 26px;
+}
 audio,
 canvas,
 progress,

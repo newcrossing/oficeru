@@ -1,21 +1,12 @@
-@extends('frontend_old.layouts.app')
+@extends('front.layouts.index')
 @section('title',$doc->getShotName())
+@section('widgets')
+    {{ Widget::run('search') }}
+    {{ Widget::run('tags') }}
+@endsection
 @section('content')
-    <div class="rw-column rw-content">
-        <div class="rw-row page-breadcrumb">
-            @isset($breadcrumbs)
-                @foreach ($breadcrumbs as $breadcrumb)
-                    @if(isset($breadcrumb['link']))
-                        <a href="{{asset($breadcrumb['link'])}}">{{$breadcrumb['name']}}</a>&raquo;
-                    @else
-                        {{$breadcrumb['name']}}
-                    @endif
-                @endforeach
-            @endisset
-        </div>
-        <div class="rw-row page-title">
-            {{--<h1> {{ $doc->name }}</h1>--}}
-        </div>
+
+
 
 
         @if(!empty($doc->annotation))
@@ -42,7 +33,6 @@
             </div>
             <div class="clear"></div>
         </div> <!-- .rw-row -->
-    </div>
 @endsection
 
 
