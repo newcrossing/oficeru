@@ -11,7 +11,10 @@
 
 @section('widgets')
     {{ Widget::run('search') }}
-    {{ Widget::run('tags') }}
+    {{ Widget::run('vst_doc') }}
+    {{ Widget::run('fresh_doc') }}
+
+
 @endsection
 
 @section('content')
@@ -23,7 +26,7 @@
                         <div class="entry-details" style="min-height: 70px">
                             <div class="entry-title" style="padding-left: 0px; ">
                                 <h2 style="font-size: 20px;text-align: justify;">
-                                    <a href="/doc/{{ $doc->id }}"> {{   $doc->getShotName() }}</a>
+                                    <a href="/doc/{{ $doc->id }}" style="color: #21aabd"> {{   $doc->getShotName() }}</a>
                                 </h2>
                                 {{--<div class="entry-controls minimal">
                                     <a href="#" class="control   " title="Добавить в избранное<br>-=Необходимо авторизоваться=-"> <i class="fa fa-heart-o"></i> </a><span class="control-tip">0</span>

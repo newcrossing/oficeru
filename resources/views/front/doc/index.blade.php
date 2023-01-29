@@ -6,10 +6,7 @@
 @endsection
 @section('content')
 
-
-
-
-        @if(!empty($doc->annotation))
+    @if(!empty($doc->annotation))
             <blockquote>
                 <span class="text-pink"> {{ $doc->annotation }}</span>
             </blockquote>
