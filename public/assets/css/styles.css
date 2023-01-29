@@ -101,31 +101,35 @@ summary {
 
 
 .document h1 {
-    color: #21aabd;
-    font-family: initial;
-    text-align: center;
-    margin: 0;
     font-size: 22px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    color: #416d8d;
+    line-height: 1.3;
+    margin: 0px 0px 10px;
 }
 .document h2 {
-    color: #21aabd;
-    font-family: initial;
-    text-align: center;
-    margin: 0;
     font-size: 20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    color: #416d8d;
+    line-height: 1.3;
+    margin: 0px 0px 10px;
 }
 .document h3 {
-    color: #21aabd;
-    font-family: initial;
+    font-size: 14px;
+    font-family: Georgia, "Times New Roman", Times, serif;
     text-align: center;
-    margin: 0;
-    font-size: 16px;
+    color: #416d8d;
+    margin: 0px 0px 10px;
 }
 .document h4 {
     color: #000000;
     font-family: initial;
     text-align: center;
-    margin: 0;
+    margin: 0px 0px 10px;
     font-size: 14px;
     font-weight: bold;
 }
