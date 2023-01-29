@@ -1,6 +1,10 @@
 <!-- Widget -->
 <aside class="widget widget-categories">
 
+
+    @foreach($tag as $ta)
+      
+    @endforeach
     <div class="widget-title"><h3>Теги</h3></div>
 
     <ul>

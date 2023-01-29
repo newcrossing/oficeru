@@ -2,7 +2,7 @@
 @section('title',$doc->getShotName())
 @section('widgets')
     {{ Widget::run('search') }}
-    {{ Widget::run('tags') }}
+    {{ Widget::run('info_doc', $doc->toArray()) }}
 @endsection
 @section('content')
 
