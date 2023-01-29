@@ -33,7 +33,7 @@
 </aside> <!-- .widget -->
 @if(!empty($doc->description))
     <aside class="widget widget-text">
-        <div class="widget-title"><h3>Описание документа</h3></div>
+        <div class="widget-title"><h3>Описание</h3></div>
         <div class="widget-content">
             <p>{{ $doc->description }}</p>
         </div> <!-- .entry -->

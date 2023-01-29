@@ -64,7 +64,7 @@
             </div>
 
             <div class="grid desk-6">
-                <h4>Вступили в силу</h4>
+                <h4>Вступают в силу</h4>
                 @foreach ($freshVstDoc as $doc)
                     <div class="home-blog-post clearfix">
                         <div class="entry-date">

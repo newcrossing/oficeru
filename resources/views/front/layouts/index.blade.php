@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="yandex-verification" content="83051dff11b82da2" />
     <title>@yield('title') / Офицеру.ру</title>
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
@@ -74,6 +75,8 @@
 
 <script src="/assets/js/scripts.js"></script>
 @yield('page-scripts')
+
+@include('front.moduls.metrika')
 </body>
 </html>
 
