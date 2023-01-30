@@ -14,19 +14,17 @@ class DocumentController extends Controller
         return view('main.index', ['users' => $users]);
     }
 
-    public function list()
+    public function listing()
     {
-        $docs = Doc::where('pub', '1')
-            ->orderBy('date_pod', 'desc')
-            ->paginate(10);
-
-        $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
-
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Документы"],
-
         ];
+
+        $docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
+
+        $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
+
 
         return view('front.doc.list', compact('docs', 'tags', 'breadcrumbs'));
     }

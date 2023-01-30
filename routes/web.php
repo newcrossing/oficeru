@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');;
-Route::get('/doc', [DocumentController::class, 'list'])->name('doc.list');
+Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
 Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
 //Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
 //Route::get('/contact', [AgreementController::class, 'contact'])->name('contact');;
