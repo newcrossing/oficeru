@@ -42,7 +42,9 @@ class DocController extends Controller
         //создаем объект чтобы было что отправить в форму.
         // Она же форма редактирования, надо что то отправить.
         $doc = new Doc();
-        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc'));
+        $docs =  Doc::all();
+
+        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'docs'));
     }
 
     /**
@@ -102,7 +104,8 @@ class DocController extends Controller
         ];
 
         $users = \Auth::user();
-        return view('backend.pages.doc.edit', compact('doc', 'users', 'breadcrumbs'));
+        $docs = Doc::all()->sortBy('id');;
+        return view('backend.pages.doc.edit', compact('doc', 'users','docs', 'breadcrumbs'));
     }
 
     /**
@@ -114,6 +117,7 @@ class DocController extends Controller
      */
     public function update(Request $request, Doc $doc)
     {
+        dd($request);
         $request->validate([
             'name' => 'required|min:3'
         ], [

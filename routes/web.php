@@ -4,6 +4,7 @@ use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SitemapController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
 Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
+
+Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 //Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
 //Route::get('/contact', [AgreementController::class, 'contact'])->name('contact');;
 //Route::get('/help', [AgreementController::class, 'help'])->name('help');;

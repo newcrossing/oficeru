@@ -78,63 +78,137 @@
 
                                 <div class="row ">
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <h4 class="text-primary">Название </h4>
+                                        <h6 class="text-primary">Название </h6>
                                         <textarea name="name" class="form-control" rows="3">{{old('name',$doc->name)}}</textarea>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row invoice-info">
-                                    <div class="col-lg-12 col-md-12 mt-25">
-                                        <textarea class="ckeditor" cols="80" id="editor1" name="text">{{old('text',$doc->text)}}</textarea>
-                                    </div>
+
+                                <div class="card-body px-0">
+                                    <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0" role="tablist">
+                                        <li class="nav-item pb-0">
+                                            <a class=" nav-link d-flex px-1 active" id="feed-tab" data-toggle="tab" href="#feed" aria-controls="feed" role="tab" aria-selected="true"><i class="bx bx-home"></i><span class="d-none d-md-block">Документ</span></a>
+                                        </li>
+                                        <li class="nav-item pb-0">
+                                            <a class="nav-link d-flex px-1" id="activity-tab" data-toggle="tab" href="#activity" aria-controls="activity" role="tab" aria-selected="false"><i class="bx bx-user"></i><span class="d-none d-md-block">Изменения</span></a>
+                                        </li>
+
+                                    </ul>
                                 </div>
-                                <hr>
-                                <div class="invoice-subtotal pt-50">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Примечание </h6>
-                                                <textarea name="annotation" class="form-control" rows="3">{{old('annotation',$doc->annotation)}}</textarea>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="feed" aria-labelledby="feed-tab" role="tabpanel">
+                                        <!-- user profile nav tabs feed start -->
+
+                                        <div class="row invoice-info">
+                                            <div class="col-lg-12 col-md-12 mt-25">
+                                                <textarea class="ckeditor" cols="80" id="editor1" name="text">{{old('text',$doc->text)}}</textarea>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="invoice-subtotal pt-50">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <h6 class="invoice-to">Примечание </h6>
+                                                        <textarea name="annotation" class="form-control" rows="3">{{old('annotation',$doc->annotation)}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <h6 class="invoice-to">Описание </h6>
+                                                        <textarea name="description" class="form-control" rows="3">{{old('description',$doc->description)}}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <hr>
+                                        <div class="invoice-subtotal pt-50">
+                                            <div class="row">
+                                                <div class="col-md-5 col-12">
+                                                    <div class="form-group">
+                                                        <h6 class="invoice-to">Мета заголовок </h6>
+                                                        <input type="text" name="meta_title" class="form-control" value="{{old('meta_title',$doc->meta_title)}}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <h6 class="invoice-to">Описание</h6>
+                                                        <textarea name="meta_disc" class="form-control" rows="2">{{old('text',$doc->meta_disc)}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item d-flex justify-content-between border-0 pb-0">
+                                                            <span class="invoice-subtotal-title">Просмотров за сутки</span>
+                                                            <h6 class="invoice-subtotal-value mb-0">{{(@$doc->hits)}}</h6>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between border-0 pb-0">
+                                                            <span class="invoice-subtotal-title">Всего</span>
+                                                            <h6 class="invoice-subtotal-value mb-0">-</h6>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Описание </h6>
-                                                <textarea name="description" class="form-control" rows="3">{{old('description',$doc->description)}}</textarea>
-                                            </div>
-                                        </div>
+                                        <!-- user profile nav tabs feed ends -->
                                     </div>
-                                </div>
-                                <hr>
-                                <hr>
-                                <div class="invoice-subtotal pt-50">
-                                    <div class="row">
-                                        <div class="col-md-5 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Мета заголовок </h6>
-                                                <input type="text" name="meta_title" class="form-control" value="{{old('meta_title',$doc->meta_title)}}">
-                                            </div>
+                                    <div class="tab-pane " id="activity" aria-labelledby="activity-tab" role="tabpanel">
+                                        <!-- Zero configuration table -->
+                                        <section id="basic-datatable">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-content">
+                                                            <div class="card-body card-dashboard">
 
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Описание</h6>
-                                                <textarea name="meta_disc" class="form-control" rows="2">{{old('text',$doc->meta_disc)}}</textarea>
+                                                                <div class="table-responsive">
+                                                                    <table class="table zero-configuration">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th><span class="align-middle">ID #</span>
+                                                                            </th>
+                                                                            <th>Название</th>
+
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                        @foreach ($docs as $doc)
+                                                                            <tr>
+
+                                                                                <td>
+                                                                                    <div class="checkbox">
+                                                                                        <input type="checkbox" class="checkbox-input" id="checkbox{{ $doc->id }}" name="chek[]" value="{{ $doc->id }}">
+                                                                                        <label for="checkbox{{ $doc->id }}"></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a href="{{asset('app-invoice-view')}}">{{ $doc->id }}</a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a class="readable-mark-icon" href="{{route('doc.edit',$doc->id)}}" title="{{ $doc->name  }}">
+                                                                                        {{ Str::limit(  $doc->getShotName() , 90)  }}
+                                                                                    </a>
+                                                                                </td>
+
+
+                                                                            </tr>
+                                                                        @endforeach
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Просмотров за сутки</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">{{(@$doc->hits)}}</h6>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Всего</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">-</h6>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        </section>
+                                        <!--/ Zero configuration table -->
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -144,33 +218,29 @@
                 <div class="col-xl-3 col-md-4 col-12">
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-body">
-                            <div class="invoice-action-btn mb-1">
-                                <button type="submit" name="redirect" value="apply" class="btn btn-primary btn-block invoice-send-btn">
-                                    <i class="bx bx-send"></i> <span>Применить</span>
-                                </button>
-                            </div>
 
+                            <div class="invoice-action-btn mb-1 d-flex">
+                                <div class="preview w-50 mr-50">
+                                    <button type="submit" name="redirect" value="save" class="btn btn-success btn-block" title="Сохранить">
+                                        <i class='bx bx-save'></i>
+                                    </button>
+                                </div>
+                                <div class="save w-50">
+                                    <button type="submit" name="redirect" value="apply" class="btn btn-primary btn-block invoice-send-btn" title="Применить">
+                                        <i class="bx bx-send"></i>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="invoice-action-btn mb-1">
-                                <button type="submit" name="redirect" value="save" class="btn btn-success btn-block">
-                                    <i class='bx bx-save'></i> <span>Сохранить</span>
-                                </button>
+                                <a href="/admin/doc/create" class="btn btn-success btn-block">
+                                    <i class='bx bx-plus'></i> <span>Добавить</span>
+                                </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="invoice-payment">
-                        <div class="invoice-payment-option mb-2">
-                            <h6>Раздел</h6>
-                            <select name="lavel_id" class="form-control ">
-                                <option value="1">Debit Card</option>
-                                <option value="2">Credit Card</option>
-                                <option value="3">Paypal</option>
-                                <option value="4">Internet Banking</option>
-                                <option value="5">UPI Transfer</option>
-                            </select>
-                        </div>
 
-                        <hr>
 
                         <div class="invoice-payment-option mb-2">
                             <label class="@isset($doc->date_pod) text-success @endisset">Дата подписания</label>
@@ -301,8 +371,18 @@
     <script src="/adm/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="/adm/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
     <script src="/adm/app-assets/vendors/js/forms/select/select2.full.js"></script>
+
+    <script src="/adm/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
     <!-- END: Page Vendor JS-->
 @endsection
+
 
 {{-- page scripts --}}
 @section('page-scripts')
@@ -326,4 +406,63 @@
             CKFinder.setupCKEditor(editor, '/CKE/');
         }
     </script>
+    <script type="text/javascript">
+        // table extended checkbox
+        var tablecheckbox = $('#table-extended-chechbox').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "paging": false,
+            "bInfo": false,
+            'columnDefs': [
+                {"orderable": false, "targets": [0, 3, 4]},   //to disable sortying in col 0,3 & 4
+                {
+                    'targets': 0,
+                    'render': function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'; //body checkbox
+                        }
+                        return data;
+                    },
+                    'checkboxes': {
+                        'selectRow': true,
+                        'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes" checked=""><label></label></div >'  //head checkbox
+                    }
+                }],
+            'select': 'multi',
+            'order': [[1, 'asc']]
+        });
+
+
+        $(document).ready(function () {
+
+            /****************************************
+             *       js of zero configuration        *
+             ****************************************/
+
+            //$('.zero-configuration').DataTable();
+
+            /********************************************
+             *        js of Order by the grouping        *
+             ********************************************/
+
+            var groupingTable = $('.zero-configuration').DataTable({
+
+                bAutoWidth: false,
+                aoColumns : [
+                    { sWidth: '10%' },
+                    { sWidth: '15%' },
+
+                ]
+                "order": [
+                    [1, 'desc']
+                ],
+
+            });
+
+
+        });
+
+    </script>
+
+
 @endsection
