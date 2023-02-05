@@ -152,4 +152,9 @@ class Document extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function izm()
+    {
+        return $this->hasOne(Izm::class);
+    }
 }

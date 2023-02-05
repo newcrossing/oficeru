@@ -73,15 +73,19 @@
                                                 <input type="text" name="short_name" class="form-control" value="{{old('short_name',$doc->short_name)}}">
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
 
                                 <div class="row ">
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <h6 class="text-primary">Название </h6>
-                                        <textarea name="name" class="form-control" rows="3">{{old('name',$doc->name)}}</textarea>
+                                        <h6 class="">Название </h6>
+                                        <textarea name="name" class="form-control  " rows="3">{{old('name',$doc->name)}}</textarea>
+
                                     </div>
+
                                 </div>
+
 
                                 <div class="card-body px-0">
                                     <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0" role="tablist">
@@ -100,7 +104,7 @@
 
                                         <div class="row invoice-info">
                                             <div class="col-lg-12 col-md-12 mt-25">
-                                                <textarea class="ckeditor" cols="80" id="editor1" name="text">{{old('text',$doc->text)}}</textarea>
+                                                <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$doc->text)}}</textarea>
                                             </div>
                                         </div>
                                         <hr>
@@ -157,6 +161,7 @@
                                         <!-- Zero configuration table -->
                                         <section id="basic-datatable">
                                             <div class="row">
+
                                                 <div class="col-12">
                                                     <div class="card">
                                                         <div class="card-content">
@@ -177,7 +182,6 @@
 
                                                                         @foreach ($docs as $doc)
                                                                             <tr>
-
                                                                                 <td>
                                                                                     <div class="checkbox">
                                                                                         <input type="checkbox" class="checkbox-input" id="checkbox{{ $doc->id }}" name="chek[]" value="{{ $doc->id }}">
@@ -231,13 +235,47 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="invoice-action-btn mb-1">
+                            <div class="invoice-action-btn ">
                                 <a href="/admin/doc/create" class="btn btn-success btn-block">
                                     <i class='bx bx-plus'></i> <span>Добавить</span>
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div class="card invoice-action-wrapper shadow-none border">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h6>Редакции документа</h6>
+                                @if($izms)
+                                    @foreach($izms as $izm)
+                                        <div>
+                                            @if (empty($izm->document->date_vst))
+                                                <span class="bullet bullet-warning   bullet-sm cursor-pointer" title="Дата еще не установлена {{$izm->document->date_vst}}">  </span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-warning font-small-2">{{$izm->document->getShotName()}}</a>
+                                            @elseif ($izm->document->date_vst->format('Y-m-d') > date('Y-m-d') || empty($izm->document->date_vst))
+                                                <span class="bullet bullet-info  bullet-sm cursor-pointer" title="еще не вступил в силу {{$izm->document->date_vst}}">  </span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-info font-small-2">{{$izm->document->getShotName()}}</a>
+                                            @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d') && empty($flag))
+                                                <span class="bullet bullet-success bullet-sm cursor-pointer" title="Действущая редакция"></span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-success font-small-2">{{$izm->document->getShotName()}}</a>
+                                                @php
+                                                    // прошли текущию версию, дальше прошлые
+                                                    $flag = true;
+                                                @endphp
+                                            @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d'))
+                                                <span class="bullet bullet-danger bullet-sm cursor-pointer" title="Прошлые редакция"></span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-danger font-small-2">{{$izm->document->getShotName()}}</a>
+                                            @endif
+
+                                        </div>
+                                    @endforeach
+
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="invoice-payment">
 
@@ -270,7 +308,8 @@
                         </div>
 
                         <div class="invoice-payment-option mb-2">
-                            <label class="@isset($doc->date_end_vst) text-success @endisset"> Дата окончания действия </label>
+                            <label class="@isset($doc->date_end_vst) text-success @endisset"> Дата окончания
+                                действия </label>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_end_vst" value="{{isset($doc->date_end_vst)?$doc->date_end_vst->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
@@ -279,7 +318,8 @@
                         </div>
                         <hr>
                         <div class="invoice-payment-option mb-2">
-                            <label class="@isset($doc->date_npub) text-success @endisset"> Начало публикации на сайте </label>
+                            <label class="@isset($doc->date_npub) text-success @endisset"> Начало публикации на
+                                сайте </label>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_npub" value="{{isset($doc->date_npub)?$doc->date_npub->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
@@ -287,7 +327,8 @@
                             </fieldset>
                         </div>
                         <div class="invoice-payment-option mb-2">
-                            <label class="@isset($doc->date_kpub) text-success @endisset">Окончание публикации на сайте</label>
+                            <label class="@isset($doc->date_kpub) text-success @endisset">Окончание публикации на
+                                сайте</label>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_kpub" value="{{isset($doc->date_kpub)?$doc->date_kpub->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
@@ -321,16 +362,10 @@
                             </div>
                         </div>
                         <hr>
-                        <h6>Автор</h6>
-                        <div class="form-group">
-                            <select class=" form-control" disabled>
-                                <option value="square">{{Auth::user()->name}}</option>
-                            </select>
-                        </div>
-                        <hr>
+
                         <div class="invoice-terms">
                             <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Удалить - консультант-</span>
+                                <span class="invoice-terms-title">Удалить - консультант</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
                                     <input type="checkbox" name="delete_consultant" class="custom-control-input" id="delete_consultant">
                                     <label class="custom-control-label" for="delete_consultant"> </label>
@@ -407,37 +442,10 @@
         }
     </script>
     <script type="text/javascript">
-        // table extended checkbox
-        var tablecheckbox = $('#table-extended-chechbox').DataTable({
-            "searching": false,
-            "lengthChange": false,
-            "paging": false,
-            "bInfo": false,
-            'columnDefs': [
-                {"orderable": false, "targets": [0, 3, 4]},   //to disable sortying in col 0,3 & 4
-                {
-                    'targets': 0,
-                    'render': function (data, type, row, meta) {
-                        if (type === 'display') {
-                            data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'; //body checkbox
-                        }
-                        return data;
-                    },
-                    'checkboxes': {
-                        'selectRow': true,
-                        'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes" checked=""><label></label></div >'  //head checkbox
-                    }
-                }],
-            'select': 'multi',
-            'order': [[1, 'asc']]
-        });
 
 
         $(document).ready(function () {
 
-            /****************************************
-             *       js of zero configuration        *
-             ****************************************/
 
             //$('.zero-configuration').DataTable();
 
@@ -448,11 +456,7 @@
             var groupingTable = $('.zero-configuration').DataTable({
 
                 bAutoWidth: false,
-                aoColumns : [
-                    { sWidth: '10%' },
-                    { sWidth: '15%' },
 
-                ]
                 "order": [
                     [1, 'desc']
                 ],
