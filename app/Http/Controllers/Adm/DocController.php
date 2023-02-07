@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DocController extends Controller
 {
@@ -46,7 +47,9 @@ class DocController extends Controller
         $doc = new Doc();
         $docs = Doc::all();
 
-        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'docs'));
+        $curText = $doc->text;
+
+        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'docs', 'curText'));
     }
 
     /**
@@ -95,9 +98,9 @@ class DocController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Doc $doc
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Doc $doc,Request $request)
+    public function edit(Doc $doc, Request $request)
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
@@ -105,41 +108,59 @@ class DocController extends Controller
             ['name' => " Редактирование"]
         ];
 
-        $users = \Auth::user();
-        $docs = Doc::select('id', 'preamble_name', 'nomer', 'short_name', 'name', 'date_pod')->get()->sortBy('id');;
-        // список  документов которые вносят изменения в текущий
-//       $izms = Izm::where('document_current_id', $doc->id)->orderBy('id', 'desc')->get();
-//         //$izms = Izm::with('document')->where('document_current_id', $doc->id)->get()->sortBy('date_vst');
-//
-//        $izms = $izms->load(['document' => function ($query) {
-//            $query->orderBy('id', 'desc');
-//        }]);
-//
-//
-//        $izms = Izm::where('document_current_id', $doc->id)->orderByDesc(Doc::select('date_vst')
-//            ->whereColumn('documents.id', 'izms.document_id')
-//        )->get();
+        // корректная версия документа
+        $curVersion = 0;
+        // выбраная версия документа
+        $selVersion = ($request->izm) ?: 0;
+        // текст для отображения, в завистмости от корректной версии или выбраных изменеий
+        $curText = $doc->text;
 
+        $docs = Doc::select('id', 'preamble_name', 'nomer', 'short_name', 'name', 'date_pod')->get()->sortBy('id');
 
-        $izms = Izm::where('document_current_id', $doc->id)->select('izms.*')
+        // получаю редакции документа и сортирую по дате вступления
+        $edition = Izm::where('document_current_id', $doc->id)->select('izms.*')
             ->join('documents', 'documents.id', '=', 'izms.document_id')
             ->orderByDesc('documents.date_vst')
             ->orderByDesc('izms.id')
             ->get();
 
-//dd($posts);
+        // если есть редакции , ищем корректную версию
+        if ($edition->count() ) {
+            $query = Izm::where('document_current_id', $doc->id)->select('izms.*')
+                ->join('documents', 'documents.id', '=', 'izms.document_id')
+                ->orderByDesc('documents.date_vst')
+                ->orderByDesc('izms.id')
+                ->where('documents.date_vst', '<=', date('Y-m-d'))
+                ->first();
+
+            $curVersion = $query->id;
+            $curText = $query->text;
+            $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
+        }
+
+        if (isset($request->izm) && $request->izm != $curVersion) {
+
+            //Log::info($request->izm);
+            if ($request->izm == '0') {
+                $curText = $doc->text;
+            } else {
+                $izmVer = Izm::find($request->izm);
+                $curText = $izmVer->text;
+                $request->session()->now('message', 'Просматриваете не актуальную версию!');
+            }
+
+        }
 
 
-
-
-        // оставляю только текущие для поиска id  документов
-       // $idIzm = $izms->pluck('document_id');
-        // ищу документы вноясщие в документ
-      //  $izms = Doc::whereIn('id', $idIzm)->orderBy('date_vst', 'desc')->orderBy('id', 'desc')->get();
-        //dd($docIzm);
-        //$docIzm = Doc::find()
-
-        return view('backend.pages.doc.edit', compact('doc', 'users', 'docs', 'breadcrumbs', 'izms'));
+        return view('backend.pages.doc.edit', compact(
+            'doc',
+            'docs',
+            'breadcrumbs',
+            'edition',
+            'curText',
+            'selVersion',
+            'curVersion'
+        ));
     }
 
     /**

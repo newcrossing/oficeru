@@ -26,6 +26,17 @@
                 </div>
             </div>
         @endif
+        @if(session('message'))
+            <div class="alert alert-warning alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-error-circle"></i>
+                    <span> {{session('message')}}  </span>
+                </div>
+            </div>
+        @endif
         @if ($errors->any())
             <div class="alert bg-rgba-danger alert-dismissible mb-2" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -104,7 +115,7 @@
 
                                         <div class="row invoice-info">
                                             <div class="col-lg-12 col-md-12 mt-25">
-                                                <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$doc->text)}}</textarea>
+                                                <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$curText)}}</textarea>
                                             </div>
                                         </div>
                                         <hr>
@@ -180,20 +191,20 @@
                                                                         </thead>
                                                                         <tbody>
 
-                                                                        @foreach ($docs as $doc)
+                                                                        @foreach ($docs as $d)
                                                                             <tr>
                                                                                 <td>
                                                                                     <div class="checkbox">
-                                                                                        <input type="checkbox" class="checkbox-input" id="checkbox{{ $doc->id }}" name="chek[]" value="{{ $doc->id }}">
-                                                                                        <label for="checkbox{{ $doc->id }}"></label>
+                                                                                        <input type="checkbox" class="checkbox-input" id="checkbox{{ $d->id }}" name="chek[]" value="{{ $d->id }}">
+                                                                                        <label for="checkbox{{ $d->id }}"></label>
                                                                                     </div>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <a href="{{asset('app-invoice-view')}}">{{ $doc->id }}</a>
+                                                                                    <a href="{{asset('app-invoice-view')}}">{{ $d->id }}</a>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <a class="readable-mark-icon" href="{{route('doc.edit',$doc->id)}}" title="{{ $doc->name  }}">
-                                                                                        {{ Str::limit(  $doc->getShotName() , 90)  }}
+                                                                                    <a class="readable-mark-icon" href="{{route('doc.edit',$d->id)}}" title="{{ $d->name  }}">
+                                                                                        {{ Str::limit(  $d->getShotName() , 90)  }}
                                                                                     </a>
                                                                                 </td>
 
@@ -242,39 +253,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card invoice-action-wrapper shadow-none border">
-                        <div class="card-content">
+                    @if(isset($edition) && $edition->count())
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Редакции  </h4>
+                            <a class="heading-elements-toggle">
+                                <i class="bx bx-dots-vertical font-medium-3"></i>
+                            </a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li>
+                                        <a data-action="collapse">
+                                            <i class="bx bx-chevron-down"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
                             <div class="card-body">
-                                <h6>Редакции документа</h6>
-                                @if($izms)
-                                    @foreach($izms as $izm)
-                                        <div>
+
+
+                                    @foreach($edition as $izm)
+                                        <div  >
+
+
                                             @if (empty($izm->document->date_vst))
-                                                <span class="bullet bullet-warning   bullet-sm cursor-pointer" title="Дата еще не установлена {{$izm->document->date_vst}}">  </span>
+                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer" title="Дата еще не установлена {{$izm->document->date_vst}}">  </span>
                                                 <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-warning font-small-2">{{$izm->document->getShotName()}}</a>
                                             @elseif ($izm->document->date_vst->format('Y-m-d') > date('Y-m-d') || empty($izm->document->date_vst))
-                                                <span class="bullet bullet-info  bullet-sm cursor-pointer" title="еще не вступил в силу {{$izm->document->date_vst}}">  </span>
+                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-info  bullet-sm cursor-pointer" title="еще не вступил в силу {{$izm->document->date_vst}}">  </span>
                                                 <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-info font-small-2">{{$izm->document->getShotName()}}</a>
                                             @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d') && empty($flag))
-                                                <span class="bullet bullet-success bullet-sm cursor-pointer" title="Действущая редакция"></span>
-                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-success font-small-2">{{$izm->document->getShotName()}}</a>
+                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-success bullet-sm cursor-pointer" title="Действущая редакция"></span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-success font-small-2">{{$izm->document->getShotName(). ' - '.$izm->id }}</a>
                                                 @php
                                                     // прошли текущию версию, дальше прошлые
                                                     $flag = true;
                                                 @endphp
                                             @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d'))
-                                                <span class="bullet bullet-danger bullet-sm cursor-pointer" title="Прошлые редакция"></span>
+                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-danger bullet-sm cursor-pointer" title="Прошлые редакция"></span>
                                                 <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-danger font-small-2">{{$izm->document->getShotName()}}</a>
                                             @endif
 
                                         </div>
                                     @endforeach
+                                    <div>
+                                        <span class=" @if($selVersion == 0) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer" title="">  </span>
+                                        <a href="{{route('doc.edit',$doc->id)}}?izm=0" class="text-warning font-small-2 ">Первоначальная
+                                            версия</a>
+                                    </div>
 
-                                @endif
 
                             </div>
                         </div>
                     </div>
+                    @endif
 
 
                     <div class="invoice-payment">
