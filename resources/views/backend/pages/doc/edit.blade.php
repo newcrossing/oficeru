@@ -58,6 +58,7 @@
             @if(isset($doc->id))
                 @method('PUT')
             @endif
+            <input type="hidden" name="id_for_save" value="{{$selVersion}}">
             <div class="row">
                 <!-- invoice view page -->
                 <div class="col-xl-9 col-md-8 col-12">
@@ -96,138 +97,73 @@
                                     </div>
 
                                 </div>
+                                <hr>
 
 
-                                <div class="card-body px-0">
-                                    <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0" role="tablist">
-                                        <li class="nav-item pb-0">
-                                            <a class=" nav-link d-flex px-1 active" id="feed-tab" data-toggle="tab" href="#feed" aria-controls="feed" role="tab" aria-selected="true"><i class="bx bx-home"></i><span class="d-none d-md-block">Документ</span></a>
-                                        </li>
-                                        <li class="nav-item pb-0">
-                                            <a class="nav-link d-flex px-1" id="activity-tab" data-toggle="tab" href="#activity" aria-controls="activity" role="tab" aria-selected="false"><i class="bx bx-user"></i><span class="d-none d-md-block">Изменения</span></a>
-                                        </li>
+                                <!-- user profile nav tabs feed start -->
 
-                                    </ul>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="feed" aria-labelledby="feed-tab" role="tabpanel">
-                                        <!-- user profile nav tabs feed start -->
-
-                                        <div class="row invoice-info">
-                                            <div class="col-lg-12 col-md-12 mt-25">
-                                                <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$curText)}}</textarea>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="invoice-subtotal pt-50">
-                                            <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <h6 class="invoice-to">Примечание </h6>
-                                                        <textarea name="annotation" class="form-control" rows="3">{{old('annotation',$doc->annotation)}}</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <h6 class="invoice-to">Описание </h6>
-                                                        <textarea name="description" class="form-control" rows="3">{{old('description',$doc->description)}}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <hr>
-                                        <div class="invoice-subtotal pt-50">
-                                            <div class="row">
-                                                <div class="col-md-5 col-12">
-                                                    <div class="form-group">
-                                                        <h6 class="invoice-to">Мета заголовок </h6>
-                                                        <input type="text" name="meta_title" class="form-control" value="{{old('meta_title',$doc->meta_title)}}">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <h6 class="invoice-to">Описание</h6>
-                                                        <textarea name="meta_disc" class="form-control" rows="2">{{old('text',$doc->meta_disc)}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                            <span class="invoice-subtotal-title">Просмотров за сутки</span>
-                                                            <h6 class="invoice-subtotal-value mb-0">{{(@$doc->hits)}}</h6>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                            <span class="invoice-subtotal-title">Всего</span>
-                                                            <h6 class="invoice-subtotal-value mb-0">-</h6>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- user profile nav tabs feed ends -->
+                                <div class="row invoice-info">
+                                    <div class="col-lg-12 col-md-12 mt-25">
+                                        <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$curText)}}</textarea>
                                     </div>
-                                    <div class="tab-pane " id="activity" aria-labelledby="activity-tab" role="tabpanel">
-                                        <!-- Zero configuration table -->
-                                        <section id="basic-datatable">
-                                            <div class="row">
-
-                                                <div class="col-12">
-                                                    <div class="card">
-                                                        <div class="card-content">
-                                                            <div class="card-body card-dashboard">
-
-                                                                <div class="table-responsive">
-                                                                    <table class="table zero-configuration">
-                                                                        <thead>
-                                                                        <tr>
-                                                                            <th></th>
-                                                                            <th><span class="align-middle">ID #</span>
-                                                                            </th>
-                                                                            <th>Название</th>
-
-                                                                        </tr>
-                                                                        </thead>
-                                                                        <tbody>
-
-                                                                        @foreach ($docs as $d)
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div class="checkbox">
-                                                                                        <input type="checkbox" class="checkbox-input" id="checkbox{{ $d->id }}" name="chek[]" value="{{ $d->id }}">
-                                                                                        <label for="checkbox{{ $d->id }}"></label>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="{{asset('app-invoice-view')}}">{{ $d->id }}</a>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a class="readable-mark-icon" href="{{route('doc.edit',$d->id)}}" title="{{ $d->name  }}">
-                                                                                        {{ Str::limit(  $d->getShotName() , 90)  }}
-                                                                                    </a>
-                                                                                </td>
-
-
-                                                                            </tr>
-                                                                        @endforeach
-                                                                        </tfoot>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                </div>
+                                <hr>
+                                <div class="invoice-subtotal pt-50">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Примечание </h6>
+                                                <textarea name="annotation" class="form-control" rows="3">{{old('annotation',$doc->annotation)}}</textarea>
                                             </div>
-                                        </section>
-                                        <!--/ Zero configuration table -->
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Описание </h6>
+                                                <textarea name="description" class="form-control" rows="3">{{old('description',$doc->description)}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <hr>
+                                <div class="invoice-subtotal pt-50">
+                                    <div class="row">
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Мета заголовок </h6>
+                                                <input type="text" name="meta_title" class="form-control" value="{{old('meta_title',$doc->meta_title)}}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Описание</h6>
+                                                <textarea name="meta_disc" class="form-control" rows="2">{{old('text',$doc->meta_disc)}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
+                                                    <span class="invoice-subtotal-title">Просмотров за сутки</span>
+                                                    <h6 class="invoice-subtotal-value mb-0">{{(@$doc->hits)}}</h6>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
+                                                    <span class="invoice-subtotal-title">Всего</span>
+                                                    <h6 class="invoice-subtotal-value mb-0">-</h6>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
 
+                                <!-- user profile nav tabs feed ends -->
                             </div>
+
                         </div>
+
                     </div>
                 </div>
+
+                <hr/>
                 <hr/>
                 <!-- invoice action  -->
                 <div class="col-xl-3 col-md-4 col-12">
@@ -246,36 +182,45 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="invoice-action-btn ">
-                                <a href="/admin/doc/create" class="btn btn-success btn-block">
-                                    <i class='bx bx-plus'></i> <span>Добавить</span>
-                                </a>
+                            <div class="invoice-action-btn mb-1 d-flex">
+                                <div class="preview w-50 mr-50">
+                                    <a href="/admin/doc/create" class="btn btn-success btn-block">
+                                        <i class='bx bx-plus'></i>
+                                    </a>
+                                </div>
+                                <div class="save w-50">
+                                    <a href="#" onclick="window.open('/admin/doc-izm/{{$doc->id}}', '_blank', 'location=yes,height=770,width=1000,scrollbars=yes,status=yes');" class="btn btn-warning btn-block">
+                                        <i class='bx bx-edit'></i>
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
                     </div>
+
                     @if(isset($edition) && $edition->count())
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Редакции  </h4>
-                            <a class="heading-elements-toggle">
-                                <i class="bx bx-dots-vertical font-medium-3"></i>
-                            </a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li>
-                                        <a data-action="collapse">
-                                            <i class="bx bx-chevron-down"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Редакции </h4>
+                                <a class="heading-elements-toggle">
+                                    <i class="bx bx-dots-vertical font-medium-3"></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="collapse">
+                                                <i class="bx bx-chevron-down"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-content collapse show">
-                            <div class="card-body">
+                            <div class="card-content collapse show">
+                                <div class="card-body">
 
 
                                     @foreach($edition as $izm)
-                                        <div  >
+                                        <div>
 
 
                                             @if (empty($izm->document->date_vst))
@@ -305,15 +250,41 @@
                                     </div>
 
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
+                    @if(isset($toEdition) && $toEdition->count())
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Изменяет </h4>
+                                <a class="heading-elements-toggle">
+                                    <i class="bx bx-dots-vertical font-medium-3"></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="collapse">
+                                                <i class="bx bx-chevron-down"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    @foreach($toEdition as $izm)
+                                        <div>
+                                            <span class="  bullet bullet-success   bullet-sm cursor-pointer">  </span>
+                                            <a href="{{route('doc.edit',$izm->id)}}" class="text-success font-small-2">{{$izm->getShotName()}}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
-
                     <div class="invoice-payment">
-
-
                         <div class="invoice-payment-option mb-2">
                             <label class="@isset($doc->date_pod) text-success @endisset">Дата подписания</label>
                             <fieldset class="form-group position-relative has-icon-left">

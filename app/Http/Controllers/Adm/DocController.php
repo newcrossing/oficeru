@@ -45,11 +45,12 @@ class DocController extends Controller
         //создаем объект чтобы было что отправить в форму.
         // Она же форма редактирования, надо что то отправить.
         $doc = new Doc();
-        $docs = Doc::all();
 
+
+        // коректная версия пока равна первой версии
         $curText = $doc->text;
 
-        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'docs', 'curText'));
+        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'curText'));
     }
 
     /**
@@ -115,7 +116,6 @@ class DocController extends Controller
         // текст для отображения, в завистмости от корректной версии или выбраных изменеий
         $curText = $doc->text;
 
-        $docs = Doc::select('id', 'preamble_name', 'nomer', 'short_name', 'name', 'date_pod')->get()->sortBy('id');
 
         // получаю редакции документа и сортирую по дате вступления
         $edition = Izm::where('document_current_id', $doc->id)->select('izms.*')
@@ -125,7 +125,7 @@ class DocController extends Controller
             ->get();
 
         // если есть редакции , ищем корректную версию
-        if ($edition->count() ) {
+        if ($edition->count()) {
             $query = Izm::where('document_current_id', $doc->id)->select('izms.*')
                 ->join('documents', 'documents.id', '=', 'izms.document_id')
                 ->orderByDesc('documents.date_vst')
@@ -135,11 +135,10 @@ class DocController extends Controller
 
             $curVersion = $query->id;
             $curText = $query->text;
-            $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
+            // $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
         }
 
         if (isset($request->izm) && $request->izm != $curVersion) {
-
             //Log::info($request->izm);
             if ($request->izm == '0') {
                 $curText = $doc->text;
@@ -148,17 +147,22 @@ class DocController extends Controller
                 $curText = $izmVer->text;
                 $request->session()->now('message', 'Просматриваете не актуальную версию!');
             }
-
         }
+
+        // Вносит изменения
+        $toEdition = Izm::where('document_id', $doc->id)->get();
+        $idIzm = $toEdition->pluck('document_current_id');
+        $toEdition = Doc::whereIn('id', $idIzm)->get();
 
 
         return view('backend.pages.doc.edit', compact(
             'doc',
-            'docs',
+
             'breadcrumbs',
             'edition',
             'curText',
             'selVersion',
+            'toEdition',
             'curVersion'
         ));
     }
@@ -184,6 +188,14 @@ class DocController extends Controller
         $doc->in_main = $request->boolean('in_main');
 
         $doc->fill($request->all())->save();
+
+        if (empty($request->id_for_save)) {
+            $doc->text = $request->text;
+        } else {
+            $izm = Izm::find($request->id_for_save);
+            $izm->text = $request->text;
+            $izm->save();
+        }
 
         if ($request->boolean('delete_consultant')) {
             $doc->text = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен) .+?\))\s*?<\/div>/si',
@@ -219,4 +231,47 @@ class DocController extends Controller
     {
 //
     }
+
+    public function list_table($id, Request $request)
+    {
+        $doc = Doc::find($id);
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/doc", 'name' => "Документы"],
+            ['name' => " Редактирование"]
+        ];
+        $docs = Doc::all();
+
+        if ($request->del) {
+            $i = Izm::where('document_id',$id)->where('document_current_id',$request->del)->delete();
+
+
+        }
+
+        // Вносит изменения
+        $toEdition = Izm::where('document_id', $doc->id)->get();
+        $idIzm = $toEdition->pluck('document_current_id');
+        $toEdition = Doc::whereIn('id', $idIzm)->get();
+
+
+        return view('backend.pages.doc.izm', compact('doc', 'docs', 'toEdition'));
+    }
+
+    public function list_table_update($id, Request $request)
+    {
+        //  dd($request->chek);
+        // если нащелкали чекбоксы
+        if ($request->chek) {
+            foreach ($request->chek as $key => $value) {
+                $i = new Izm();
+                $i->document_id = $id;
+                $i->document_current_id = $value;
+                $i->save();
+            }
+
+        }
+        return redirect()->back()->with('success', 'Сохранено.');
+    }
+
+
 }

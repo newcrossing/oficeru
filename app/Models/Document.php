@@ -18,7 +18,7 @@ class Document extends Model
         'preamble_name',
         'nomer',
         'short_name',
-        'text',
+        // 'text', убрал что бы можно было сохранять редакции
         'description',
         'annotation',
         'date_pod',
@@ -157,4 +157,5 @@ class Document extends Model
     {
         return $this->hasOne(Izm::class);
     }
+
 }

@@ -1,10 +1,10 @@
 <nav id="the-user-menu" class="main-menu-nav">
     @guest()
-        <ul class="menu horizontal align-right">
-            <li class="to-left-more">
-                <a href="{{route('login')}}" class="menu-single-icon"><i class="fa fa-user"></i></a>
-            </li>
-        </ul>
+{{--        <ul class="menu horizontal align-right">--}}
+{{--            <li class="to-left-more">--}}
+{{--                <a href="{{route('login')}}" class="menu-single-icon"><i class="fa fa-user"></i></a>--}}
+{{--            </li>--}}
+{{--        </ul>--}}
     @endguest
     @auth()
         <ul class="menu horizontal align-right">

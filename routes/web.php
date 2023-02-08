@@ -73,6 +73,8 @@ Route::middleware(['role:admin'])->prefix('admin')->group(
         Route::get('/log', [\App\Http\Controllers\Adm\LogController::class, 'list'])->name('admin.log.list');
         // Route::resource('post', App\Http\Controllers\Adm\PostController::class);
         Route::resource('doc', App\Http\Controllers\Adm\DocController::class);
+        Route::get('/doc-izm/{id}', [\App\Http\Controllers\Adm\DocController::class, 'list_table'])->name('admin.doc.izm');
+        Route::post('/doc-izm/{id}', [\App\Http\Controllers\Adm\DocController::class, 'list_table_update'])->name('admin.doc.izm.update');
         Route::resource('content', App\Http\Controllers\Adm\ContentController::class);
         Route::resource('user', App\Http\Controllers\Adm\UserController::class);
         Route::get('create_many', [\App\Http\Controllers\Adm\UserController::class, 'create_many'])->name('admin.user.create_many');
