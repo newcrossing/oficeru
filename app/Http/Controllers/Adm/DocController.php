@@ -126,7 +126,8 @@ class DocController extends Controller
 
         // если есть редакции , ищем корректную версию
         if ($edition->count()) {
-            $query = Izm::where('document_current_id', $doc->id)->select('izms.*')
+            $query = Izm::where('document_current_id', $doc->id)
+                ->select('izms.*')
                 ->join('documents', 'documents.id', '=', 'izms.document_id')
                 ->orderByDesc('documents.date_vst')
                 ->orderByDesc('izms.id')
@@ -135,7 +136,7 @@ class DocController extends Controller
 
             $curVersion = $query->id;
             $curText = $query->text;
-            // $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
+             $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
         }
 
         if (isset($request->izm) && $request->izm != $curVersion) {

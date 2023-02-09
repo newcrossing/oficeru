@@ -13,7 +13,8 @@
         @endempty
 
         @isset($messageTop)
-            <h3 class="recipe-headlines footnotes">{{$messageTop}}</h3>
+
+            <h3 class="recipe-headlines footnotes">{!!$messageTop!!}</h3>
         @endisset
 
 
@@ -22,7 +23,7 @@
                 <div class="entry post">
                     <div class="entry-details">
                         <div class="document">
-                            {!! $doc->text   !!}
+                            {!! $curText   !!}
                         </div>
                     </div>
                     <div class="clear"></div>
