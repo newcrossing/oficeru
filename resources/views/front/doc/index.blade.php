@@ -1,5 +1,7 @@
 @extends('front.layouts.index')
 @section('title',$doc->getShotName())
+@section('description',$doc->name)
+
 @section('widgets')
     {{ Widget::run('search') }}
     {{ Widget::run('info_doc', $doc->toArray()) }}
@@ -7,30 +9,30 @@
 @section('content')
 
     @if(!empty($doc->annotation))
-            <blockquote>
-                <span class="text-pink"> {{ $doc->annotation }}</span>
-            </blockquote>
-        @endempty
+        <blockquote>
+            <span class="text-pink"> {{ $doc->annotation }}</span>
+        </blockquote>
+    @endempty
 
-        @isset($messageTop)
+    @isset($messageTop)
 
-            <h3 class="recipe-headlines footnotes">{!!$messageTop!!}</h3>
-        @endisset
+        <h3 class="recipe-headlines footnotes">{!!$messageTop!!}</h3>
+    @endisset
 
 
-        <div class="rw-row">
-            <div class="blog-single clearfix">
-                <div class="entry post">
-                    <div class="entry-details">
-                        <div class="document">
-                            {!! $curText   !!}
-                        </div>
+    <div class="rw-row">
+        <div class="blog-single clearfix">
+            <div class="entry post">
+                <div class="entry-details">
+                    <div class="document">
+                        {!! $curText   !!}
                     </div>
-                    <div class="clear"></div>
-                </div> <!-- .entry -->
-            </div>
-            <div class="clear"></div>
-        </div> <!-- .rw-row -->
+                </div>
+                <div class="clear"></div>
+            </div> <!-- .entry -->
+        </div>
+        <div class="clear"></div>
+    </div> <!-- .rw-row -->
 @endsection
 
 

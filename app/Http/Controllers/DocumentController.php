@@ -37,7 +37,7 @@ class DocumentController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/doc", 'name' => " Документы "],
-            ['name' => $doc->name],
+            ['name' => $doc->getShotName()],
         ];
 
         // текст для отображения, в завистмости от корректной версии или выбраных изменеий
