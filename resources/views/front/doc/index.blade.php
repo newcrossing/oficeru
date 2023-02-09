@@ -1,6 +1,6 @@
 @extends('front.layouts.index')
 @section('title',$doc->getShotName())
-@section('description',$doc->name)
+@section('description',Str::ucfirst(Str::lower(str_replace("\r\n","",$doc->name))))
 
 @section('widgets')
     {{ Widget::run('search') }}
