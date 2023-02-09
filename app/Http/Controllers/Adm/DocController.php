@@ -136,7 +136,7 @@ class DocController extends Controller
 
             $curVersion = $query->id;
             $curText = $query->text;
-             $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
+            $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
         }
 
         if (isset($request->izm) && $request->izm != $curVersion) {
@@ -177,6 +177,7 @@ class DocController extends Controller
      */
     public function update(Request $request, Doc $doc)
     {
+        $curText = $request->text;;
         $request->validate([
             'name' => 'required|min:3'
         ], [
@@ -190,30 +191,28 @@ class DocController extends Controller
 
         $doc->fill($request->all())->save();
 
-        if (empty($request->id_for_save)) {
-            $doc->text = $request->text;
-        } else {
-            $izm = Izm::find($request->id_for_save);
-            $izm->text = $request->text;
-            $izm->save();
-        }
-
         if ($request->boolean('delete_consultant')) {
-            $doc->text = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен) .+?\))\s*?<\/div>/si',
-                '', $doc->text);
-            $doc->text = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $doc->text);;
+            $curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен) .+?\))\s*?<\/div>/si', '', $curText);
+            $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
         }
 
         if ($request->boolean('delete_a')) {
-            $doc->text = preg_replace('/(?:\<a[^>]+\>\<span[^>]+\>)([^<]+)(?:\<\/span\>\<\/a\>)/i', '\\1', $doc->text);
+            $curText = preg_replace('/(?:\<a[^>]+\>\<span[^>]+\>)([^<]+)(?:\<\/span\>\<\/a\>)/i', '\\1', $curText);
         }
 
         if ($request->boolean('delete_probel')) {
-            $doc->text = str_replace('&nbsp;', ' ', $doc->text);
-            $doc->text = preg_replace("/  +/", " ", $doc->text);
+            $curText = str_replace('&nbsp;', ' ', $curText);
+            $curText = preg_replace("/  +/", " ", $curText);
         }
 
-        $doc->save();
+        if (empty($request->id_for_save)) {
+            $doc->text = $curText;
+            $doc->save();
+        } else {
+            $izm = Izm::find($request->id_for_save);
+            $izm->text = $curText;
+            $izm->save();
+        }
 
         if ($request->redirect == 'apply') {
             return redirect()->back()->with('success', 'Сохранено.');
@@ -244,7 +243,7 @@ class DocController extends Controller
         $docs = Doc::all();
 
         if ($request->del) {
-            $i = Izm::where('document_id',$id)->where('document_current_id',$request->del)->delete();
+            $i = Izm::where('document_id', $id)->where('document_current_id', $request->del)->delete();
 
 
         }
