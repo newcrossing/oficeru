@@ -58,7 +58,10 @@
             @if(isset($doc->id))
                 @method('PUT')
             @endif
-            <input type="hidden" name="id_for_save" value="{{$selVersion}}">
+            @isset($selVersion)
+                <input type="hidden" name="id_for_save" value="{{$selVersion}}">
+            @endisset
+
             <div class="row">
                 <!-- invoice view page -->
                 <div class="col-xl-9 col-md-8 col-12">
