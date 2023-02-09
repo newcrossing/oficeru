@@ -18,6 +18,7 @@ class HomeController extends Controller
         $breadcrumbs = [
         ];
         $users = DB::table('users')->count();
+        $docs = DB::table('documents')->count();
 
         $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
 
@@ -25,6 +26,7 @@ class HomeController extends Controller
             compact(
                 'breadcrumbs',
                 'users',
+                'docs',
                 'logs',
             )
         );

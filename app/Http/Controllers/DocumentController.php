@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Activity;
 use App\Models\Document as Doc;
 use App\Models\Izm;
 use App\Models\Tag;
@@ -56,6 +57,7 @@ class DocumentController extends Controller
             // если нет еще новой версии текста
             if (empty($query->text)) {
                 $messageTop = "В документ внесены изменения. Новая редакция в скором времени будет опубликована.<a href='/doc/" . $query->document->id . "'> Источник</a>";
+                Activity::add($messageTop, 'error');
             } else {
                 $curText = $query->text;
             }

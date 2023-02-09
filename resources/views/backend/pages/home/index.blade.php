@@ -48,8 +48,10 @@
                             <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto my-1">
                                 <i class="bx bx-user-check font-medium-5"></i>
                             </div>
-                            <p class="text-muted mb-0 line-ellipsis">Активированные </p>
-                            <h2 class="mb-0"></h2>
+                            <p class="text-muted mb-0 line-ellipsis">
+                                <a href="/admin/doc"> Документы</a>
+                            </p>
+                            <h2 class="mb-0">{{$docs}}</h2>
                         </div>
                     </div>
                 </div>
