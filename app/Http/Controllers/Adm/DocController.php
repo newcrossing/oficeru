@@ -125,15 +125,14 @@ class DocController extends Controller
             ->get();
 
         // если есть редакции , ищем корректную версию
-        if ($edition->count()) {
-            $query = Izm::where('document_current_id', $doc->id)
-                ->select('izms.*')
-                ->join('documents', 'documents.id', '=', 'izms.document_id')
-                ->orderByDesc('documents.date_vst')
-                ->orderByDesc('izms.id')
-                ->where('documents.date_vst', '<=', date('Y-m-d'))
-                ->first();
-
+        $query = Izm::where('document_current_id', $doc->id)
+            ->select('izms.*')
+            ->join('documents', 'documents.id', '=', 'izms.document_id')
+            ->orderByDesc('documents.date_vst')
+            ->orderByDesc('izms.id')
+            ->where('documents.date_vst', '<=', date('Y-m-d'))
+            ->first();
+        if ($query) {
             $curVersion = $query->id;
             $curText = $query->text;
             $selVersion = (!isset($request->izm)) ? $curVersion : $selVersion;
