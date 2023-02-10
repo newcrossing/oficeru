@@ -3,6 +3,12 @@
 @section('title','Документы')
 @section('h1','Документы')
 
+@if(Request::get('page'))
+@section('canonical')
+    <link rel='canonical' href='https://oficeru.ru/doc'/>
+@endsection
+@endif
+
 @section('vendor-styles')
 @endsection
 
@@ -13,8 +19,6 @@
     {{ Widget::run('search') }}
     {{ Widget::run('vst_doc') }}
     {{ Widget::run('fresh_doc') }}
-
-
 @endsection
 
 @section('content')
@@ -30,7 +34,9 @@
                                 <a href="/doc/{{ $doc->id }}" style="color: #21aabd"> {{   $doc->getShotName() }}</a>
                                 @if(empty($doc->date_pod))
                                     <span class="mark yellow top" style="font-size: 12px;">Не подписан</span>
-                                @elseif($doc->date_pub->format('Y-m-d') > date('Y-m-d') || empty($doc->date_pub))
+                                @elseif(empty($doc->date_pub)   )
+                                    <span class="mark blue  top" style="font-size: 12px;">Не опубликован }} </span>
+                                @elseif($doc->date_pub->format('Y-m-d') > date('Y-m-d')  )
                                     <span class="mark blue  top" style="font-size: 12px;">Не опубликован {{$doc->date_pub->format('Y-m-d')}} </span>
                                 @elseif(empty($doc->date_vst))
                                     <span class="mark orange   top" style="font-size: 12px;">Не вступил в силу</span>

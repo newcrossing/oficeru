@@ -8,7 +8,7 @@
     <meta name="description" content="@yield('description') ">
     <title>@yield('title') / Офицеру.ру</title>
 
-
+    @yield('canonical')
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
