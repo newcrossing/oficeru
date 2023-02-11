@@ -33,21 +33,19 @@
                             <h2 style="font-size: 20px;text-align: justify;">
                                 <a href="/doc/{{ $doc->id }}" style="color: #21aabd"> {{   $doc->getShotName() }}</a>
                                 @if(empty($doc->date_pod))
-                                    <span class="mark yellow top" style="font-size: 12px;">Не подписан</span>
+                                    <span class="mark yellow top" title="Не подписан" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @elseif(empty($doc->date_pub)   )
-                                    <span class="mark blue  top" style="font-size: 12px;">Не опубликован }} </span>
+                                    <span class="mark blue  top" title="Не опубликован" style="font-size: 12px;"><i class="the-icon fa fa-history"></i> </span>
                                 @elseif($doc->date_pub->format('Y-m-d') > date('Y-m-d')  )
-                                    <span class="mark blue  top" style="font-size: 12px;">Не опубликован {{$doc->date_pub->format('Y-m-d')}} </span>
+                                    <span class="mark blue  top" title="Будет опубликован {{$doc->date_pub->format('Y-m-d')}}" style="font-size: 12px;"><i class="the-icon fa fa-history"></i>  </span>
                                 @elseif(empty($doc->date_vst))
-                                    <span class="mark orange   top" style="font-size: 12px;">Не вступил в силу</span>
+                                    <span class="mark orange   top" title="Не вступил в силу" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @elseif($doc->date_vst->format('Y-m-d') == date('Y-m-d'))
-                                    <span class="mark green    top" style="font-size: 12px;">Вступает в силу сегодня</span>
+                                    <span class="mark green    top" title="Сегодня вступил в силу" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @elseif($doc->date_vst->format('Y-m-d') > date('Y-m-d'))
-                                    <span class="mark orange   top" style="font-size: 12px;">Вступает в силу
-                                        {{\Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY')}} г.</span>
+                                    <span class="mark orange   top " title="Вступает в силу {{\Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY')}} г." style="font-size: 12px;"> <i class="the-icon fa fa-history"></i> </span>
                                 @elseif( !empty($doc->date_end_vst) && $doc->date_end_vst->format('Y-m-d') <= date('Y-m-d') )
-                                    <span class="mark dark-gray   top" style="font-size: 12px;">Утратил силу
-                                        {{\Carbon\Carbon::parse($doc->date_end_vst)->isoFormat('Do MMMM YYYY')}} г.</span>
+                                    <span class="mark dark-gray   top" title="Утратил силу  {{\Carbon\Carbon::parse($doc->date_end_vst)->isoFormat('Do MMMM YYYY')}} г." style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @endif
                             </h2>
                             {{--<div class="entry-controls minimal">
