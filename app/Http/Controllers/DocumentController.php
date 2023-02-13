@@ -34,7 +34,7 @@ class DocumentController extends Controller
     public function single($id)
     {
         $messageTop = null;
-        $doc = Doc::findOrFail($id);
+        $doc = Doc::where('pub', 1)->findOrFail($id);
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/doc", 'name' => " Документы "],

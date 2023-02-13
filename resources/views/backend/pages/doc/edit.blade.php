@@ -94,9 +94,12 @@
 
                                 <div class="row ">
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <h6 class="">Название </h6>
+                                        <h6 class="">Название
+                                            @if(!empty($doc->id))
+                                                <a href="/doc/{{$doc->id}}" target="_blank"><i class="bx bx-link-external"></i></a>
+                                            @endif
+                                        </h6>
                                         <textarea name="name" class="form-control  " rows="3">{{old('name',$doc->name)}}</textarea>
-
                                     </div>
 
                                 </div>

@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ошибка</title>
-	<link rel="stylesheet" type="text/css" href="../../../../../fonts.googleapis.com/css-family=Dosis.css" tppabs="http://fonts.googleapis.com/css?family=Dosis">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css"  />
-	<link rel="stylesheet" href="assets/fonts/awards/awards.css" />
-	<link rel="stylesheet" href="assets/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../../fonts.googleapis.com/css-family=Dosis.css" >
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css"  />
+	<link rel="stylesheet" href="/assets/fonts/awards/awards.css" />
+	<link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 <body>
 <section id="rw-layout" class="rw-layout">
@@ -25,7 +25,7 @@
 
 		<!-- Main content -->
 		<div class="rw-column rw-content">
-						
+
 			<div class="rw-row">
 				<div class="block404">
 					<div class="grid-container">
@@ -53,13 +53,13 @@
 
 <!-- Javascript -->
 <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-<script src="assets/js/library/jquery-2.1.1.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/library/jquery-2.1.1.min.js"></script>
-<script src="assets/js/min/smk-menu.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/min/smk-menu.min.js"></script>
-<script src="assets/js/rw-sidebar.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/rw-sidebar.js"></script>
-<script src="assets/js/min/jquery.qtip.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/min/jquery.qtip.min.js"></script>
-<script src="assets/js/min/smk-accordion.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/min/smk-accordion.min.js"></script>
-<script src="assets/js/min/smk-visual-select.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/min/smk-visual-select.min.js"></script>
-<script src="assets/js/min/owl.carousel.min.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/min/owl.carousel.min.js"></script>
-<script src="assets/js/scripts.js" tppabs="http://smartik.ws/demo/themeforest/html/gustos/assets/js/scripts.js"></script>
+<script src="/assets/js/library/jquery-2.1.1.min.js" ></script>
+<script src="/assets/js/min/smk-menu.min.js" ></script>
+<script src="/assets/js/rw-sidebar.js" ></script>
+<script src="/assets/js/min/jquery.qtip.min.js" ></script>
+<script src="/assets/js/min/smk-accordion.min.js"></script>
+<script src="/assets/js/min/smk-visual-select.min.js" ></script>
+<script src="/assets/js/min/owl.carousel.min.js" ></script>
+<script src="/assets/js/scripts.js" ></script>
 </body>
 </html>
