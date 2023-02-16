@@ -133,6 +133,12 @@ summary {
     font-size: 14px;
     font-weight: bold;
 }
+.post {
+}
+.post p {
+margin-bottom: 5px;
+    margin-top: 5px;
+}
 audio,
 canvas,
 progress,

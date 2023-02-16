@@ -20,6 +20,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "nicolaslopezj/searchable": "^1.13",
         "spatie/laravel-permission": "^5.5.0",
         "werneckbh/laravel-qr-code": "^0.1.3"
     },

@@ -135,20 +135,17 @@
                             <p>Дата публикации</p>
 
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_public"
-                                       value="{{isset($post->date_public)?$post->date_public->format('d/m/Y'):now()->format('d/m/Y')}}"
-                                       class="form-control pickadate" placeholder="Выберите дату">
-                                <div class="form-control-position">
-                                    <i class='bx bx-calendar'></i>
-                                </div>
+                                <input type="text" name="date_public" class="form-control pickadate-months-year"
+                                       placeholder="Выберите дату" value="{{isset($post->date_public)?$post->date_public->format('d/m/Y'):''}}"/>
+                                <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
                         </div>
                         <div class="invoice-terms">
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Опубликовать</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="active" class="custom-control-input"
-                                           id="paymentTerm" {{!empty($post->active)?'checked':''}}>
+                                    <input type="checkbox" name="pub" class="custom-control-input"
+                                           id="paymentTerm" {{!empty($post->pub)?'checked':''}}>
                                     <label class="custom-control-label" for="paymentTerm">
                                     </label>
                                 </div>
@@ -173,19 +170,11 @@
                             </div>
                         </div>
                         <hr>
-                        <h6>Автор</h6>
-                        <div class="form-group">
-                            <select class=" form-control" disabled>
 
-                                <option value="square">{{Auth::user()->name}}</option>
-
-
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
-            </div>
+
         </form>
     </section>
 @endsection
@@ -198,8 +187,9 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="/adm/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
     <script src="/adm/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
+    <script src="/adm/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
+    <script src="/adm/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="/adm/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
-
     <script src="/adm/app-assets/vendors/js/forms/select/select2.full.js"></script>
     <!-- END: Page Vendor JS-->
 @endsection
@@ -207,7 +197,7 @@
 {{-- page scripts --}}
 @section('page-scripts')
     <!-- BEGIN: Page JS-->
-    <script src="/adm/app-assets/js/scripts/pages/app-invoice.js"></script>
+    <script src="/adm/app-assets/js/doc.edit.js"></script>
 
     <script src="/adm/app-assets/js/scripts/forms/select/form-select2.js"></script>
     <!-- END: Page JS-->

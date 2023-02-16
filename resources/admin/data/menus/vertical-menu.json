@@ -50,13 +50,19 @@
         },
         {
             "url": "#",
-            "name": "Документы",
+            "name": "Контент",
             "i18n": "Invoice",
             "icon": "bxs-notepad",
             "submenu": [
                 {
                     "url": "admin/doc",
-                    "name": "Список",
+                    "name": "Документы",
+                    "i18n": "Invoice List",
+                    "icon": "bx-list-ol"
+                },
+                {
+                    "url": "admin/post",
+                    "name": "Посты",
                     "i18n": "Invoice List",
                     "icon": "bx-list-ol"
                 }

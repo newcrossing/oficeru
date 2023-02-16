@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Request;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Document extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use SearchableTrait;
 
     protected $fillable = [
         'name',
@@ -31,6 +33,25 @@ class Document extends Model
         'notify',
         'in_main',
         'meta_disc'
+    ];
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'documents.name' => 10,
+            'documents.text' => 7,
+
+        ]
     ];
 
 

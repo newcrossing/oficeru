@@ -465,18 +465,12 @@
              ********************************************/
 
             var groupingTable = $('.zero-configuration').DataTable({
-
                 bAutoWidth: false,
-
                 "order": [
                     [1, 'desc']
                 ],
-
             });
-
-
         });
-
     </script>
 
 

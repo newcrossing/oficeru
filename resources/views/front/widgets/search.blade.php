@@ -3,7 +3,7 @@
 
     <div class="widget-title"><h3>Поиск</h3></div>
 
-    <form method="get" class="search-form" action="">
+    <form method="get" class="search-form" action="/s/">
         <input type="text" class="search-field fullwidth" name="s" placeholder="Слова для поиска" value="">
     </form>
 

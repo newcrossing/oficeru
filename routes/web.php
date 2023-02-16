@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SitemapController;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
 
@@ -28,7 +29,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
+Route::get('/post', [PostController::class, 'listing'])->name('post.list');
 Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
+Route::get('/post/{id}', [PostController::class, 'single'])->where('id', '[0-9]+')->name('post.single');
+Route::get('/s/', [DocumentController::class, 'search'])->name('document.search');
 
 Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 //Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
@@ -71,7 +75,7 @@ Route::middleware(['role:admin'])->prefix('admin')->group(
     function () {
         Route::get('/', [\App\Http\Controllers\Adm\HomeController::class, 'index'])->name('admin.home');
         Route::get('/log', [\App\Http\Controllers\Adm\LogController::class, 'list'])->name('admin.log.list');
-        // Route::resource('post', App\Http\Controllers\Adm\PostController::class);
+        Route::resource('post', App\Http\Controllers\Adm\PostController::class);
         Route::resource('doc', App\Http\Controllers\Adm\DocController::class);
         Route::get('/doc-izm/{id}', [\App\Http\Controllers\Adm\DocController::class, 'list_table'])->name('admin.doc.izm');
         Route::post('/doc-izm/{id}', [\App\Http\Controllers\Adm\DocController::class, 'list_table_update'])->name('admin.doc.izm.update');

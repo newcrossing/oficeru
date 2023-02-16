@@ -1,3 +1,6 @@
-<div class="rw-row page-title">
-    <h1>@yield('h1') </h1>
-</div>
+@hasSection('h1')
+    <div class="rw-row page-title">
+        <h1>@yield('h1') </h1>
+    </div>
+@endif
+

@@ -28,44 +28,6 @@
                 Создать статью</a>
         </div>
         <!-- Options and filter dropdown button-->
-        <div class="action-dropdown-btn d-none">
-            <div class="dropdown invoice-filter-action">
-                <button
-                        class="btn border dropdown-toggle mr-1"
-                        type="button"
-                        id="invoice-filter-btn"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    Filter Invoice
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-filter-btn">
-                    <a class="dropdown-item" href="#">Отгул</a>
-                    <a class="dropdown-item" href="#">Sent</a>
-                    <a class="dropdown-item" href="#">Partial Payment</a>
-                    <a class="dropdown-item" href="#">Paid</a>
-                </div>
-            </div>
-            <div class="dropdown invoice-options">
-                <button
-                        class="btn border dropdown-toggle mr-2"
-                        type="button"
-                        id="invoice-options-btn"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    Options
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-options-btn">
-                    <a class="dropdown-item" href="#">Delete</a>
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" href="#">View</a>
-                    <a class="dropdown-item" href="#">Send</a>
-                </div>
-            </div>
-        </div>
         <div class="table-responsive">
             <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
                 <thead>
@@ -91,7 +53,7 @@
                             <a href="{{asset('app-invoice-view')}}">{{ $post->id }}</a>
                         </td>
                         <td>
-                            <i class="bx bxs-circle {{($post->active)?'success':'danger'}}  font-small-1 mr-50"></i>
+                            <i class="bx bxs-circle {{($post->pub)?'success':'danger'}}  font-small-1 mr-50"></i>
                             <a class="readable-mark-icon" data-toggle="tooltip" data-placement="top" title=""
                                data-original-title="{{$post->name}}"
                                href="{{route('post.edit',$post->id)}}">{{ Str::limit($post->name, 40)  }}</a></td>
@@ -130,5 +92,44 @@
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
-    <script src="{{asset('/adm/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
+    <script type="text/javascript" >
+
+        // init data table
+        if ($(".invoice-data-table").length) {
+            var dataListView = $(".invoice-data-table").DataTable({
+                columnDefs: [
+                    {
+                        targets: 0,
+                        className: "control"
+                    },
+
+                    {
+                        targets: [0, 1, 2],
+                        orderable: false
+                    },
+                ],
+                order: [2, 'desc'],
+                dom:
+                    '<"top d-flex flex-wrap"<"action-filters flex-grow-1"f><"actions action-btns d-flex align-items-center">><"clear">rt<"bottom"p>',
+                language: {
+                    search: "",
+                    searchPlaceholder: "Поиск"
+                },
+                select: {
+                    style: "multi",
+                    selector: "td:first-child",
+                    items: "row"
+                },
+                responsive: {
+                    details: {
+                        type: "column",
+                        target: 0
+                    }
+                }
+            });
+        }
+
+
+
+    </script>
 @endsection
