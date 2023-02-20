@@ -191,7 +191,7 @@ class DocController extends Controller
         $doc->fill($request->all())->save();
 
         if ($request->boolean('delete_consultant')) {
-            $curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п) .+?[0-9]\))\s*?<\/div>/si', '', $curText);
+            $curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п) .+?\))\s*?<\/div>/si', '', $curText);
             $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
             $curText = str_replace('margin-top:12.0pt;', "", $curText);
             $curText = preg_replace('/(<div[^>]*>\s*?\((п|стать|пп|част).*[0-9ФЗ]\)\s*?<\/div>)/si', "", $curText);;
