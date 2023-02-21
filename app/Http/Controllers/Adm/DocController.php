@@ -191,11 +191,12 @@ class DocController extends Controller
         $doc->fill($request->all())->save();
 
         if ($request->boolean('delete_consultant')) {
-            $curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|введена|введен|пп\. .{3}+ в ред\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п) .+?\))\s*?<\/div>/si', '', $curText);
-            $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
+            $curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|стать|часть|введена|введен|пп\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п).+?[0-9З]\))\s*?<\/div>/is', '', $curText);
+            //$curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|стать|часть|введена|введен|пп\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п) .+?\))\s*?<\/div>/is', '', $curText);
+           // $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
             $curText = str_replace('margin-top:12.0pt;', "", $curText);
-            $curText = preg_replace('/(<div[^>]*>\s*?\((п|стать|пп|част).*[0-9ФЗ]\)\s*?<\/div>)/si', "", $curText);;
-            //$curText = preg_replace('/(<table[^>]*>[\s\S]*(Консу|Списо)[\s\S]*<\/table>)/si', "", $curText);;
+            //$curText = preg_replace('/(<div[^>]*>\s*?\((п|стать|пп|част|в ред).*[0-9ФЗ]\)\s*?<\/div>)/is', "", $curText);;
+            $curText = preg_replace('/(?:<div>[\s\S]*?<\/div>)?<table[^>]*>[\s\S]*?(?:КонсультантПлюс|Список изменяющих документов)[\s\S]*?<\/table>/si', "", $curText);;
         }
 
         if ($request->boolean('delete_a')) {
