@@ -200,6 +200,13 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-between py-50">
+                                <span class="invoice-terms-title">Опубликовать</span>
+                                <div class="custom-control custom-switch custom-switch-glow">
+                                    <input type="checkbox" name="pub" class="custom-control-input" id="checkedPub" {{!empty($doc->pub)?'checked':''}}>
+                                    <label class="custom-control-label" for="checkedPub"> </label>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -349,13 +356,7 @@
 
 
                         <div class="invoice-terms">
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Опубликовать</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="pub" class="custom-control-input" id="checkedPub" {{!empty($doc->pub)?'checked':''}}>
-                                    <label class="custom-control-label" for="checkedPub"> </label>
-                                </div>
-                            </div>
+
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Уведомить</span>
 
