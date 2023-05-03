@@ -17,7 +17,7 @@
         <div class="grid-container">
             <div class="grid desk-6">
                 <div class="entry-photo">
-                    <div class="badge">Ужедневная подборка</div>
+                    <div class="badge">Ежедневная подборка</div>
                     <img src="/assets/placeholder/mil.jpg"/>
                 </div>
             </div>

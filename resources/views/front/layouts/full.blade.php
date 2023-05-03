@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
+
+    <!-- Favicons -->
+
+    <link rel="icon" href="/favicon.ico">
+
+    <link rel="yandex-tableau-widget" href="/tableau.json">
+    <meta content="https://oficeru.ru/assets/favicons/yandex.png" color=#fff" name="yandex-tableau-widget">
+
+
     @yield('vendor-styles')
     @yield('page-styles')
 </head>
