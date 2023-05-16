@@ -6,6 +6,7 @@
     {{ Widget::run('search') }}
     {{ Widget::run('info_doc', $doc->toArray()) }}
 @endsection
+
 @section('content')
 
     @if(!empty($doc->annotation))
@@ -15,7 +16,6 @@
     @endempty
 
     @isset($messageTop)
-
         <h3 class="recipe-headlines footnotes">{!!$messageTop!!}</h3>
     @endisset
 

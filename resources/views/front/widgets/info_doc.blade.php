@@ -1,8 +1,13 @@
+
+<aside class="widget widget-categories">
+    <a class="button orange " href="/pdf/{{$doc->id}}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Скачать (.pdf)</a>
+</aside>
+
 <aside class="widget widget-categories">
     <div class="widget-title"><h3>Информация о документе</h3></div>
     <ul>
         @php
-        //    $doc = (object)$docs;
+            //    $doc = (object)$docs;
         @endphp
 
         @isset($doc->date_pod)

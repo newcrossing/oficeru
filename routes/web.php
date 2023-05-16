@@ -8,6 +8,7 @@ use App\Http\Controllers\SitemapController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
 
@@ -35,6 +36,10 @@ Route::get('/post/{id}', [PostController::class, 'single'])->where('id', '[0-9]+
 Route::get('/s/', [DocumentController::class, 'search'])->name('document.search');
 
 Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
+
+Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+')->name('pdf.download');
+
+
 //Route::get('/agreement', [AgreementController::class, 'index'])->name('agreement');;
 //Route::get('/contact', [AgreementController::class, 'contact'])->name('contact');;
 //Route::get('/help', [AgreementController::class, 'help'])->name('help');;
