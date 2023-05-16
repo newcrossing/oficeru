@@ -4,14 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="yandex-verification" content="83051dff11b82da2" />
-    <meta name="description" content="@yield('description') ">
+    <meta name="yandex-verification" content="83051dff11b82da2"/>
     <title>@yield('title') / Офицеру.ру</title>
+    <meta name="description" content="@yield('description') ">
 
     @yield('canonical')
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
+    @include('front.moduls.favicon')
     @yield('vendor-styles')
     @yield('page-styles')
 </head>
@@ -38,7 +39,7 @@
             <div class="rw-column rw-sidebar">
                 <div class="the-sidebar">
 
-                @yield('widgets')
+                    @yield('widgets')
 
                 </div> <!-- .the-sidebar -->
             </div> <!-- .rw-sidebar -->

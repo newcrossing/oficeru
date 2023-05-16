@@ -4,15 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="yandex-verification" content="83051dff11b82da2" />
+    <meta name="yandex-verification" content="83051dff11b82da2"/>
     <title>@yield('title') / Офицеру.ру</title>
+    <meta name="description" content="Правовая поддержка военнослужащих">
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
 
-    <!-- Favicons -->
+    <!-- App favicon -->
+    @include('front.moduls.favicon')
 
-    <link rel="icon" href="/favicon.ico">
+
 
     <link rel="yandex-tableau-widget" href="/tableau.json">
     <meta content="https://oficeru.ru/assets/favicons/yandex.png" color=#fff" name="yandex-tableau-widget">
