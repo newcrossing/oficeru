@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2017 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="512px" height="512px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 512 512"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#D9971D;stroke-width:4}
+    .fil1 {fill:none}
+    .fil12 {fill:#FEFEFE}
+    .fil0 {fill:url(#id0)}
+    .fil5 {fill:url(#id1)}
+    .fil4 {fill:url(#id2)}
+    .fil7 {fill:url(#id3)}
+    .fil8 {fill:url(#id4)}
+    .fil10 {fill:url(#id5)}
+    .fil9 {fill:url(#id6)}
+    .fil11 {fill:url(#id7)}
+    .fil3 {fill:url(#id8)}
+    .fil2 {fill:url(#id9)}
+    .fil6 {fill:url(#id10)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="24" y1="252" x2="491" y2="252">
+   <stop offset="0" style="stop-opacity:1; stop-color:#FAEF79"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FBBC00"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="143" y1="247" x2="138" y2="301">
+   <stop offset="0" style="stop-opacity:1; stop-color:#F29E0F"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FAF083"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="162" y1="244" x2="165" y2="177">
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="191" y1="374" x2="243" y2="392">
+  </linearGradient>
+  <linearGradient id="id4" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="324" y1="374" x2="277" y2="390">
+  </linearGradient>
+  <linearGradient id="id5" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="371" y1="238" x2="375" y2="294">
+  </linearGradient>
+  <linearGradient id="id6" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="319" y1="359" x2="395" y2="338">
+  </linearGradient>
+  <linearGradient id="id7" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="351" y1="238" x2="347" y2="167">
+  </linearGradient>
+  <linearGradient id="id8" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="268" y1="162" x2="206" y2="163">
+  </linearGradient>
+  <linearGradient id="id9" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="258" y1="162" x2="327" y2="163">
+  </linearGradient>
+  <linearGradient id="id10" gradientUnits="userSpaceOnUse" xlink:href="#id1" x1="205" y1="364" x2="141" y2="351">
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0" d="M257 21c21,56 42,114 68,165 73,10 132,8 168,11 2,0 -88,77 -130,114 13,56 28,115 42,171 -51,-33 -99,-61 -146,-90 -49,31 -93,57 -144,92 12,-55 27,-114 39,-170 -44,-39 -84,-73 -130,-112 58,-5 114,-11 169,-15 24,-56 45,-108 64,-165z"/>
+  <path class="fil1 str0" d="M257 21c21,56 42,114 68,165 73,10 132,8 168,11 2,0 -88,77 -130,114 13,56 28,115 42,171 -51,-33 -99,-61 -146,-90 -49,31 -93,57 -144,92 12,-55 27,-114 39,-170 -44,-39 -84,-73 -130,-112 58,-5 114,-11 169,-15 24,-56 45,-108 64,-165z"/>
+  <polygon class="fil2" points="259,275 257,48 315,196 "/>
+  <polygon class="fil3" points="259,275 257,48 202,197 "/>
+  <polygon class="fil4" points="259,274 47,206 203,196 "/>
+  <polygon class="fil5" points="259,275 47,206 169,306 "/>
+  <polygon class="fil6" points="258,274 130,459 169,305 "/>
+  <polygon class="fil7" points="259,275 130,459 260,371 "/>
+  <polygon class="fil8" points="258,275 391,457 259,372 "/>
+  <polygon class="fil9" points="259,275 391,457 349,303 "/>
+  <polygon class="fil10" points="259,275 469,203 349,305 "/>
+  <polygon class="fil11" points="259,275 469,203 313,196 "/>
+  <path class="fil12" d="M258 133c11,29 22,59 35,85 37,5 68,4 87,6 1,0 -45,40 -67,59 7,29 14,59 22,88 -26,-17 -51,-31 -75,-47 -25,16 -48,30 -74,48 6,-28 14,-59 20,-87 -23,-20 -43,-38 -67,-58 30,-3 58,-5 87,-8 12,-29 23,-56 33,-85z"/>
+ </g>
+</svg>

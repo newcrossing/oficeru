@@ -14,12 +14,6 @@
     <!-- App favicon -->
     @include('front.moduls.favicon')
 
-
-
-    <link rel="yandex-tableau-widget" href="/tableau.json">
-    <meta content="https://oficeru.ru/assets/favicons/yandex.png" color=#fff" name="yandex-tableau-widget">
-
-
     @yield('vendor-styles')
     @yield('page-styles')
 </head>

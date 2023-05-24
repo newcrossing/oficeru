@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
+
     @include('front.moduls.favicon')
+
     @yield('vendor-styles')
     @yield('page-styles')
 </head>
