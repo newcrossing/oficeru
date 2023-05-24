@@ -9,7 +9,7 @@ viewBox="0 0 512 512"
    <![CDATA[
     .str0 {stroke:#D9971D;stroke-width:4}
     .fil1 {fill:none}
-    .fil12 {fill:#FEFEFE}
+    .fil12 {fill:#E31E24}
     .fil0 {fill:url(#id0)}
     .fil5 {fill:url(#id1)}
     .fil4 {fill:url(#id2)}
