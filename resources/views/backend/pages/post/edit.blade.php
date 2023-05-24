@@ -132,6 +132,17 @@
                     </div>
                     <div class="invoice-payment">
                         <div class="invoice-payment-option mb-2">
+                            <p>Тип</p>
+
+                            <fieldset class="form-group">
+                                <select class="form-control" name="type">
+                                    <option @if($post->type == 'post') selected @endif>Статья</option>
+                                    <option @if($post->type == 'news') selected @endif>Новость</option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div class="invoice-payment-option mb-2">
                             <p>Дата публикации</p>
 
                             <fieldset class="form-group position-relative has-icon-left">
