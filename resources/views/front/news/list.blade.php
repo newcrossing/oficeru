@@ -24,19 +24,23 @@
 @section('content')
     <div class="rw-row">
         <div class="blog-list">
-            @foreach ($posts as $post)
+        @foreach ($posts as $post)
+            <!-- Entry -->
                 <div class="post clearfix">
-                    <div class="entry-details" style="min-height: 70px">
-                        <div class="entry-title" style="padding-left: 0px; ">
-                            <h2 style="font-size: 20px;text-align: justify;">
-                                <a href="/news/{{ $post->id }}" style="color: #21aabd"> {{   $post->name }}</a>
-                            </h2>
-                            <p style="text-align: justify">{!!   strip_tags(Illuminate\Support\Str::before( $post->text,'<hr />'),'<img>')   !!}</p>
+                    <div class="entry-details">
+                        <div class="entry-date">
+                            <span class="date">{{ $post->date_public->format('d')}}</span>
+                            <span class="month">{{ \Carbon\Carbon::parse($post->date_public)->isoFormat(' MMMM ', 'Do MMMM')}}</span>
+                            <span class="year">{{ $post->date_public->format('Y')}}</span>
+                        </div>
+                        <div class="entry-title"><h2><a href="/news/{{ $post->id }}">{{   $post->name }}</a></h2></div>
+                        <div class="entry-content" style="text-align: justify">
+                            {!!   strip_tags(Illuminate\Support\Str::before( $post->text,'<hr />'),'<img>')   !!}
                         </div>
                     </div>
-                </div>
+                </div> <!-- .entry -->
+                <div class="clear"></div>
             @endforeach
-            <div class="clear"></div>
         </div>
 
         <!-- пейджинация -->
