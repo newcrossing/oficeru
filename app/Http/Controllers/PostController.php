@@ -18,20 +18,20 @@ class PostController extends Controller
             ['name' => " Статьи"],
         ];
 
-        $posts = Post::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
+        $posts = Post::where('pub', '1')->where('type', 'post')->orderBy('id', 'desc')->paginate(15);
         $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
         return view('front.post.list', compact('posts', 'tags', 'breadcrumbs'));
     }
 
     public function single($id)
     {
-        $post = Post::where('pub', 1)->findOrFail($id);
+        $post = Post::where('pub', 1)->where('type', 'post')->findOrFail($id);
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/post", 'name' => " Статьи "],
             ['name' => $post->name],
         ];
-        //$tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
+
         return view('front.post.index', compact('post', 'breadcrumbs'));
     }
 }

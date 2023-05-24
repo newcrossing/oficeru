@@ -8,6 +8,7 @@ use App\Http\Controllers\SitemapController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
@@ -31,6 +32,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');
+
+Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
+Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
+
 Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
 Route::get('/post/{id}', [PostController::class, 'single'])->where('id', '[0-9]+')->name('post.single');
 Route::get('/s/', [DocumentController::class, 'search'])->name('document.search');
@@ -40,19 +45,15 @@ Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+')->name('pdf.download');
 
 
-Route::get('test', function(){
+Route::get('test', function () {
 
-    $details= 'your_email@gmail.com';
+    $details = 'your_email@gmail.com';
 
     dispatch(new App\Jobs\ProcessTest($details));
 
 
-
     dd('done');
 });
-
-
-
 
 
 Route::middleware(['role:admin|user'])->group(

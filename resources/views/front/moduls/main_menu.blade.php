@@ -9,6 +9,9 @@
         <li>
             <a href="{{route('post.list')}}">Статьи</a>
         </li>
+        <li>
+            <a href="{{route('news.list')}}">Новости</a>
+        </li>
 
         <li>
             <a href="#">Сервисы</a>

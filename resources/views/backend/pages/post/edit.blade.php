@@ -136,8 +136,8 @@
 
                             <fieldset class="form-group">
                                 <select class="form-control" name="type">
-                                    <option @if($post->type == 'post') selected @endif>Статья</option>
-                                    <option @if($post->type == 'news') selected @endif>Новость</option>
+                                    <option value="post" @if($post->type == 'post') selected @endif>Статья</option>
+                                    <option value="news" @if($post->type == 'news') selected @endif>Новость</option>
                                 </select>
                             </fieldset>
                         </div>

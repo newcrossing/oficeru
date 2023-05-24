@@ -20,9 +20,8 @@ class Post extends Model
         'text',
         'description',
         'annotation',
-
         'date_public',
-
+        'type',
         'pub',
         'notify',
         'in_main',
