@@ -11,7 +11,7 @@
 
 @section('widgets')
     {{ Widget::run('search') }}
-    {{ Widget::run('tags') }}
+
 @endsection
 
 @section('content')

@@ -31,6 +31,7 @@ class UserController extends Controller
      */
     public function forgotPasswordValidate($token)
     {
+
         $user = User::where('token', $token)->where('is_verified', 0)->first();
         if ($user) {
             $email = $user->email;

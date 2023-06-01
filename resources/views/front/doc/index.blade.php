@@ -5,6 +5,7 @@
 @section('widgets')
     {{ Widget::run('search') }}
     {{ Widget::run('info_doc', $doc->toArray()) }}
+{{--    {{ Widget::run('subscribe_doc') }}  --}}
 @endsection
 
 @section('content')

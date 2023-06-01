@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
+/**
+ * App\Models\Board
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Foto> $fotos
+ * @property-read int|null $fotos_count
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Board newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Board newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Board onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Board query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Board withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Board withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Board extends Model
 {
     use HasFactory;

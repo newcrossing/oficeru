@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Activity;
-use App\Models\Document as Doc;
-use App\Models\Izm;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
