@@ -21,7 +21,7 @@ class Search extends AbstractWidget
     {
         //
 
-        return view('front.widgets.search', [
+        return view('frontend.widgets.search', [
             'config' => $this->config,
         ]);
     }

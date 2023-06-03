@@ -42,7 +42,8 @@ class HomeController extends Controller
         $freshPubDoc = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(5)->get();
         $freshVstDoc = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(5)->get();
 
-        return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
+      //  return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
+        return view('frontend.layouts.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
 
     }
 }

@@ -17,7 +17,7 @@ class NewsController extends Controller
 
         $posts = Post::where('pub', '1')->where('type', 'news')->orderBy('id', 'desc')->paginate(15);
 
-        return view('front.news.list', compact('posts', 'breadcrumbs'));
+        return view('frontend.news.list', compact('posts', 'breadcrumbs'));
     }
 
     public function single($id)
@@ -29,6 +29,6 @@ class NewsController extends Controller
             ['name' => $post->name],
         ];
 
-        return view('front.news.index', compact('post', 'breadcrumbs'));
+        return view('frontend.news.index', compact('post', 'breadcrumbs'));
     }
 }

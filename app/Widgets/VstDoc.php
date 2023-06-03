@@ -20,7 +20,7 @@ class VstDoc extends AbstractWidget
      */
     public function run()
     {
-        $docs = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(5)->get();
-        return view('front.widgets.vst_doc', compact('docs'));
+        $docs = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(3)->get();
+        return view('frontend.widgets.vst_doc', compact('docs'));
     }
 }
