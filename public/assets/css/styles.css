@@ -1269,11 +1269,13 @@ h6 {
   color: #2e303a;
 }
 h1 {
-  font-size: 36px;
+  /*font-size: 36px;*/
+  font-size: 30px;
   margin: 18px 0 12px 0;
 }
 h2 {
-  font-size: 32px;
+  /*font-size: 32px;*/
+  font-size: 28px;
   margin: 16px 0 11px 0;
 }
 h3 {
