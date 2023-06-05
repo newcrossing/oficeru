@@ -26,7 +26,7 @@ class NewsController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/post", 'name' => " Новости "],
-            ['name' => $post->name],
+//            ['name' => $post->name],
         ];
 
         $bots = array(
