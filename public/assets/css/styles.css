@@ -5949,6 +5949,10 @@ Members page
         margin: 0;
         font-size: 18px;
     }
+    .page-title h1 {
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
 /*
 -------------------------------------------------------------------------------
