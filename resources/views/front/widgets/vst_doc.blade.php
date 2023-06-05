@@ -5,6 +5,11 @@
             <li>
                 <div class="author-name">
                     <a href="{{route('document.single',$doc->id)}}">{{$doc->getShotName()}}</a>
+                    @isset($doc->short_name)
+                        <div class="" style="font-size: 12px; color: #777;">
+                            &laquo;{{$doc->short_name}}&raquo;
+                        </div>
+                    @endisset
                     @if($doc->date_vst->format('Y-m-d') == date('Y-m-d'))
                         <span class="mark green" title="Сегодня вступил в силу">Сегодня</span>
                     @endif

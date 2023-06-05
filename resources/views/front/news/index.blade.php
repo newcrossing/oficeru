@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
+
     <div class="rw-row">
+        <div class="entry-controls minimal">
+            <div class="control"><i class="fa fa-calendar"></i></div>
+            <span class="control-tip">
+                {{ \Carbon\Carbon::parse($post->date_public)->isoFormat('d MMMM Y', 'Do MMMM')}}
+            </span>
+            <div class="control"><i class="fa fa-bar-chart"></i></div>
+            <span class="control-tip">{{ $post->hits }} просмотров</span>
+        </div>
         <div class="blog-single clearfix">
             <div class="entry post">
                 <div class="entry-details">
