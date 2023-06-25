@@ -1,7 +1,7 @@
 @extends('front.layouts.index')
 
-@section('title','Новости')
-@section('h1','Новости')
+@section('title','Теги')
+@section('h1','Тег: '.$tag->name)
 
 @if(Request::get('page'))
     @section('canonical')
@@ -24,7 +24,7 @@
 @section('content')
     <div class="rw-row">
         <div class="recipes-list">
-            @foreach ($posts as $post)
+            @foreach ($tag->posts as $post)
                 <!-- Entry -->
                 <div class="recipe clearfix" style="padding-right: 0px; padding-left: 0px">
                     <div class="recipe-main-info clearfix">
@@ -61,11 +61,10 @@
                     @endif
                 </div> <!-- .entry -->
                 <div class="clear"></div>
-
             @endforeach
         </div>
         <!-- пейджинация -->
-        {{ $posts->links('vendor.pagination.default') }}
+{{--       {{ $tag->links('vendor.pagination.default') }}--}}
 
     </div>
 @endsection

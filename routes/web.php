@@ -9,6 +9,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
+Route::get('/tag/{id}', [TagController::class, 'single'])->where('id', '[0-9]+')->name('tags.list');
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');
 
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');

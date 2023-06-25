@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Adm;
 
 use App\Http\Controllers\Controller;
-use App\Models\Document as Doc;
-use App\Models\Izm;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -99,10 +98,20 @@ class PostController extends Controller
             ['link' => "/admin/post", 'name' => "Статьи"],
             ['name' => " Редактирование"]
         ];
+        $t = Tag::find(7);
+       // dd($t);
+        $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
+        $sTags = $post->tags->pluck('id')->toArray();
+        //dd($post->tags->pluck('id'));
+       // dd($post->tags->toArray());
+       // dd(in_array(4,$post->tags->pluck('id')->toArray()));
 
-
+        //dd($post->tags->toArray());
+       // dd($post->tags);
         return view('backend.pages.post.edit', compact(
             'post',
+            'tags',
+            'sTags',
             'breadcrumbs'
 
         ));
@@ -128,10 +137,12 @@ class PostController extends Controller
         $post->notify = $request->boolean('notify');
         $post->in_main = $request->boolean('in_main');
 
+        //dd($request->tags);
         $post->fill($request->all())->save();
 
 
         $post->save();
+        $post->tags()->sync($request->tags);
 
 
         if ($request->redirect == 'apply') {

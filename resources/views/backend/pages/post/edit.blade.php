@@ -91,6 +91,16 @@
 
                                         </div>
                                         <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Теги </h6>
+                                                <select name="tags[]" class="select2-customize-result form-control"
+                                                        multiple="multiple" id="select2-customize-result">
+                                                    @foreach ($tags as $tag)
+                                                        <option @if(in_array($tag->id,$sTags)) selected
+                                                                @endif value="{{$tag->id}}">{{$tag->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                     <span class="invoice-subtotal-title">Просмотров за сутки</span>
@@ -147,7 +157,8 @@
 
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_public" class="form-control pickadate-months-year"
-                                       placeholder="Выберите дату" value="{{isset($post->date_public)?$post->date_public->format('d/m/Y'):''}}"/>
+                                       placeholder="Выберите дату"
+                                       value="{{isset($post->date_public)?$post->date_public->format('d/m/Y'):''}}"/>
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
                         </div>

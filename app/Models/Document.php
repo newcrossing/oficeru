@@ -159,6 +159,9 @@ class Document extends Model
         return $name;
     }
 
+    /** Короткое название документа
+     * @return string
+     */
     public function getShotName()
     {
         if (empty($this->preamble_name)) {

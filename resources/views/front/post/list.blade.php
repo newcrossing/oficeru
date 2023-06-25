@@ -46,7 +46,7 @@
 
                         </div>
                     </div>
-                    {{--@if (($post->tags()->count()) )
+                    @if (($post->tags->count()) )
                         <div class="keywords-index-list" style="margin-bottom: 0px">
                             <ul class="keywords">
                                 @foreach ($post->tags as $tag)
@@ -54,7 +54,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif--}}
+                    @endif
+
                 </div>
             @endforeach
             <div class="clear"></div>

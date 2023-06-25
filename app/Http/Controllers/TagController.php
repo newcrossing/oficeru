@@ -3,28 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 
-class PostController extends Controller
+class TagController extends Controller
 {
     public function listing()
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['name' => " Статьи"],
+            ['name' => " Метки "],
         ];
+        $tag = Tag::find();
+        $posts = Post::where('pub', '1')->where('type', 'news')->orderBy('id', 'desc')->paginate(15);
 
-        $posts = Post::where('pub', '1')->where('type', 'post')->orderBy('id', 'desc')->paginate(15);
-        //$tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
-        return view('front.post.list', compact('posts', 'breadcrumbs'));
+        return view('front.news.list', compact('posts', 'breadcrumbs'));
     }
 
     public function single($id)
     {
-        $post = Post::where('pub', 1)->where('type', 'post')->findOrFail($id);
+        $tag = Tag::findOrFail($id);
+
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['link' => "/post", 'name' => " Статьи "],
-            ['name' => $post->name],
+            ['link' => "/tag", 'name' => " Метки "],
         ];
 
         $bots = array(
@@ -38,14 +39,17 @@ class PostController extends Controller
             'yandexSomething', 'Copyscape.com', 'AdsBot-Google', 'domaintools.com',
             'Nigma.ru', 'bing.com', 'dotnetdotcom'
         );
+        $tmp = false;
         foreach ($bots as $bot)
-            if (stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== true) {
-                $post->hits = $post->hits + 1;
-                $post->save();
+            if (stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false) {
+                $tmp = true;
             }
+        if (!$tmp) {
+            $tag->hits = $tag->hits + 1;
+            $tag->save();
+        }
 
-        $post->hits = 133;
-        $post->save();
-        return view('front.post.index', compact('post', 'breadcrumbs'));
+
+        return view('front.tag.list', compact('tag', 'breadcrumbs'));
     }
 }
