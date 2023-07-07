@@ -1,12 +1,11 @@
-
 $(document).ready(function () {
 
     $('.pickadate-months-year').pickadate({
         selectYears: true,
         selectMonths: true,
-        min: new Date(1991,1,1),
-        max: new Date(2025,7,14),
-        selectYears:30,
+        min: new Date(1991, 1, 1),
+        max: new Date(2025, 7, 14),
+        selectYears: 30,
 
         today: 'Сегодня',
         clear: 'Очистить',
@@ -40,10 +39,6 @@ $(document).ready(function () {
         ],
 
     });
-
-
-
-
 
 
 });

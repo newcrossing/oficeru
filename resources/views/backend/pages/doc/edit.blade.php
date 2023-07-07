@@ -320,7 +320,7 @@
                         <div class="invoice-payment-option mb-2">
                             <label class="@isset($doc->date_pod) text-success @endisset">Дата подписания</label>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_pod" class="form-control pickadate-months-year"
+                                <input type="text" name="date_pod" class="form-control pickadate-months-year2"
                                        placeholder="Выберите дату" value="{{isset($doc->date_pod)?$doc->date_pod->format('d/m/Y'):''}}"/>
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>

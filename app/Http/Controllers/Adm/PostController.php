@@ -41,7 +41,16 @@ class PostController extends Controller
         // Она же форма редактирования, надо что то отправить.
         $post = new Post();
 
-        return view('backend.pages.post.edit', compact('breadcrumbs', 'post'));
+        $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
+        $sTags = $post->tags->pluck('id')->toArray();
+
+        return view('backend.pages.post.edit',
+            compact(
+                'breadcrumbs',
+                'post',
+                'tags',
+                'sTags')
+        );
     }
 
     /**
@@ -98,16 +107,10 @@ class PostController extends Controller
             ['link' => "/admin/post", 'name' => "Статьи"],
             ['name' => " Редактирование"]
         ];
-        $t = Tag::find(7);
-       // dd($t);
+
         $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
         $sTags = $post->tags->pluck('id')->toArray();
-        //dd($post->tags->pluck('id'));
-       // dd($post->tags->toArray());
-       // dd(in_array(4,$post->tags->pluck('id')->toArray()));
 
-        //dd($post->tags->toArray());
-       // dd($post->tags);
         return view('backend.pages.post.edit', compact(
             'post',
             'tags',
