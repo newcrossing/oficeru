@@ -200,7 +200,7 @@ class DocController extends Controller
             $curText = str_replace('margin-top:12.0pt;', "", $curText);
            //  $curText = str_replace('margin-top: 12pt;', "", $curText);
             //$curText = preg_replace('/(<div[^>]*>\s*?\((п|стать|пп|част|в ред).*[0-9ФЗ]\)\s*?<\/div>)/is', "", $curText);;
-            $curText = preg_replace('/(?:<div>[\s\S]*?<\/div>)?<table[^>]*>[\s\S]*?(?:КонсультантПлюс|Список изменяющих документов)[\s\S]*?<\/table>/si', "", $curText);;
+           // $curText = preg_replace('/(?:<div>[\s\S]*?<\/div>)?<table[^>]*>[\s\S]*?(?:КонсультантПлюс|Список изменяющих документов)[\s\S]*?<\/table>/si', "", $curText);;
         }
 
 
