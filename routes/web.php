@@ -4,6 +4,7 @@ use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SitemapController;
 
 use App\Http\Controllers\HomeController;
@@ -34,6 +35,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
 Route::get('/tag/{id}', [TagController::class, 'single'])->where('id', '[0-9]+')->name('tags.list');
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');
+
+Route::get('/subscribe', [SubscribeController::class, 'index'])->name('subscribe.index');
+Route::post('/subscribe', [SubscribeController::class, 'create'])->name('subscribe.create');
 
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');

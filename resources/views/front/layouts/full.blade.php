@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
 
+
     <!-- App favicon -->
     @include('front.moduls.favicon')
 

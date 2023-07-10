@@ -92,6 +92,7 @@ class Document extends Model
     use SoftDeletes;
     use SearchableTrait;
 
+
     protected $fillable = [
         'name',
         'preamble_name',
@@ -130,7 +131,25 @@ class Document extends Model
 
         ]
     ];
-
+    /**
+     * Атрибуты, которые должны быть преобразованы в дату
+     *
+     * @var array
+     */
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'date_pod',
+        'date_pub',
+        'date_vst',
+        'date_end_vst',
+        'date_npub',
+        'date_kpub'
+    ];
+    protected $casts = [
+        'notify' => 'boolean',
+        'in_main' => 'boolean',
+    ];
 
     public function setDateNull($date1 = '')
     {
@@ -174,27 +193,16 @@ class Document extends Model
         return $name;
     }
 
-
     /**
-     * Атрибуты, которые должны быть преобразованы в дату
-     *
-     * @var array
+     * Получает ссылку на документ
+     * @return string
      */
-    protected $dates = [
-        'updated_at',
-        'created_at',
-        'date_pod',
-        'date_pub',
-        'date_vst',
-        'date_end_vst',
-        'date_npub',
-        'date_kpub'
-    ];
+    public function getLink()
+    {
 
-    protected $casts = [
-        'notify' => 'boolean',
-        'in_main' => 'boolean',
-    ];
+        $link = 'https://oficeru.ru/doc/' . $this->id;
+        return $link;
+    }
 
     public function setDatePodAttribute($value)
     {

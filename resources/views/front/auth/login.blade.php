@@ -24,12 +24,12 @@
                 </div>
 
                 <div class="grid desk-6 omega">
-                    <div class="form-label">Логин</div>
+                    <div class="form-label">E-mail</div>
                     <div class="grid desk-12 both">
-                        @error('login')
+                        @error('email')
                         <div class=" text-red" style="font-size: 12px">{{ $message }}</div>
                         @enderror
-                        <input type="text" name="login" class="fullwidth" value="{{ old('login') }}" autofocus required>
+                        <input type="text" name="email" class="fullwidth" value="{{ old('email') }}" autofocus required>
                     </div>
                     <div class="form-label">Пароль</div>
                     <input type="password" name="password" class=" fullwidth" value="" required>

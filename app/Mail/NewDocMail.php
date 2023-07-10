@@ -3,11 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyMail extends Mailable
+class NewDocMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +29,7 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('front.mail.order')
-            ->subject('Потеряшка нашлась ');
+        return $this->view('front.mail.new-doc')
+            ->subject('Новые документы за сутки');
     }
 }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/fonts/awards/awards.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
 
+
     @include('front.moduls.favicon')
 
     @yield('vendor-styles')
@@ -26,10 +27,10 @@
        Header
     // ===================================^__^=================================== //
     -->
-@include('front.moduls.header')
+    @include('front.moduls.header')
 
 
-<!--
+    <!--
     // ===================================^__^=================================== //
        Content
     // ===================================^__^=================================== //
