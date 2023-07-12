@@ -73,19 +73,22 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Чей документ </h6>
-                                                <input type="text" name="preamble_name" class="form-control" value="{{old('preamble_name',$doc->preamble_name)}}">
+                                                <input type="text" name="preamble_name" class="form-control"
+                                                       value="{{old('preamble_name',$doc->preamble_name)}}">
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Номер </h6>
-                                                <input type="text" name="nomer" class="form-control" value="{{old('nomer',$doc->nomer)}}">
+                                                <input type="text" name="nomer" class="form-control"
+                                                       value="{{old('nomer',$doc->nomer)}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">О чем </h6>
-                                                <input type="text" name="short_name" class="form-control" value="{{old('short_name',$doc->short_name)}}">
+                                                <input type="text" name="short_name" class="form-control"
+                                                       value="{{old('short_name',$doc->short_name)}}">
                                             </div>
                                         </div>
 
@@ -96,10 +99,12 @@
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
                                         <h6 class="">Название
                                             @if(!empty($doc->id))
-                                                <a href="/doc/{{$doc->id}}" target="_blank"><i class="bx bx-link-external"></i></a>
+                                                <a href="/doc/{{$doc->id}}" target="_blank"><i
+                                                        class="bx bx-link-external"></i></a>
                                             @endif
                                         </h6>
-                                        <textarea name="name" class="form-control  " rows="3">{{old('name',$doc->name)}}</textarea>
+                                        <textarea name="name" class="form-control  "
+                                                  rows="3">{{old('name',$doc->name)}}</textarea>
                                     </div>
 
                                 </div>
@@ -110,7 +115,8 @@
 
                                 <div class="row invoice-info">
                                     <div class="col-lg-12 col-md-12 mt-25">
-                                        <textarea class="ckeditor " cols="80" id="editor1" name="text">{{old('text',$curText)}}</textarea>
+                                        <textarea class="ckeditor " cols="80" id="editor1"
+                                                  name="text">{{old('text',$curText)}}</textarea>
                                     </div>
                                 </div>
                                 <hr>
@@ -119,14 +125,16 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Примечание </h6>
-                                                <textarea name="annotation" class="form-control" rows="3">{{old('annotation',$doc->annotation)}}</textarea>
+                                                <textarea name="annotation" class="form-control"
+                                                          rows="3">{{old('annotation',$doc->annotation)}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Описание </h6>
-                                                <textarea name="description" class="form-control" rows="3">{{old('description',$doc->description)}}</textarea>
+                                                <textarea name="description" class="form-control"
+                                                          rows="3">{{old('description',$doc->description)}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -138,18 +146,21 @@
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Мета заголовок </h6>
-                                                <input type="text" name="meta_title" class="form-control" value="{{old('meta_title',$doc->meta_title)}}">
+                                                <input type="text" name="meta_title" class="form-control"
+                                                       value="{{old('meta_title',$doc->meta_title)}}">
                                             </div>
 
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Описание</h6>
-                                                <textarea name="meta_disc" class="form-control" rows="2">{{old('text',$doc->meta_disc)}}</textarea>
+                                                <textarea name="meta_disc" class="form-control"
+                                                          rows="2">{{old('text',$doc->meta_disc)}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Теги </h6>
-                                                <select class="select2-customize-result form-control" multiple="multiple" id="select2-customize-result">
+                                                <select class="select2-customize-result form-control"
+                                                        multiple="multiple" id="select2-customize-result">
                                                     <optgroup label="Figures">
                                                         <option value="romboid">Romboid</option>
                                                         <option value="trapeze">Trapeze</option>
@@ -197,12 +208,14 @@
 
                             <div class="invoice-action-btn mb-1 d-flex">
                                 <div class="preview w-50 mr-50">
-                                    <button type="submit" name="redirect" value="save" class="btn btn-success btn-block" title="Сохранить">
+                                    <button type="submit" name="redirect" value="save" class="btn btn-success btn-block"
+                                            title="Сохранить">
                                         <i class='bx bx-save'></i>
                                     </button>
                                 </div>
                                 <div class="save w-50">
-                                    <button type="submit" name="redirect" value="apply" class="btn btn-primary btn-block invoice-send-btn" title="Применить">
+                                    <button type="submit" name="redirect" value="apply"
+                                            class="btn btn-primary btn-block invoice-send-btn" title="Применить">
                                         <i class="bx bx-send"></i>
                                     </button>
                                 </div>
@@ -214,7 +227,9 @@
                                     </a>
                                 </div>
                                 <div class="save w-50">
-                                    <a href="#" onclick="window.open('/admin/doc-izm/{{$doc->id}}', '_blank', 'location=yes,height=770,width=1000,scrollbars=yes,status=yes');" class="btn btn-warning btn-block">
+                                    <a href="#"
+                                       onclick="window.open('/admin/doc-izm/{{$doc->id}}', '_blank', 'location=yes,height=770,width=1000,scrollbars=yes,status=yes');"
+                                       class="btn btn-warning btn-block">
                                         <i class='bx bx-edit'></i>
                                     </a>
                                 </div>
@@ -222,7 +237,8 @@
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Опубликовать</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="pub" class="custom-control-input" id="checkedPub" {{!empty($doc->pub)?'checked':''}}>
+                                    <input type="checkbox" name="pub" class="custom-control-input"
+                                           id="checkedPub" {{!empty($doc->pub)?'checked':''}}>
                                     <label class="custom-control-label" for="checkedPub"> </label>
                                 </div>
                             </div>
@@ -256,28 +272,43 @@
 
 
                                             @if (empty($izm->document->date_vst))
-                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer" title="Дата еще не установлена {{$izm->document->date_vst}}">  </span>
-                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-warning font-small-2">{{$izm->document->getShotName()}}</a>
+                                                <span
+                                                    class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer"
+                                                    title="Дата еще не установлена {{$izm->document->date_vst}}">  </span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}"
+                                                   class="text-warning font-small-2">{{$izm->document->getShotName()}}</a>
                                             @elseif ($izm->document->date_vst->format('Y-m-d') > date('Y-m-d') || empty($izm->document->date_vst))
-                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-info  bullet-sm cursor-pointer" title="еще не вступил в силу {{$izm->document->date_vst}}">  </span>
-                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-info font-small-2">{{$izm->document->getShotName()}}</a>
+                                                <span
+                                                    class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-info  bullet-sm cursor-pointer"
+                                                    title="еще не вступил в силу {{$izm->document->date_vst}}">  </span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}"
+                                                   class="text-info font-small-2">{{$izm->document->getShotName()}}</a>
                                             @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d') && empty($flag))
-                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-success bullet-sm cursor-pointer" title="Действущая редакция"></span>
-                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-success font-small-2">{{$izm->document->getShotName(). ' - '.$izm->id }}</a>
+                                                <span
+                                                    class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-success bullet-sm cursor-pointer"
+                                                    title="Действущая редакция"></span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}"
+                                                   class="text-success font-small-2">{{$izm->document->getShotName(). ' - '.$izm->id }}</a>
                                                 @php
                                                     // прошли текущию версию, дальше прошлые
                                                     $flag = true;
                                                 @endphp
                                             @elseif($izm->document->date_vst->format('Y-m-d') <= date('Y-m-d'))
-                                                <span class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-danger bullet-sm cursor-pointer" title="Прошлые редакция"></span>
-                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}" class="text-danger font-small-2">{{$izm->document->getShotName()}}</a>
+                                                <span
+                                                    class=" @if($izm->id == $selVersion) spinner-grow @endif bullet bullet-danger bullet-sm cursor-pointer"
+                                                    title="Прошлые редакция"></span>
+                                                <a href="{{route('doc.edit',$doc->id)}}?izm={{$izm->id}}"
+                                                   class="text-danger font-small-2">{{$izm->document->getShotName()}}</a>
                                             @endif
 
                                         </div>
                                     @endforeach
                                     <div>
-                                        <span class=" @if($selVersion == 0) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer" title="">  </span>
-                                        <a href="{{route('doc.edit',$doc->id)}}?izm=0" class="text-warning font-small-2 ">Первоначальная
+                                        <span
+                                            class=" @if($selVersion == 0) spinner-grow @endif bullet bullet-warning   bullet-sm cursor-pointer"
+                                            title="">  </span>
+                                        <a href="{{route('doc.edit',$doc->id)}}?izm=0"
+                                           class="text-warning font-small-2 ">Первоначальная
                                             версия</a>
                                     </div>
 
@@ -308,7 +339,8 @@
                                     @foreach($toEdition as $izm)
                                         <div>
                                             <span class="  bullet bullet-success   bullet-sm cursor-pointer">  </span>
-                                            <a href="{{route('doc.edit',$izm->id)}}" class="text-success font-small-2">{{$izm->getShotName()}}</a>
+                                            <a href="{{route('doc.edit',$izm->id)}}"
+                                               class="text-success font-small-2">{{$izm->getShotName()}}</a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -321,7 +353,8 @@
                             <label class="@isset($doc->date_pod) text-success @endisset">Дата подписания</label>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_pod" class="form-control pickadate-months-year2"
-                                       placeholder="Выберите дату" value="{{isset($doc->date_pod)?$doc->date_pod->format('d/m/Y'):''}}"/>
+                                       placeholder="Выберите дату"
+                                       value="{{isset($doc->date_pod)?$doc->date_pod->format('d/m/Y'):''}}"/>
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
                         </div>
@@ -330,7 +363,8 @@
                             <label class="@isset($doc->date_pub) text-success @endisset">Дата публикации </label>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" name="date_pub" class="form-control pickadate-months-year"
-                                       placeholder="Выберите дату" value="{{isset($doc->date_pub)?$doc->date_pub->format('d/m/Y'):''}}"/>
+                                       placeholder="Выберите дату"
+                                       value="{{isset($doc->date_pub)?$doc->date_pub->format('d/m/Y'):''}}"/>
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
                         </div>
@@ -338,7 +372,8 @@
                         <div class="invoice-payment-option mb-2">
                             <label class="@isset($doc->date_vst) text-success @endisset">Дата вступления в силу </label>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_vst" value="{{isset($doc->date_vst)?$doc->date_vst->format('d/m/Y'):''}}"
+                                <input type="text" name="date_vst"
+                                       value="{{isset($doc->date_vst)?$doc->date_vst->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
@@ -348,7 +383,8 @@
                             <label class="@isset($doc->date_end_vst) text-success @endisset"> Дата окончания
                                 действия </label>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_end_vst" value="{{isset($doc->date_end_vst)?$doc->date_end_vst->format('d/m/Y'):''}}"
+                                <input type="text" name="date_end_vst"
+                                       value="{{isset($doc->date_end_vst)?$doc->date_end_vst->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
@@ -358,7 +394,8 @@
                             <label class="@isset($doc->date_npub) text-success @endisset"> Начало публикации на
                                 сайте </label>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_npub" value="{{isset($doc->date_npub)?$doc->date_npub->format('d/m/Y'):''}}"
+                                <input type="text" name="date_npub"
+                                       value="{{isset($doc->date_npub)?$doc->date_npub->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
@@ -367,7 +404,8 @@
                             <label class="@isset($doc->date_kpub) text-success @endisset">Окончание публикации на
                                 сайте</label>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_kpub" value="{{isset($doc->date_kpub)?$doc->date_kpub->format('d/m/Y'):''}}"
+                                <input type="text" name="date_kpub"
+                                       value="{{isset($doc->date_kpub)?$doc->date_kpub->format('d/m/Y'):''}}"
                                        class="form-control  pickadate-months-year" placeholder="Выберите дату">
                                 <div class="form-control-position"><i class='bx bx-calendar'></i></div>
                             </fieldset>
@@ -375,19 +413,19 @@
 
 
                         <div class="invoice-terms">
-
                             <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Уведомить</span>
-
+                                <span class="invoice-terms-title">Уведомить </span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" class="custom-control-input" name="notify" id="clientNote" {{!empty($doc->notify)?'checked':''}}>
+                                    <input type="checkbox" class="custom-control-input" name="notify" id="clientNote"
+                                        {{!empty($doc->notify)?'checked':''}}  {{($doc->notify===2)?'disabled':''}} >
                                     <label class="custom-control-label" for="clientNote"> </label>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">На главную</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" class="custom-control-input" id="paymentstub" name="in_main" {{!empty($doc->in_main)?'checked':''}}>
+                                    <input type="checkbox" class="custom-control-input" id="paymentstub"
+                                           name="in_main" {{!empty($doc->in_main)?'checked':''}}>
                                     <label class="custom-control-label" for="paymentstub"> </label>
                                 </div>
                             </div>
@@ -398,7 +436,8 @@
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Удалить - консультант</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="delete_consultant" class="custom-control-input" id="delete_consultant">
+                                    <input type="checkbox" name="delete_consultant" class="custom-control-input"
+                                           id="delete_consultant">
                                     <label class="custom-control-label" for="delete_consultant"> </label>
                                 </div>
                             </div>
@@ -412,7 +451,8 @@
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Удалить пробелы</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" class="custom-control-input" id="delete_probel" name="delete_probel">
+                                    <input type="checkbox" class="custom-control-input" id="delete_probel"
+                                           name="delete_probel">
                                     <label class="custom-control-label" for="delete_probel"> </label>
                                 </div>
                             </div>
@@ -492,6 +532,5 @@
             });
         });
     </script>
-
 
 @endsection
