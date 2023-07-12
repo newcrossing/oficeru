@@ -87,39 +87,27 @@
                                 <table class="table zero-configuration">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Действие</th>
                                         <th>Пользователь</th>
-
                                         <th>Дата</th>
-
-
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach ($logs as $log)
                                         <tr>
-                                            <td>{{$log->id }}</td>
-                                            <td style="width: 400px" class="@if($log->result== 'error') text-danger @endif ">
+                                            <td style="width: 50%"
+                                                class="@if($log->result== 'error') text-danger @endif ">
                                                 {{$log->subject}}
                                             </td>
                                             <td>
                                                 {{$log->user_login}}
                                             </td>
-
                                             <td>
-                                                {{$log->created_at->format('d.m.y H:m:s')}}
+                                                {{$log->created_at->format('H:i  d.m.Y ')}}
                                             </td>
-                                            <td>
-
-                                            </td>
-
                                         </tr>
                                     @endforeach
-
-
-                                    </tfoot>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -129,8 +117,6 @@
         </div>
     </section>
     <!--/ Zero configuration table -->
-
-
 
 @endsection
 {{-- vendor scripts --}}
