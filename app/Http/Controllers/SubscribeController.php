@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Activity;
 use App\Mail\NewDocMail;
 use App\Mail\NotifyMail;
 use App\Models\Document;
@@ -72,6 +73,7 @@ class SubscribeController extends Controller
         $user->notify_doc = 1;
         $user->save();
 
+        Activity::add('Новый пользователь на рассылку: ' . $request->email);
 
         return view('front.subscribe.ok',
             compact('breadcrumbs')

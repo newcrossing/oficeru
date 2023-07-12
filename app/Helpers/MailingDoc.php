@@ -34,7 +34,10 @@ class MailingDoc
             $tmpText = '';
             $tmpBlock = '<a href="%s"  class="btn">%s</a><p>%s</p><br>';
             foreach ($docs as $doc) {
-                $tmpText .= sprintf($tmpBlock, $doc->getLink(), $doc->getShotName(), ' &laquo;' . $doc->short_name . '&raquo;');
+                $tmpText .= sprintf($tmpBlock,
+                    $doc->getLink(),
+                    $doc->getShotName(),
+                    ' &laquo;' . $doc->short_name . '&raquo;');
             }
 
             //php artisan queue:work --queue=high,default

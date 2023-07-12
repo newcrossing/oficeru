@@ -36,11 +36,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // документы для рассылки
             if (MailingDoc::send()) {
-                Activity::add('Рассылка успешна');
+                Activity::add('Рассылка документов успешна');
             } else {
-                Activity::add('Рассылка пустая ');
+                Activity::add('Рассылка документов пустая ');
             }
-        })->everyFiveMinutes();;
+        })->dailyAt('06:00');
 
     }
 
