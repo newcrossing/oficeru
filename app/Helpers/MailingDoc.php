@@ -34,7 +34,7 @@ class MailingDoc
             ];
 
             // пользователи, которые хотят получать сообщения
-            $users = User::where('notify_doc', 2)->get();
+            $users = User::where('notify_doc', 1)->get();
 
             $tmpText = '';
             //$tmpBlock = '<a href="%s"  class="btn">%s</a><p>%s</p><br>';
