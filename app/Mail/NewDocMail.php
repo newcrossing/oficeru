@@ -29,7 +29,7 @@ class NewDocMail extends Mailable
      */
     public function build()
     {
-        return $this->view('front.mail.new-doc')
+        return $this->view('front.mail.docs')
             ->subject('Новые документы за сутки');
     }
 }

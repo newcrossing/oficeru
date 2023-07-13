@@ -17,6 +17,7 @@ use App\Http\Controllers\CKEditorController;
 
 
 use App\Http\Controllers\ProfileController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,13 +53,8 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-
-    $details = 'your_email@gmail.com';
-
-    dispatch(new App\Jobs\ProcessTest($details));
-
-
-    dd('done');
+print Carbon::today();
+    dd();
 });
 
 
