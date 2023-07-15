@@ -1,4 +1,8 @@
-<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-absolute-top navbar-light navbar-show-hide"
+        data-hs-header-options='{
+            "fixMoment": 1000,
+            "fixEffect": "slide"
+          }'>
     <div class="container">
         <nav class="js-mega-menu navbar-nav-wrap">
             <!-- Default Logo -->
@@ -75,7 +79,7 @@
                              style="min-width: 17rem;">
                             <!-- Development -->
 
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/">
+                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/doc">
                                 <i class="bi-files-alt dropdown-item-icon"></i> Документы
                             </a>
 
