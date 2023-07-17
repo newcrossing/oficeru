@@ -4,9 +4,9 @@
 @section('h1','Документы')
 
 @if(Request::get('page'))
-@section('canonical')
-    <link rel='canonical' href='https://oficeru.ru/doc'/>
-@endsection
+    @section('canonical')
+        <link rel='canonical' href='https://oficeru.ru/doc'/>
+    @endsection
 @endif
 
 @section('vendor-styles')
@@ -33,19 +33,29 @@
                             <h2 style="font-size: 20px;text-align: justify;">
                                 <a href="/doc/{{ $doc->id }}" style="color: #21aabd"> {{   $doc->getShotName() }}</a>
                                 @if(empty($doc->date_pod))
-                                    <span class="mark yellow top" title="Не подписан" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
+                                    <span class="mark yellow top" title="Не подписан" style="font-size: 12px;"><i
+                                            class="the-icon fa fa-history"></i></span>
                                 @elseif(empty($doc->date_pub)   )
-                                    <span class="mark blue  top" title="Не опубликован" style="font-size: 12px;"><i class="the-icon fa fa-history"></i> </span>
+                                    <span class="mark blue  top" title="Не опубликован" style="font-size: 12px;"><i
+                                            class="the-icon fa fa-history"></i> </span>
                                 @elseif($doc->date_pub->format('Y-m-d') > date('Y-m-d')  )
-                                    <span class="mark blue  top" title="Будет опубликован {{$doc->date_pub->format('Y-m-d')}}" style="font-size: 12px;"><i class="the-icon fa fa-history"></i>  </span>
+                                    <span class="mark blue  top"
+                                          title="Будет опубликован {{$doc->date_pub->format('Y-m-d')}}"
+                                          style="font-size: 12px;"><i class="the-icon fa fa-history"></i>  </span>
                                 @elseif(empty($doc->date_vst))
-                                    <span class="mark orange   top" title="Не вступил в силу" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
+                                    <span class="mark orange   top" title="Не вступил в силу"
+                                          style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @elseif($doc->date_vst->format('Y-m-d') == date('Y-m-d'))
-                                    <span class="mark green    top" title="Сегодня вступил в силу" style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
+                                    <span class="mark green    top" title="Сегодня вступил в силу"
+                                          style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @elseif($doc->date_vst->format('Y-m-d') > date('Y-m-d'))
-                                    <span class="mark orange   top " title="Вступает в силу {{\Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY')}} г." style="font-size: 12px;"> <i class="the-icon fa fa-history"></i> </span>
+                                    <span class="mark orange   top "
+                                          title="Вступает в силу {{\Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY')}} г."
+                                          style="font-size: 12px;"> <i class="the-icon fa fa-history"></i> </span>
                                 @elseif( !empty($doc->date_end_vst) && $doc->date_end_vst->format('Y-m-d') <= date('Y-m-d') )
-                                    <span class="mark dark-gray   top" title="Утратил силу  {{\Carbon\Carbon::parse($doc->date_end_vst)->isoFormat('Do MMMM YYYY')}} г." style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
+                                    <span class="mark dark-gray   top"
+                                          title="Утратил силу  {{\Carbon\Carbon::parse($doc->date_end_vst)->isoFormat('Do MMMM YYYY')}} г."
+                                          style="font-size: 12px;"><i class="the-icon fa fa-history"></i></span>
                                 @endif
                             </h2>
                             {{--<div class="entry-controls minimal">
@@ -60,16 +70,18 @@
 
                         </div>
                     </div>
-                    {{--@if (($doc->tags()->count()) )
+
+                    @if (($doc->tags->count()) )
                         <div class="keywords-index-list" style="margin-bottom: 0px">
                             <ul class="keywords">
                                 @foreach ($doc->tags as $tag)
-                                    <li><a href="/tag/{{ $tag->id }}">{{ $tag->name }} </a></li>
+                                    <li><a href="/tag/{{ $tag->slug }}">{{ $tag->name }} </a></li>
                                 @endforeach
                             </ul>
                         </div>
-                    @endif--}}
+                    @endif
                 </div>
+
             @endforeach
             <div class="clear"></div>
 
@@ -80,7 +92,6 @@
 
 
     </div> <!-- .rw-row -->
-
 
 @endsection
 

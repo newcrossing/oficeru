@@ -52,6 +52,6 @@ class Tag extends Model
  */
     public function docs()
     {
-        return $this->morphedByMany(Doc::class, 'taggable');
+        return $this->morphedByMany(Document::class, 'taggable');
     }
 }

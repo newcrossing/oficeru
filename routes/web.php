@@ -14,8 +14,8 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
-
-
+use App\Models\Tag;
+use Illuminate\Support\Str;
 use App\Http\Controllers\ProfileController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
-Route::get('/tag/{id}', [TagController::class, 'single'])->where('id', '[0-9]+')->name('tags.list');
+Route::get('/tag/{id}', [TagController::class, 'single'])->where('id', '[A-Za-z-]+')->name('tags.list');
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');
 
 Route::get('/subscribe', [SubscribeController::class, 'index'])->name('subscribe.index');
@@ -53,8 +53,12 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-print Carbon::today();
-    dd();
+    $tags = Tag::all();
+    foreach ($tags as $tag){
+        $tag->slug = Str::slug($tag->name, '-');
+        $tag->save();
+    }
+
 });
 
 

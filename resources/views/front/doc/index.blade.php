@@ -34,6 +34,17 @@
         </div>
         <div class="clear"></div>
     </div> <!-- .rw-row -->
+    @if($doc->tags->count())
+        <div class="rw-row light border-tb">
+            <div class="recipe-tags">
+{{--                <span class="tags-title">Метки:</span>--}}
+                @foreach ($doc->tags as $tag)
+                    <span class="tag"><a href="/tag/{{$tag->id}}">  {{$tag->name}}</a></span>
+                @endforeach
+
+            </div>
+        </div>
+    @endif
 @endsection
 
 

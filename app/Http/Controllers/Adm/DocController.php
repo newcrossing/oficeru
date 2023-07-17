@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Adm;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document as Doc;
-use App\Models\Post;
+use App\Models\Document;
+
 use App\Models\Izm;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -46,11 +48,19 @@ class DocController extends Controller
         // Она же форма редактирования, надо что то отправить.
         $doc = new Doc();
 
+        $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
+        $sTags = $doc->tags->pluck('id')->toArray();
+
 
         // коректная версия пока равна первой версии
         $curText = $doc->text;
 
-        return view('backend.pages.doc.edit', compact('breadcrumbs', 'doc', 'curText'));
+        return view('backend.pages.doc.edit', compact(
+            'breadcrumbs',
+            'doc',
+            'tags',
+            'sTags',
+            'curText'));
     }
 
     /**
@@ -76,6 +86,7 @@ class DocController extends Controller
         $doc->fill($request->all())->save();
 
         $doc->save();
+        $doc->tags()->sync($request->tags);
 
         if ($request->redirect == 'apply') {
             return redirect()->route('doc.edit', $doc->id)->with('success', 'Сохранено.');
@@ -101,13 +112,19 @@ class DocController extends Controller
      * @param \App\Models\Doc $doc
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Doc $doc, Request $request)
+    public function edit(Document $doc, Request $request)
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/admin/doc", 'name' => "Документы"],
             ['name' => " Редактирование"]
         ];
+
+
+        $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
+
+        $sTags = $doc->tags->pluck('id')->toArray();
+
 
         // корректная версия документа
         $curVersion = 0;
@@ -155,12 +172,11 @@ class DocController extends Controller
         $toEdition = Doc::whereIn('id', $idIzm)->get();
 
 
-        return view('backend.pages.doc.edit', compact(
-            'doc',
-
-            'breadcrumbs',
+        return view('backend.pages.doc.edit', compact('doc', 'breadcrumbs',
             'edition',
             'curText',
+            'tags',
+            'sTags',
             'selVersion',
             'toEdition',
             'curVersion'
@@ -196,13 +212,12 @@ class DocController extends Controller
         if ($request->boolean('delete_consultant')) {
             $curText = preg_replace('/<div[^>]*>\s*?\((?:абзац введен|в ред\.|стать|часть|абзац|введена|сноска в|введен|пп\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен) .+?[0-9З]\)\s*?<\/div>/is', '', $curText);
             //$curText = preg_replace('/(<div[^>]*>\s*?\((?:абзац введен|в ред\.|стать|часть|введена|введен|пп\.|п\. [0-9\.]+ в ред\.|п\. [0-9\.]+ введен|п) .+?\))\s*?<\/div>/is', '', $curText);
-           // $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
+            // $curText = preg_replace('/\s?-\s?Федеральный закон от (?:[^\.]*\.){2}.*?[\.;]/si', "", $curText);;
             $curText = str_replace('margin-top:12.0pt;', "", $curText);
-           //  $curText = str_replace('margin-top: 12pt;', "", $curText);
+            //  $curText = str_replace('margin-top: 12pt;', "", $curText);
             //$curText = preg_replace('/(<div[^>]*>\s*?\((п|стать|пп|част|в ред).*[0-9ФЗ]\)\s*?<\/div>)/is', "", $curText);;
-           // $curText = preg_replace('/(?:<div>[\s\S]*?<\/div>)?<table[^>]*>[\s\S]*?(?:КонсультантПлюс|Список изменяющих документов)[\s\S]*?<\/table>/si', "", $curText);;
+            // $curText = preg_replace('/(?:<div>[\s\S]*?<\/div>)?<table[^>]*>[\s\S]*?(?:КонсультантПлюс|Список изменяющих документов)[\s\S]*?<\/table>/si', "", $curText);;
         }
-
 
 
         if ($request->boolean('delete_probel')) {
@@ -218,6 +233,7 @@ class DocController extends Controller
             $izm->text = $curText;
             $izm->save();
         }
+        $doc->tags()->sync($request->tags);
 
         if ($request->redirect == 'apply') {
             return redirect()->back()->with('success', 'Сохранено.');

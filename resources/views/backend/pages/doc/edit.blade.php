@@ -122,6 +122,20 @@
                                 <hr>
                                 <div class="invoice-subtotal pt-50">
                                     <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Теги </h6>
+                                                <select name="tags[]" class="select2-customize-result form-control"
+                                                        multiple="multiple" id="select2-customize-result">
+                                                    @foreach ($tags as $tag)
+                                                        <option @if(in_array($tag->id,$sTags)) selected
+                                                                @endif value="{{$tag->id}}">{{$tag->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Примечание </h6>
@@ -142,6 +156,7 @@
                                 <hr>
                                 <hr>
                                 <div class="invoice-subtotal pt-50">
+
                                     <div class="row">
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
@@ -157,24 +172,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Теги </h6>
-                                                <select class="select2-customize-result form-control"
-                                                        multiple="multiple" id="select2-customize-result">
-                                                    <optgroup label="Figures">
-                                                        <option value="romboid">Romboid</option>
-                                                        <option value="trapeze">Trapeze</option>
-                                                        <option value="triangle">Triangle</option>
-                                                        <option value="polygon">Polygon</option>
-                                                    </optgroup>
-                                                    <optgroup label="Colors">
-                                                        <option value="red">Red</option>
-                                                        <option value="green">Green</option>
-                                                        <option value="blue">Blue</option>
-                                                        <option value="purple">Purple</option>
-                                                    </optgroup>
-                                                </select>
-                                            </div>
+
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                     <span class="invoice-subtotal-title">Просмотров за сутки</span>

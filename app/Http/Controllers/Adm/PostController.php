@@ -111,6 +111,7 @@ class PostController extends Controller
         $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
         $sTags = $post->tags->pluck('id')->toArray();
 
+
         return view('backend.pages.post.edit', compact(
             'post',
             'tags',

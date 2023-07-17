@@ -21,7 +21,7 @@ class TagController extends Controller
 
     public function single($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Tag::where('slug', $id)->firstOrFail();
 
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
@@ -48,8 +48,30 @@ class TagController extends Controller
             $tag->hits = $tag->hits + 1;
             $tag->save();
         }
+        $posts = $tag->posts()->get();
+        $docs = $tag->docs()->get();
+        $contents = collect()->merge($posts)->merge($docs)->sortByDesc('updated_at');
 
 
-        return view('front.tag.list', compact('tag', 'breadcrumbs'));
+//
+//
+//        foreach ($contents as $ddd){
+//            if (class_basename($ddd) == "Post") {
+//                print 3;
+//            }
+//            if (class_basename($ddd) == "Document") {
+//                print 2;
+//            }
+//
+//        }
+
+
+
+
+
+
+
+
+        return view('front.tag.list', compact('contents', 'tag', 'breadcrumbs'));
     }
 }

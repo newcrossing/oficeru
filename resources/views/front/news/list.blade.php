@@ -54,24 +54,19 @@
                         <div class="keywords-index-list" style="margin-bottom: 0px">
                             <ul class="keywords">
                                 @foreach ($post->tags as $tag)
-                                    <li><a href="/tag/{{ $tag->id }}">{{ $tag->name }} </a></li>
+                                    <li><a href="/tag/{{ $tag->slug }}">{{ $tag->name }} </a></li>
                                 @endforeach
                             </ul>
                         </div>
                     @endif
                 </div> <!-- .entry -->
                 <div class="clear"></div>
-
             @endforeach
         </div>
         <!-- пейджинация -->
         {{ $posts->links('vendor.pagination.default') }}
-
     </div>
 @endsection
-
-
-
 
 @section('vendor-scripts')
     @parent
