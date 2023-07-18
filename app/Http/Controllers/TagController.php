@@ -53,17 +53,7 @@ class TagController extends Controller
         $contents = collect()->merge($posts)->merge($docs)->sortByDesc('updated_at');
 
 
-//
-//
-//        foreach ($contents as $ddd){
-//            if (class_basename($ddd) == "Post") {
-//                print 3;
-//            }
-//            if (class_basename($ddd) == "Document") {
-//                print 2;
-//            }
-//
-//        }
+
 
 
 
