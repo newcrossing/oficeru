@@ -32,6 +32,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Tag withoutTrashed()
+ * @property string|null $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $docs
+ * @property-read int|null $docs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
  * @mixin \Eloquent
  */
 class Tag extends Model

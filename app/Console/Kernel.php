@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        // щупается кроном каждую минуту. выполняется по своему расписанию
+        // Щупается кроном каждую минуту. Выполняется по своему расписанию
         $schedule->call(function () {
             // документы для рассылки
             if (MailingDoc::send()) {

@@ -8,6 +8,7 @@ use App\Models\Document;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Request;
 
 
@@ -21,23 +22,23 @@ class MailingDoc
     public static function send()
     {
         // документы отмеченные для уведомления
-        $docs = Document::where('notify', 1)
-            ->where('pub', 1)->get();
+        $docs = Document::where('notify', 1)->where('pub', 1)->get();
 
         // документы вступающие в силу сегодня
         $docs_today = Document::where('date_vst', Carbon::today())
-            ->where('pub', 1)->get();
+            ->where('pub', 1)
+            ->get();
 
         if ($docs->count() || $docs_today->count()) {
             $data = [
                 'docs' => '',
+                'unsubscribe' => ''
             ];
 
             // пользователи, которые хотят получать сообщения
             $users = User::where('notify_doc', 1)->get();
 
             $tmpText = '';
-            //$tmpBlock = '<a href="%s"  class="btn">%s</a><p>%s</p><br>';
             $tmpBlock = '<div style="margin-left: 20px; margin-bottom: 10px">
                                <a href="%s" style="color:#555; font-weight: bold;">%s</a><br>
                                             %s
@@ -45,9 +46,7 @@ class MailingDoc
             if ($docs->count()) {
                 $tmpText .= '<h3>Новые документы на сайте</h3>';
                 foreach ($docs as $doc) {
-                    $tmpText .= sprintf($tmpBlock,
-                        $doc->getLink(),
-                        $doc->getShotName(),
+                    $tmpText .= sprintf($tmpBlock, $doc->getLink(), $doc->getShotName(),
                         ' &laquo;' . $doc->short_name . '&raquo;');
                 }
             }
@@ -68,6 +67,7 @@ class MailingDoc
             $data['docs'] = $tmpText;
             // каждому письмо отдельно
             foreach ($users as $user) {
+                $data['unsubscribe'] = URL::signedRoute('unsubscribe', ['user' => $user->id]);
                 Mail::to($user)->queue(new NewDocMail($data));
             }
 

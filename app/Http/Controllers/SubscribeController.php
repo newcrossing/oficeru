@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Validator;
@@ -78,5 +79,24 @@ class SubscribeController extends Controller
         return view('front.subscribe.ok',
             compact('breadcrumbs')
         );
+    }
+
+    public function unsubscribe(Request $request)
+    {
+        $breadcrumbs = [
+            ['name' => "Главная"],
+        ];
+
+        // проверка отписки
+        if (!$request->hasValidSignature()) {
+            abort(401);
+        } else {
+            $user = User::find($request->user);
+            $user->notify_doc = 0;
+            $user->save();
+            return view('front.subscribe.unsubscribe-ok',
+                compact('breadcrumbs')
+            );
+        }
     }
 }

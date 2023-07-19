@@ -40,6 +40,9 @@ Route::get('/post', [PostController::class, 'listing'])->name('post.list');
 Route::get('/subscribe', [SubscribeController::class, 'index'])->name('subscribe.index');
 Route::post('/subscribe', [SubscribeController::class, 'create'])->name('subscribe.create');
 
+Route::get('/unsubscribe', [SubscribeController::class, 'unsubscribe'])->name('unsubscribe');
+Route::get('/unsubscribe/{user}', [SubscribeController::class, 'unsubscribe'])->name('unsubscribe.user');
+
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
 

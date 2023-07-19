@@ -84,6 +84,9 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Document withoutTrashed()
+ * @property string|null $tags_2 тег
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereTags2($value)
  * @mixin \Eloquent
  */
 class Document extends Model

@@ -240,7 +240,6 @@
 
                     <!--[if mso | IE]>
                     </td>
-
                     </tr>
 
                     </table>
@@ -249,7 +248,6 @@
             </tr>
             </tbody>
         </table>
-
     </div>
 
 
@@ -259,8 +257,7 @@
     </table>
 
     <table
-        align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
-    >
+        align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600">
         <tr>
             <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
     <![endif]-->
@@ -274,12 +271,8 @@
                 <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
                     <!--[if mso | IE]>
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
                         <tr>
-
-                            <td
-                                style="vertical-align:bottom;width:600px;"
-                            >
+                            <td style="vertical-align:bottom;width:600px;">
                     <![endif]-->
 
                     <div class="mj-column-per-100 outlook-group-fix"
@@ -309,7 +302,8 @@
 
                                                 <div
                                                     style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-                                                    <a href="" style="color:#575757">Отписаться </a> от уведомлений
+                                                    <a href="{!! $data['unsubscribe'] !!}" style="color:#575757">Отписаться </a>
+                                                    от уведомлений
                                                 </div>
 
                                             </td>

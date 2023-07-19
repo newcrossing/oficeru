@@ -48,19 +48,9 @@ class TagController extends Controller
             $tag->hits = $tag->hits + 1;
             $tag->save();
         }
-        $posts = $tag->posts()->get();
+        $posts = $tag->posts()-get();
         $docs = $tag->docs()->get();
         $contents = collect()->merge($posts)->merge($docs)->sortByDesc('updated_at');
-
-
-
-
-
-
-
-
-
-
 
         return view('front.tag.list', compact('contents', 'tag', 'breadcrumbs'));
     }
