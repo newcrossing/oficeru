@@ -26,7 +26,7 @@
             <div class="recipe-tags">
                 <span class="tags-title">Метки:</span>
                 @foreach ($post->tags as $tag)
-                    <span class="tag"><a href="/tag/{{$tag->id}}">  {{$tag->name}}</a></span>
+                    <span class="tag"><a href="/tag/{{$tag->slug}}">  {{$tag->name}}</a></span>
 
                 @endforeach
 

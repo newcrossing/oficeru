@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-
     <div class="rw-row">
         <div class="entry-controls minimal">
             <div class="control"><i class="fa fa-calendar"></i></div>
@@ -31,22 +30,17 @@
             </div> <!-- .entry -->
         </div>
         <div class="clear"></div>
-
-
     </div> <!-- .rw-row -->
     @if($post->tags->count())
         <div class="rw-row light border-tb">
             <div class="recipe-tags">
                 <span class="tags-title">Метки:</span>
                 @foreach ($post->tags as $tag)
-                    <span class="tag"><a href="/tag/{{$tag->id}}">  {{$tag->name}}</a></span>
-
+                    <span class="tag"><a href="/tag/{{$tag->slug}}">  {{$tag->name}}</a></span>
                 @endforeach
-
             </div>
         </div>
     @endif
-
 @endsection
 
 
