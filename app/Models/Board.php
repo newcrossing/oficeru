@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|Board withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Board withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Foto> $fotos
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Foto> $fotos
  * @mixin \Eloquent
  */
 class Board extends Model

@@ -59,7 +59,7 @@
                                                 <a href="#" class="font-small-1 basic-alert"
                                                    dtext = "IP:{{$log->ip}}, Метод:{{$log->method}}, Браузер: {{$log->agent}}, {{$log->parametrs}}">параметры</a>
                                             </td>
-                                            <td class="font-small-1">{{$log->created_at->format('H:m:s d.m.Y ')}}</td>
+                                            <td class="font-small-1">{{$log->created_at->format('H:i  d.m.Y ')}}</td>
                                         </tr>
                                     @endforeach
                                     </tfoot>

@@ -65,6 +65,12 @@
                     "name": "Посты",
                     "i18n": "Invoice List",
                     "icon": "bx-list-ol"
+                },
+                {
+                    "url": "admin/tag",
+                    "name": "Теги",
+                    "i18n": "Invoice List",
+                    "icon": "bx-list-ol"
                 }
             ]
         },

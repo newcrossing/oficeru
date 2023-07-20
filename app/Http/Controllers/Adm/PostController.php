@@ -38,7 +38,7 @@ class PostController extends Controller
             ['name' => " Создать"]
         ];
         // создаем объект чтобы было что отправить в форму.
-        // Она же форма редактирования, надо что то отправить.
+        // Она же форма редактирования, надо что-то отправить.
         $post = new Post();
 
         $tags = Tag::where('active', 1)->orderByDesc('hits')->get();
