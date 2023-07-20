@@ -32,7 +32,10 @@
 <!-- ========== END HEADER ========== -->
 
 <!-- ========== MAIN CONTENT ========== -->
-@include('frontend.moduls.maincontent')
+<main id="content" role="main">
+    @include('frontend.moduls.breadcrumb')
+    @yield('content')
+</main>
 <!-- ========== END MAIN CONTENT ========== -->
 
 <!-- ========== FOOTER ========== -->
