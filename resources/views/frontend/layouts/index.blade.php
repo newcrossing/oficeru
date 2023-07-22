@@ -33,6 +33,7 @@
 
 <!-- ========== MAIN CONTENT ========== -->
 <main id="content" role="main">
+
     @include('frontend.moduls.breadcrumb')
     @yield('content')
 </main>

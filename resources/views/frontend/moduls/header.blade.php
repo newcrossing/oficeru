@@ -83,11 +83,11 @@
                                 <i class="bi-files-alt dropdown-item-icon"></i> Документы
                             </a>
 
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/">
+                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/post">
                                 <i class="bi-file-text dropdown-item-icon"></i> Статьи
                             </a>
 
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/">
+                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/news">
                                 <i class="bi-exclamation dropdown-item-icon"></i> Новости
                             </a>
 
