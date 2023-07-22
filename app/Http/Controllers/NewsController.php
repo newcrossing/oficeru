@@ -26,8 +26,7 @@ class NewsController extends Controller
         $post = Post::where('pub', 1)->where('type', 'news')->findOrFail($id);
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['link' => "/post", 'name' => " Новости "],
-            ['name' => $post->name],
+            ['link' => "/news", 'name' => " Новости "],
         ];
 
         return view('frontend.news.index', compact('post', 'breadcrumbs'));

@@ -26,6 +26,7 @@
                     </nav>
                 @endisset
                 <!-- End Breadcrumb -->
+
             </div>
             <!-- End Col -->
             <!-- End Col -->
@@ -33,7 +34,8 @@
         <!-- End Row -->
     </div>
 </div>
-
+<!-- Breadcrumb -->
+<!-- End Breadcrumb -->
 <!-- Breadcrumb -->
 {{--@isset($breadcrumbs)--}}
 {{--    <div class="container py-5">--}}
