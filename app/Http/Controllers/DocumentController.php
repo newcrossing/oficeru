@@ -25,7 +25,7 @@ class DocumentController extends Controller
 
         $docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
         $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
-        return view('front.doc.list', compact('docs', 'tags', 'breadcrumbs'));
+        return view('frontend.doc.list', compact('docs', 'tags', 'breadcrumbs'));
     }
 
     public function search(Request $request)
@@ -47,7 +47,7 @@ class DocumentController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/doc", 'name' => " Документы "],
-            ['name' => $doc->getShotName()],
+//            ['name' => $doc->getShotName()],
         ];
 
         // текст для отображения, в завистмости от корректной версии или выбраных изменеий
@@ -95,7 +95,7 @@ class DocumentController extends Controller
 
 
         return view(
-            'front.doc.index',
+            'frontend.doc.index',
             [
                 'doc' => $doc,
                 'messageTop' => $messageTop,

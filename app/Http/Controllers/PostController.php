@@ -11,23 +11,23 @@ class PostController extends Controller
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['name' => " Статьи"],
+            ['name' => "Статьи"],
         ];
 
         $posts = Post::where('pub', '1')->where('type', 'post')->orderBy('id', 'desc')->paginate(15);
         $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
-        return view('front.post.list', compact('posts', 'tags', 'breadcrumbs'));
+        return view('frontend.news.list', compact('posts', 'breadcrumbs'));
     }
 
     public function single($id)
     {
-        $post = Post::where('pub', 1)->where('type', 'post')->findOrFail($id);
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['link' => "/post", 'name' => " Статьи "],
-            ['name' => $post->name],
         ];
 
-        return view('front.post.index', compact('post', 'breadcrumbs'));
+        $post = Post::where('pub', 1)->where('type', 'post')->findOrFail($id);
+
+        return view('frontend.news.index', compact('post', 'breadcrumbs'));
     }
 }

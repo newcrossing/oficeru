@@ -130,7 +130,25 @@ class Document extends Model
 
         ]
     ];
-
+    /**
+     * Атрибуты, которые должны быть преобразованы в дату
+     *
+     * @var array
+     */
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'date_pod',
+        'date_pub',
+        'date_vst',
+        'date_end_vst',
+        'date_npub',
+        'date_kpub'
+    ];
+    protected $casts = [
+        'notify' => 'boolean',
+        'in_main' => 'boolean',
+    ];
 
     public function setDateNull($date1 = '')
     {
@@ -159,6 +177,15 @@ class Document extends Model
         return $name;
     }
 
+    /**
+     * Получение ссылки на материал
+     * @return string
+     */
+    public function getLinkURL()
+    {
+        return '/doc/' . $this->id;
+    }
+
     public function getShotName()
     {
         if (empty($this->preamble_name)) {
@@ -170,28 +197,6 @@ class Document extends Model
 
         return $name;
     }
-
-
-    /**
-     * Атрибуты, которые должны быть преобразованы в дату
-     *
-     * @var array
-     */
-    protected $dates = [
-        'updated_at',
-        'created_at',
-        'date_pod',
-        'date_pub',
-        'date_vst',
-        'date_end_vst',
-        'date_npub',
-        'date_kpub'
-    ];
-
-    protected $casts = [
-        'notify' => 'boolean',
-        'in_main' => 'boolean',
-    ];
 
     public function setDatePodAttribute($value)
     {

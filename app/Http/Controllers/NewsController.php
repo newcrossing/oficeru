@@ -14,9 +14,7 @@ class NewsController extends Controller
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Новости"],
         ];
-
         $posts = Post::where('pub', '1')->where('type', 'news')->orderBy('id', 'desc')->paginate(15);
-
 
         return view('frontend.news.list', compact('posts', 'breadcrumbs'));
     }

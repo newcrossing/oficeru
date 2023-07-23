@@ -1,9 +1,7 @@
 @extends('frontend.layouts.index')
 
-@section('title','Новости')
-@section('h1','Новости')
-
-
+@section('title', $breadcrumbs[1]['name'])
+@section('h1',$breadcrumbs[1]['name'])
 
 @section('vendor-styles')
 @endsection
@@ -33,10 +31,14 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="mb-2">
-                                            <a class="card-link" href="/news">Новости</a>
+                                            @if($post->type == 'post')
+                                                <a class="card-link" href="/post/">Статьи</a>
+                                            @elseif($post->type == 'news')
+                                                <a class="card-link" href="/news/">Новости</a>
+                                            @endif
                                         </div>
                                         <h3 class="card-title">
-                                            <a class="text-dark" href="/news/{{ $post->id }}">{{ $post->name }}</a>
+                                            <a class="text-dark" href="{{ $post->getLinkURL() }}">{{ $post->name }}</a>
                                         </h3>
                                         <div class="card-footer">
                                             <div class="d-flex">
@@ -45,11 +47,9 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <p class="card-text" style="text-align: justify">
                                             {!!   strip_tags(Illuminate\Support\Str::before( $post->text,'<hr />'),'<img>')   !!}
                                         </p>
-
                                         <!-- Card Footer -->
                                         <!-- End Card Footer -->
                                     </div>
@@ -119,9 +119,6 @@
     {{ $posts->links('vendor.pagination.default') }}
 
 @endsection
-
-
-
 
 @section('vendor-scripts')
     @parent

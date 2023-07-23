@@ -22,6 +22,9 @@
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="/assets/css/theme.min.css">
+
+    @yield('vendor-styles')
+    @yield('page-styles')
 </head>
 
 <body>
