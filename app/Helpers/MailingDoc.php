@@ -46,7 +46,7 @@ class MailingDoc
             if ($docs->count()) {
                 $tmpText .= '<h3>Новые документы на сайте</h3>';
                 foreach ($docs as $doc) {
-                    $tmpText .= sprintf($tmpBlock, $doc->getLink(), $doc->getShotName(),
+                    $tmpText .= sprintf($tmpBlock, $doc->getLink().'?utm_medium=email', $doc->getShotName(),
                         ' &laquo;' . $doc->short_name . '&raquo;');
                 }
             }
