@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,8 @@ Route::get('/post/{id}', [PostController::class, 'single'])->where('id', '[0-9]+
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
 
+Route::get('/tag/{name}', [TagController::class, 'single'])->where('name', '[A-Za-z-]+')->name('tag.list');
+
 Route::get('/s/', [DocumentController::class, 'search'])->name('document.search');
 
 Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
@@ -44,12 +47,8 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-
     $details = 'your_email@gmail.com';
-
     dispatch(new App\Jobs\ProcessTest($details));
-
-
     dd('done');
 });
 

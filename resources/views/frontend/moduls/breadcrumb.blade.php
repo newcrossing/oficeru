@@ -1,3 +1,5 @@
+@if(isset($breadcrumbs))
+
 <div class="navbar-dark bg-dark" style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
     <div class="container content-space-1 " >
         <div class="row align-items-center">
@@ -34,6 +36,7 @@
         <!-- End Row -->
     </div>
 </div>
+@endif
 <!-- Breadcrumb -->
 <!-- End Breadcrumb -->
 <!-- Breadcrumb -->
