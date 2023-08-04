@@ -12,7 +12,7 @@
         <div class="blog-single clearfix">
             <div class="entry post">
                 <div class="entry-details">
-                    <div class="post">
+                    <div class="post-my">
                         {!! Str::replace('<hr />', ' ', $post->text) !!}
                     </div>
                 </div>
