@@ -68,7 +68,7 @@
                                 <div class="row invoice-info">
                                     <div class="col-lg-12 col-md-12 mt-25">
 
-                                    <textarea class="ckeditor" cols="80" id="editor1"
+                                    <textarea class="" cols="80" id="rrrr"
                                               name="text">{{old('text',$post->text)}}</textarea>
                                     </div>
                                 </div>
@@ -228,18 +228,12 @@
     <script type="text/javascript" src="/CKE/ckfinder.js"></script>
 
     <script type="text/javascript">
-        if (typeof CKEDITOR == 'undefined') {
-            document.write('Error');
-        } else {
-            var editor = CKEDITOR.replace('editor1',
-                {
-                    toolbar:
-                        [
-                            ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
-                        ]
-                });
-            CKFinder.setupCKEditor(editor, '/CKE/');
-        }
+        var editor = CKEDITOR.replace('rrrr',
+            {
+                customConfig: '/CKE/ckeditor/config_post.js'
+            }
+        );
 
+        CKFinder.setupCKEditor(editor, '/CKE/');
     </script>
 @endsection
