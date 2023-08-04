@@ -39,9 +39,13 @@ class HomeController extends Controller
         $countDoc = Document::all()->count();
         $freshPubDoc = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(5)->get();
         $freshVstDoc = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(5)->get();
+        $inMainDoc = Document::where('in_main', '1')->orderByDesc('id')->limit(6)->get();
 
-      //  return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
-        return view('frontend.home.index',compact('countDoc','freshPubDoc','freshVstDoc'));
+        //  return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
+        return view('frontend.home.index', compact('countDoc', 'freshPubDoc',
+            'freshVstDoc',
+            'inMainDoc'
+        ));
 
     }
 }
