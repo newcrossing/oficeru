@@ -34,9 +34,9 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @property string|null $meta_disc мета описание
  * @property int|null $hits хиты
  * @property int|null $position
- * @property string|null $tags_2 тег
+ * @property \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags тег
  * @property int|null $type тип контента
- * @property int|null $notify включить уведомление
+ * @property bool|null $notify включить уведомление
  * @property bool|null $in_main на главную
  * @property int|null $num_download
  * @property mixed|null $status
@@ -44,7 +44,6 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Izm|null $izm
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
@@ -78,7 +77,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|Document wherePub($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereShortName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Document whereTags2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
@@ -92,7 +91,6 @@ class Document extends Model
     use HasFactory;
     use SoftDeletes;
     use SearchableTrait;
-
 
     protected $fillable = [
         'name',
@@ -179,9 +177,15 @@ class Document extends Model
         return $name;
     }
 
-    /** Короткое название документа
+    /**
+     * Получение ссылки на материал
      * @return string
      */
+    public function getLinkURL()
+    {
+        return '/doc/' . $this->id;
+    }
+
     public function getShotName()
     {
         if (empty($this->preamble_name)) {

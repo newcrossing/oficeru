@@ -98,23 +98,6 @@ class Post extends Model
 
         ]
     ];
-
-
-    public function setDateNull($date1 = '')
-    {
-        if (empty($date1)) {
-            return null;
-        } else {
-            return \Carbon\Carbon::createFromFormat('d/m/Y', $date1)->format('Y-m-d');
-        }
-    }
-    public function setDatePublicAttribute($value)
-    {
-        $this->attributes['date_public'] = (empty($value)) ? null : \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-    }
-
-
-
     /**
      * Атрибуты, которые должны быть преобразованы в дату
      *
@@ -126,17 +109,29 @@ class Post extends Model
         'date_public',
 
     ];
-
     protected $casts = [
         'notify' => 'boolean',
         'in_main' => 'boolean',
     ];
 
+    public function setDateNull($date1 = '')
+    {
+        if (empty($date1)) {
+            return null;
+        } else {
+            return \Carbon\Carbon::createFromFormat('d/m/Y', $date1)->format('Y-m-d');
+        }
+    }
+
+    public function setDatePublicAttribute($value)
+    {
+        $this->attributes['date_public'] = (empty($value)) ? null : \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+
     public function setDatePodAttribute($value)
     {
         $this->attributes['date_pod'] = (empty($value)) ? null : \Carbon\Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
-
 
 
     public function setPubAttribute($value)
@@ -154,13 +149,27 @@ class Post extends Model
         $this->attributes['in_main'] = empty($value) ? 0 : 1;
     }
 
+
+    /**
+     * Получение ссылки на материал
+     * @return string
+     */
+    public function getLinkURL()
+    {
+        if ($this->type == 'news') {
+            return '/news/' . $this->id;
+        } elseif ($this->type == 'post'){
+            return '/post/' . $this->id;
+        }
+    }
+
     public function texts()
     {
         return $this->hasMany(Text::class);
     }
 
     /**
-     * Полиморфная  связь  с таблицей Tags
+     * Полиморфная связь с таблицей Tags
      */
     public function tags()
     {

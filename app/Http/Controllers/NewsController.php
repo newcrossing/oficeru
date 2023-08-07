@@ -14,10 +14,9 @@ class NewsController extends Controller
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Новости"],
         ];
-
         $posts = Post::where('pub', '1')->where('type', 'news')->orderBy('id', 'desc')->paginate(15);
 
-        return view('front.news.list', compact('posts', 'breadcrumbs'));
+        return view('frontend.news.list', compact('posts', 'breadcrumbs'));
     }
 
     public function single($id)
@@ -25,8 +24,7 @@ class NewsController extends Controller
         $post = Post::where('pub', 1)->where('type', 'news')->findOrFail($id);
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['link' => "/post", 'name' => " Новости "],
-//            ['name' => $post->name],
+            ['link' => "/news", 'name' => " Новости "],
         ];
 
         $bots = array(
@@ -51,6 +49,6 @@ class NewsController extends Controller
         }
 
 
-        return view('front.news.index', compact('post', 'breadcrumbs'));
+        return view('frontend.news.index', compact('post', 'breadcrumbs'));
     }
 }

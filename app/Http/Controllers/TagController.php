@@ -34,7 +34,7 @@ class TagController extends Controller
             'megadownload.net', 'askpeter.info', 'igde.ru', 'ask.com', 'qwartabot', 'yanga.co.uk',
             'scoutjet', 'similarpages', 'oozbot', 'shrinktheweb.com', 'aboutusbot', 'followsite.com',
             'dataparksearch', 'google-sitemaps', 'appEngine-google', 'feedfetcher-google',
-            'liveinternet.ru', 'xml-sitemaps.com', 'agama', 'metadatalabs.com', 'h1.hrn.ru',
+            'liveinternet.ru', 'xml-sitemaps.com', 'agama', 'metadat    alabs.com', 'h1.hrn.ru',
             'googlealert.com', 'seo-rus.com', 'yaDirectBot', 'yandeG', 'yandex',
             'yandexSomething', 'Copyscape.com', 'AdsBot-Google', 'domaintools.com',
             'Nigma.ru', 'bing.com', 'dotnetdotcom'
@@ -53,6 +53,6 @@ class TagController extends Controller
         $docs = $tag->docs;
         $contents = collect()->merge($posts)->merge($docs)->sortByDesc('updated_at');
 
-        return view('front.tag.list', compact('contents', 'tag', 'breadcrumbs'));
+        return view('frontend.tag.list', compact('contents', 'tag', 'breadcrumbs'));
     }
 }

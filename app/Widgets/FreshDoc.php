@@ -20,7 +20,7 @@ class FreshDoc extends AbstractWidget
      */
     public function run()
     {
-        $docs = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(3)->get();
-        return view('front.widgets.fresh_doc', compact('docs'));
+        $docs = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(5)->get();
+        return view('frontend.widgets.fresh_doc', compact('docs'));
     }
 }

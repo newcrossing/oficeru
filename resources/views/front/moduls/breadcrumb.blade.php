@@ -1,13 +1,20 @@
-@isset($breadcrumbs)
-    <div class="rw-row page-breadcrumb">
-        @foreach ($breadcrumbs as $breadcrumb)
-            @if(isset($breadcrumb['link']))
-                <a href="{{$breadcrumb['link']}}">{{$breadcrumb['name']}}</a> &raquo;
-            @else
-                <span>{{$breadcrumb['name']}}</span>
-            @endif
-        @endforeach
+
+<!-- Breadcrumb -->
+<div class="container py-5">
+    <div class="w-lg-75 mx-lg-auto">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="../demo-help-desk/index.html">Front Help Center</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
+            </ol>
+        </nav>
+        <!-- End Breadcrumb -->
     </div>
-@endisset
+</div>
+<!-- End Breadcrumb -->
+
 
 
