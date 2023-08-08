@@ -10,10 +10,10 @@
 @endsection
 
 @section('widgets')
-    {{ Widget::run('subscribe') }}
     {{ Widget::run('search') }}
     {{ Widget::run('vst_doc') }}
     {{ Widget::run('fresh_doc') }}
+    {{ Widget::run('subscribe') }}
 @endsection
 
 @section('content')

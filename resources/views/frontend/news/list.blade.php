@@ -76,29 +76,7 @@
                 <div id="stickyBlockEndPoint"></div>
 
                 <!-- Pagination -->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">
-                    <i class="bi-chevron-double-left small"></i>
-                  </span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">
-                    <i class="bi-chevron-double-right small"></i>
-                  </span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $posts->links('vendor.pagination.default') }}
                 <!-- End Pagination -->
             </div>
             <!-- End Col -->
@@ -115,8 +93,7 @@
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
 
-    <!-- пейджинация -->
-    {{ $posts->links('vendor.pagination.default') }}
+
 
 @endsection
 

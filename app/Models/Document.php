@@ -126,7 +126,7 @@ class Document extends Model
          */
         'columns' => [
             'documents.name' => 10,
-            'documents.text' => 7,
+//            'documents.text' => 1,
 
         ]
     ];

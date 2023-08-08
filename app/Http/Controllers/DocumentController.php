@@ -37,7 +37,7 @@ class DocumentController extends Controller
         $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
         //$docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
         $docs = Doc::search($request->s)->paginate(15);
-        return view('front.doc.list', compact('docs', 'tags', 'breadcrumbs'));
+        return view('frontend.doc.list', compact('docs', 'tags', 'breadcrumbs'));
     }
 
     public function single($id)

@@ -37,14 +37,73 @@
                     </div>
                 </div>
                 <!-- End Search -->
+                @guest()
+                    <div class="d-inline-block ml-auto">
+                        <a class="btn btn-primary" type="button" href="{{route('login')}}">
+                            <span class="d-none d-lg-inline-block">Войти</span>
+                            <i class="bi-person-fill d-lg-none"></i>
+                        </a>
+                    </div>
+                @endguest
 
-                <div class="d-inline-block ml-auto">
-                    <a class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                       data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
-                        <span class="d-none d-lg-inline-block">Войти</span>
-                        <i class="bi-person-fill d-lg-none"></i>
-                    </a>
-                </div>
+                @auth()
+                    <!-- Account -->
+                    <div class="dropdown">
+                        <a href="#" id="navbarShoppingCartDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false" data-bs-dropdown-animation>
+                            <img class="avatar avatar-xs avatar-circle" src="../assets/img/160x160/img9.jpg"
+                                 alt="Image Description">
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarShoppingCartDropdown"
+                             style="min-width: 16rem;">
+                            {{--                            <a class="d-flex align-items-center p-2" href="#">--}}
+                            {{--                                <div class="flex-shrink-0">--}}
+                            {{--                                    <img class="avatar" src="../assets/img/160x160/img9.jpg" alt="Image Description">--}}
+                            {{--                                </div>--}}
+                            {{--                                <div class="flex-grow-1 ms-3">--}}
+                            {{--                                    <span class="d-block fw-semi-bold">Lida Reidy <span class="badge bg-primary ms-1">Pro</span></span>--}}
+                            {{--                                    <span class="d-block text-muted small">lidareidy@gmail.com</span>--}}
+                            {{--                                </div>--}}
+                            {{--                            </a>--}}
+
+                            {{--                            <div class="dropdown-divider my-3"></div>--}}
+
+                            {{--                             <a class="dropdown-item" href="#">--}}
+                            {{--                <span class="dropdown-item-icon">--}}
+                            {{--                  <i class="bi-chat-left-dots"></i>--}}
+                            {{--                </span> Messages--}}
+                            {{--                            </a>--}}
+                            {{--                            <a class="dropdown-item" href="#">--}}
+                            {{--                <span class="dropdown-item-icon">--}}
+                            {{--                  <i class="bi-wallet2"></i>--}}
+                            {{--                </span> Purchase history--}}
+                            {{--                            </a>--}}
+                            {{--                            <a class="dropdown-item" href="#">--}}
+                            {{--                <span class="dropdown-item-icon">--}}
+                            {{--                  <i class="bi-person"></i>--}}
+                            {{--                </span> Account--}}
+                            {{--                            </a>--}}
+
+                            {{--                            <a class="dropdown-item" href="#">                <span class="dropdown-item-icon">--}}
+                            {{--                  <i class="bi-credit-card"></i>--}}
+                            {{--                </span> Payment methods--}}
+                            {{--                            </a>--}}
+
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="/admin/">
+                                <span class="dropdown-item-icon"><i class="bi-question-circle"></i></span>
+                                Перейти в админку
+                            </a>
+                            <a class="dropdown-item" href="{{route('logout')}}">
+                                <span class="dropdown-item-icon"><i class="bi-box-arrow-right"></i></span>
+                                Выйти
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Account -->
+                @endauth
             </div>
             <!-- End Secondary Content -->
 
@@ -66,7 +125,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/">Главная</a>
                     </li>
-
 
                     <!-- Courses -->
                     <li class="hs-has-sub-menu nav-item">
@@ -92,8 +150,6 @@
                             </a>
 
                             <!-- End Development -->
-
-
                             <!-- End Music -->
                         </div>
                         <!-- End Mega Menu -->
@@ -118,11 +174,10 @@
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Инструменты</a>
                         <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown"
                              style="min-width: 14rem;">
-                            <a class="dropdown-item " href="https://fizo.oficeru.ru/">Онлайн калькулятор физо
-                                военнослужащих</a>
-                            <a class="dropdown-item " href="https://vt4.oficeru.ru/">Онлайн калькулятор по военному
-                                многоборью (ВТ-4) военнослужащих</a>
-
+                            <a class="dropdown-item " href="https://fizo.oficeru.ru/">
+                                Онлайн калькулятор физо военнослужащих</a>
+                            <a class="dropdown-item " href="https://vt4.oficeru.ru/">
+                                Онлайн калькулятор по военному многоборью (ВТ-4) военнослужащих</a>
                         </div>
                     </li>
                     <!-- End Dropdown -->
