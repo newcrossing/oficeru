@@ -8,6 +8,7 @@
 
     <!-- Title -->
     <title>@yield('title','Главная') / Офицеру.ру</title>
+    <meta name="description" content="@yield('description') ">
 
     <!-- Favicon -->
     @include('front.moduls.favicon')
@@ -63,7 +64,6 @@
      }'>
     <i class="bi-chevron-up"></i>
 </a>
-
 
 
 <!-- JS Global Compulsory  -->
@@ -165,5 +165,6 @@
         });
     })()
 </script>
+@include('frontend.moduls.metrika')
 </body>
 </html>
