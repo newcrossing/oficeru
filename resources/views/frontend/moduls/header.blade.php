@@ -158,12 +158,12 @@
 
                     <!-- Search Form -->
                     <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
-                        <form class="input-group input-group-merge">
+                        <form class="input-group input-group-merge" method="get" action="/s/">
                             <div class="input-group-prepend input-group-text">
                                 <i class="bi-search"></i>
                             </div>
                             <input type="text" class="form-control" placeholder="Что ищем?"
-                                   aria-label="What do you want to learn?">
+                                   aria-label="What do you want to learn?" name="s">
                         </form>
                     </li>
                     <!-- End Search Form -->

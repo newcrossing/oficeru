@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/assets/css/my.css">
 @endsection
 @section('widgets')
-    {{ Widget::run('subscribe') }}
     {{ Widget::run('search') }}
     {{ Widget::run('vst_doc') }}
     {{ Widget::run('fresh_doc') }}
+    {{ Widget::run('subscribe') }}
 @endsection
 @section('content')
     <div class="container content-space-t-1 content-space-b-2 content-space-b-lg-3">
