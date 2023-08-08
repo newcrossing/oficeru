@@ -59,15 +59,8 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-    $tags = Tag::all();
-    foreach ($tags as $tag){
-        $tag->slug = Str::slug($tag->name, '-');
-        $tag->save();
-    }
-
-    $details = 'your_email@gmail.com';
-    dispatch(new App\Jobs\ProcessTest($details));
-    dd('done');
+    $results = DB::select("SELECT * FROM indexname WHERE MATCH('о статусе военнослужащих');"  );
+    dd($results);
 });
 
 Route::middleware(['role:admin'])->prefix('admin')->group(
