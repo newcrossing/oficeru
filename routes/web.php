@@ -59,9 +59,19 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-    $users = DB::connection('mysql2')->select('SELECT * FROM `indexname2` WHERE MATCH("300");');
+    $pdo = new PDO(
+        'mysql:host=127.0.0.1;dbname=oficeru;port=9306',
+        'root',
+        '',
+
+    );
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->query("SELECT * FROM indexname2 WHERE MATCH('ключевое_слово')");
+   // $users = DB::connection('mysql2')->select('SELECT * FROM `indexname2` WHERE MATCH("?");',[300]);
    // $results = DB::select("SELECT * FROM indexname WHERE MATCH('о статусе военнослужащих');"  );
-    dd($users);
+    dd($stmt);
 });
 
 Route::middleware(['role:admin'])->prefix('admin')->group(
