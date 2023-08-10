@@ -60,7 +60,7 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 Route::get('test', function () {
     $pdo = new PDO(
-        'mysql:host=127.0.0.1;dbname=oficeru;port=9306',
+        'mysql:host=127.0.0.1;dbname=laravel;port=9306',
         'root',
         '',
 
