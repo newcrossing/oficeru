@@ -60,15 +60,14 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 Route::get('test', function () {
     $pdo = new PDO(
-        'mysql:host=127.0.0.1;dbname=laravel;port=9306',
-        'laravel',
-        'Karamba20',
+        'mysql:host=127.0.0.1;port=9306',
+
 
     );
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->query("SELECT * FROM indexname2 WHERE MATCH('ключевое_слово')");
+    $stmt = $pdo->query("SELECT * FROM indexname2 WHERE MATCH('300')");
    // $users = DB::connection('mysql2')->select('SELECT * FROM `indexname2` WHERE MATCH("?");',[300]);
    // $results = DB::select("SELECT * FROM indexname WHERE MATCH('о статусе военнослужащих');"  );
     dd($stmt);
