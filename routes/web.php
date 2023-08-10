@@ -59,8 +59,9 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function () {
-    $results = DB::select("SELECT * FROM indexname WHERE MATCH('о статусе военнослужащих');"  );
-    dd($results);
+    $users = DB::connection('mysql2')->select("SELECT * FROM indexname2 WHERE MATCH('о статусе военнослужащих');");
+   // $results = DB::select("SELECT * FROM indexname WHERE MATCH('о статусе военнослужащих');"  );
+    dd($users);
 });
 
 Route::middleware(['role:admin'])->prefix('admin')->group(
