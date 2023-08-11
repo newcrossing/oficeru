@@ -60,7 +60,7 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 Route::get('test', function (Request $request) {
     $text = $request->text;
-    $config = ['host' => '127.0.0.1', 'port' => 9308];
+    $config = ['host' => '127.0.0.1', 'port' => 9306];
     $client = new \Manticoresearch\Client($config);
     $index = $client->index('indexname');
     $results = $index->search($text)->get();
