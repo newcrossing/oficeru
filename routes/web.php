@@ -60,16 +60,17 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 Route::get('test', function (Request $request) {
     $text = $request->text;
-    $config = ['host' => '127.0.0.1', 'port' => 9306];
+    $config = ['host' => '127.0.0.1', 'port' => 9308];
     $client = new \Manticoresearch\Client($config);
-    $index = $client->index('indexname');
+    $index = $client->index('indexname2');
     $results = $index->search($text)->get();
 
     foreach ($results as $doc) {
-        echo 'Document:' . $doc->getId() . "\n";
+        echo 'Document:' . $doc->getId() . "<> ";
         foreach ($doc->getData() as $field => $value) {
             echo $field . ": " . $value . "\n";
         }
+        https://oficeru.ru/s?s=закон+о+статусе+
     }
     //dd($results);
 });

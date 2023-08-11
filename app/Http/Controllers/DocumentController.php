@@ -10,12 +10,6 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
-    public function index()
-    {
-        $users = DB::table('content')->where('Id_Content', '129')->first();
-        return view('main.index', ['users' => $users]);
-    }
-
     public function listing()
     {
         $breadcrumbs = [
@@ -34,10 +28,23 @@ class DocumentController extends Controller
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Документы"],
         ];
-        $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
+        $text = $request->s;
+        $config = ['host' => '127.0.0.1', 'port' => 9308];
+        $client = new \Manticoresearch\Client($config);
+        $index = $client->index('indexname2');
+        $docs = $index->search($text)->get();
+
+
+        // $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
         //$docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
-        $docs = Doc::search($request->s)->paginate(15);
-        return view('frontend.doc.list', compact('docs', 'tags', 'breadcrumbs'));
+        //$docs = Doc::search($request->s)->paginate(15);
+        return view('frontend.doc.list2', compact('docs', 'breadcrumbs'));
+    }
+
+    public function index()
+    {
+        $users = DB::table('content')->where('Id_Content', '129')->first();
+        return view('main.index', ['users' => $users]);
     }
 
     public function single($id)
