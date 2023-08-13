@@ -33,6 +33,21 @@
                         </div>
                     </div>
                 @endisset
+                <div class="row align-items-sm-center mb-5">
+                    <div class="col-sm-7 mb-4 mb-sm-0">
+
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-sm-5">
+                        <div class="d-flex justify-content-sm-end align-items-center">
+                            <div class="d-flex gap-2">
+                                <a class="text-secondary"  href="/pdf/{{$doc->id}}">Скачать <i class="bi bi-file-earmark-pdf-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                </div>
                 <div class="d-grid document" style="display:  block!important;">
                     {!! $curText   !!}
                 </div>
@@ -63,7 +78,7 @@
                                     <div class="input-card-form">
                                         <label for="subscribeForm" class="form-label visually-hidden">Укажите
                                             email</label>
-                                        <input type="email" name="email"  class="form-control" id="subscribeForm"
+                                        <input type="email" name="email" class="form-control" id="subscribeForm"
                                                placeholder="Введите email" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Подписаться</button>
@@ -90,12 +105,6 @@
 
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
-
-
-
-
-
-
 
 @endsection
 

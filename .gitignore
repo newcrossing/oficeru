@@ -12,6 +12,8 @@ app/storage/
 public/storage
 public/hot
 
+composer.phar
+composer.lock
 
 
 storage/*.key
