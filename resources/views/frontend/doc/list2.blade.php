@@ -34,7 +34,8 @@
                                             <a class="card-link" href="/doc/">Документы</a>
                                         </div>
                                         <h3 class="card-title">
-                                           {{$doc->name}}
+                                            <a class="text-dark"
+                                               href="/doc/{{$doc->getId()}} "> {{$doc->name}}</a>
                                         </h3>
 
                                         <!-- Card Footer -->

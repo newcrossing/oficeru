@@ -28,17 +28,25 @@ class DocumentController extends Controller
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Документы"],
         ];
+
+        $arrFind = [];
         $text = $request->s;
         $config = ['host' => '127.0.0.1', 'port' => 9308];
         $client = new \Manticoresearch\Client($config);
-        $index = $client->index('indexname2');
+        $index = $client->index('indexname');
         $docs = $index->search($text)->get();
+        foreach ($docs as $doc) {
+            $arrFind[] = $doc->getId();
+        }
+
+        $docs = Doc::whereIn('id', $arrFind)->paginate(15);
+
 
 
         // $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
         //$docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
         //$docs = Doc::search($request->s)->paginate(15);
-        return view('frontend.doc.list2', compact('docs', 'breadcrumbs'));
+        return view('frontend.doc.list', compact('docs', 'breadcrumbs'));
     }
 
     public function index()
