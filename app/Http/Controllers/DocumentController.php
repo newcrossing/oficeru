@@ -14,7 +14,7 @@ class DocumentController extends Controller
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['name' => " Документы"],
+            ['name' => " Поиск"],
         ];
 
         $docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
@@ -26,7 +26,7 @@ class DocumentController extends Controller
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['name' => " Документы"],
+            ['name' => " Поиск"],
         ];
 
         $arrFind = [];
@@ -41,11 +41,6 @@ class DocumentController extends Controller
 
         $docs = Doc::whereIn('id', $arrFind)->paginate(15);
 
-
-
-        // $tags = Tag::where('active', 1)->orderByDesc('hits')->limit(10)->get();
-        //$docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
-        //$docs = Doc::search($request->s)->paginate(15);
         return view('frontend.doc.list', compact('docs', 'breadcrumbs'));
     }
 
