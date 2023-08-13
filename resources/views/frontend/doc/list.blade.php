@@ -21,6 +21,11 @@
         <div class="row justify-content-lg-between">
             <div class="col-lg-8 mb-10 mb-lg-0">
                 <div class="d-grid gap-7 mb-7">
+                     @if(!$docs->count())
+                        <div class="alert alert-warning" role="alert">
+                            Документов не найдено.
+                        </div>
+                     @endif
                     <!-- Card -->
                     @foreach ($docs as $doc)
                         <!-- Card -->

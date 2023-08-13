@@ -37,9 +37,10 @@ class SubscribeController extends Controller
     {
         $breadcrumbs = [
             ['name' => "Главная"],
+            ['name' => "Подписка"],
         ];
 
-        return view('front.subscribe.index', compact('breadcrumbs'));
+        return view('frontend.subscribe.index', compact('breadcrumbs'));
 
     }
 
@@ -50,7 +51,7 @@ class SubscribeController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'email' => 'sometimes|nullable|email:rfc,dns',
+            'email' => 'required|nullable|email:rfc,dns',
         ], [
             'email.email' => 'E-mail не соответствует действительности!',
         ]);
@@ -76,7 +77,7 @@ class SubscribeController extends Controller
 
         Activity::add('Новый пользователь на рассылку: ' . $request->email);
 
-        return view('front.subscribe.ok',
+        return view('frontend.subscribe.ok',
             compact('breadcrumbs')
         );
     }
