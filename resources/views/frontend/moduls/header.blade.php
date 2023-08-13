@@ -24,9 +24,8 @@
                         <!-- Card -->
                         <div class="card card-sm">
                             <div class="card-body">
-                                <form class="input-group input-group-merge">
-                                    <input type="text" class="form-control" placeholder="Что ищем?"
-                                           aria-label="What do you want to learn?">
+                                <form class="input-group input-group-merge" method="get" action="/s/">
+                                    <input type="text" class="form-control" placeholder="Что ищем?" name="s">
                                     <div class="input-group-append input-group-text">
                                         <i class="bi-search"></i>
                                     </div>
@@ -163,7 +162,7 @@
                                 <i class="bi-search"></i>
                             </div>
                             <input type="text" class="form-control" placeholder="Что ищем?"
-                                   aria-label="What do you want to learn?" name="s">
+                                   name="s">
                         </form>
                     </li>
                     <!-- End Search Form -->
