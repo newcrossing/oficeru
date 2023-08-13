@@ -175,6 +175,8 @@
                              style="min-width: 14rem;">
                             <a class="dropdown-item " href="https://fizo.oficeru.ru/">
                                 Онлайн калькулятор физо военнослужащих</a>
+                            <a class="dropdown-item " href="https://fizo2023.oficeru.ru/">
+                                Онлайн калькулятор физо военнослужащих с 1 сентября 2023 г.</a>
                             <a class="dropdown-item " href="https://vt4.oficeru.ru/">
                                 Онлайн калькулятор по военному многоборью (ВТ-4) военнослужащих</a>
                         </div>
