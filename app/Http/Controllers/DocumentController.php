@@ -39,7 +39,7 @@ class DocumentController extends Controller
             $arrFind[] = $doc->getId();
         }
 
-        $docs = Doc::whereIn('id', $arrFind)->paginate(15);
+        $docs = Doc::whereIn('id', $arrFind)->paginate(30);
 
         return view('frontend.doc.list', compact('docs', 'breadcrumbs'));
     }
