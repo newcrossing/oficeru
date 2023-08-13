@@ -49,7 +49,34 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 mb-3 mb-md-0">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <!-- Card -->
+                <a class="card card-transition text-center h-100" href="https://fizo.oficeru.ru/">
+                    <div class="card-body">
+                        <div class="svg-icon text-primary mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-calculator" viewBox="0 0 16 16">
+                                <path
+                                    d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path
+                                    d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+                            </svg>
+                        </div>
+
+                        <h4 class="card-title">Онлайн калькулятор <br> (до 1 сентября 2023)</h4>
+                        <p class="card-text text-body">
+                            По физической подготовке Военнослужащим Минобороны.</p>
+                    </div>
+
+                    <div class="card-footer pt-0">
+                        <span class="card-link">Перейти в калькулятор
+                            <i class="bi-chevron-right small ms-1"></i>
+                        </span>
+                    </div>
+                </a>
+                <!-- End Card -->
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
                 <!-- Card -->
                 <a class="card card-transition text-center h-100" href="https://fizo2023.oficeru.ru/">
                     <div class="card-body">
@@ -63,13 +90,13 @@
                             </svg>
                         </div>
 
-                        <h4 class="card-title">Онлайн калькулятор</h4>
+                        <h4 class="card-title">Онлайн калькулятор <br>(с 1 сентября 2023)</h4>
                         <p class="card-text text-body">
                             По физической подготовке Военнослужащим Минобороны.</p>
                     </div>
 
                     <div class="card-footer pt-0">
-                        <span class="card-link">Перейти в калькулятор физо
+                        <span class="card-link">Перейти в калькулятор
                             <i class="bi-chevron-right small ms-1"></i>
                         </span>
                     </div>
@@ -78,7 +105,7 @@
             </div>
             <!-- End Col -->
 
-            <div class="col-md-6 mb-3 mb-md-0">
+            <div class="col-md-4 mb-3 mb-md-0">
                 <!-- Card -->
                 <a class="card card-transition text-center h-100" href="https://vt4.oficeru.ru/">
                     <div class="card-body">
