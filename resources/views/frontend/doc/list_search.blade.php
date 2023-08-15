@@ -40,9 +40,8 @@
                                         </div>
                                         <h3 class="card-title">
                                             <a class="text-dark"
-                                               href="{{ $doc->getId() }}">{{ \App\Models\Document::getShotNameStatic($doc)  }}
+                                               href="/doc/{{ $doc->getId() }}">{{ \App\Models\Document::getShotNameStatic($doc)  }}
                                             </a>
-
                                         </h3>
                                         @if(!empty($doc->short_name))
                                             <p class="card-text" style="text-align: justify">
