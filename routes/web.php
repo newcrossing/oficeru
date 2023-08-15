@@ -59,20 +59,36 @@ Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+
 
 
 Route::get('test', function (Request $request) {
-    $text = $request->text;
+
     $config = ['host' => '127.0.0.1', 'port' => 9308];
     $client = new \Manticoresearch\Client($config);
-    $index = $client->index('indexname2');
-    $results = $index->search($text)->get();
+    $index = $client->index('indexname');
+    //$docs = $index->search('приказ')->get();
+    $s = $request->s;
 
+
+    $results = $index->search($s)->highlight(['name', 'text'], ['highlight_query' => ['match' => ['*' => $s]]])->get();
     foreach ($results as $doc) {
-        echo 'Document:' . $doc->getId() . "<> ";
+        echo 'Document: ' . $doc->getId() . "<br>";
+        echo $doc->name . "<br>";
+        print  $doc->getScore() . "<br>";
         foreach ($doc->getData() as $field => $value) {
-            echo $field . ": " . $value . "\n";
+
+            //  echo $field . ' : ' . $value . "<br>";
         }
-        https://oficeru.ru/s?s=закон+о+статусе+
+        foreach ($doc->getHighlight() as  $snippets) {
+
+            //var_dump($snippets); ;
+            //echo '<pre>' . var_export($snippets, true) . '</pre>';
+           //  print '...'.$snippets[0].'...';
+           // print '...'.$snippets[1].'...';
+            //   echo "Highlight for " . $field . ":<br>";
+            //foreach ($snippets as $snippet) {
+                // echo "- " . $snippet . "<br>";
+            //}
+        }
+        print "<br>";
     }
-    //dd($results);
 });
 
 //    $pdo = new PDO(

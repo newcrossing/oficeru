@@ -150,6 +150,18 @@ class Document extends Model
         'in_main' => 'boolean',
     ];
 
+    public static function getShotNameStatic($doc)
+    {
+        if (empty($doc->preamble_name)) {
+            return $doc->name;
+        }
+        $name = $doc->preamble_name;
+        $name .= (!empty($doc->nomer)) ? ' №' . $doc->nomer : '';
+        $name .= (!empty($doc->date_pod)) ? ' от ' . Carbon::parse($doc->date_pod)->locale('ru')->translatedFormat('j F Y'). ' г.' : '';
+
+        return $name;
+    }
+
     public function setDateNull($date1 = '')
     {
         if (empty($date1)) {

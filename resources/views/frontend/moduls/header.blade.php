@@ -124,21 +124,22 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/">Главная</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/doc">
+                            <i class="bi-files-alt dropdown-item-icon"></i> Документы
+                        </a>
+                    </li>
 
                     <!-- Courses -->
                     <li class="hs-has-sub-menu nav-item">
                         <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                class="bi-journals me-2"></i> Контент</a>
+                                class="bi-journals me-2"></i> Материалы</a>
 
                         <!-- Mega Menu -->
                         <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu"
                              style="min-width: 17rem;">
                             <!-- Development -->
-
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/doc">
-                                <i class="bi-files-alt dropdown-item-icon"></i> Документы
-                            </a>
 
                             <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/post">
                                 <i class="bi-file-text dropdown-item-icon"></i> Статьи
