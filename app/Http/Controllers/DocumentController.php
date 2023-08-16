@@ -38,7 +38,7 @@ class DocumentController extends Controller
         $docs = $index->search($text)->highlight(
             ['name', 'text'],
            // ['limit'=>200],
-           // ['snippet_separator'=>'..'],
+           //['snippet_separator'=>'..'],
          //   ['pre_tags'=>'before_','post_tags'=>'_after']
             ['number_of_fragments'=>10],
             ['limits_per_field'=>20]
