@@ -222,6 +222,7 @@ class DocController extends Controller
         }
 
 
+
         if ($request->boolean('delete_probel')) {
             $curText = str_replace('&nbsp;', ' ', $curText);
             $curText = preg_replace("/  +/", " ", $curText);
