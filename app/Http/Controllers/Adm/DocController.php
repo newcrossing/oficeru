@@ -228,6 +228,7 @@ class DocController extends Controller
             $curText = preg_replace("/  +/", " ", $curText);
         }
 
+
         if (empty($request->id_for_save)) {
             $doc->text = $curText;
             $doc->save();
