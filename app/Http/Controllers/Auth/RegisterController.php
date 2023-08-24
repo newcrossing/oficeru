@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewDocMail;
+use App\Mail\VerificationEmail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -28,9 +32,10 @@ class RegisterController extends Controller
     /**
      * Where to redirect users after registration.
      *
-     * @var string
+     *
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/verification-email/';
 
     /**
      * Create a new controller instance.
@@ -54,21 +59,21 @@ class RegisterController extends Controller
         return Validator::make(
             $data,
             [
-                'name' => ['required', 'string', 'max:60', 'min:3'],
+                // 'name' => ['required', 'string', 'max:60', 'min:3'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
             ],
             [
-                'name.required' => 'Поле обязательно для заполнения',
-                'name.max' => 'Максимальный размер поля 60 символов',
-                'name.min' => 'Минимальный размер поля 3 символа',
-                'name.string' => 'Допускаются только текстовые симовлы',
+//                'name.required' => 'Поле обязательно для заполнения',
+//                'name.max' => 'Максимальный размер поля 60 символов',
+//                'name.min' => 'Минимальный размер поля 3 символа',
+//                'name.string' => 'Допускаются только текстовые симовлы',
                 'email.required' => 'Поле обязательно для заполнения',
                 'email.string' => 'Допускаются только текстовые симовлы',
                 'email.email' => 'Укажите в формате email ',
-                'email.unique' => 'Указанный email уже используется',
+                'email.unique' => 'Указанный email уже используется. Восстановите пароль, если забыли.',
                 'password.required' => 'Поле обязательно для заполнения',
-                'password.min' => 'Минимальный размер пароля 8 символа',
+                'password.min' => 'Минимальный размер пароля 6 символа',
                 'password.confirmed' => 'Пароли не совпадают',
             ]
         );
@@ -82,7 +87,7 @@ class RegisterController extends Controller
      */
     protected function showRegistrationForm()
     {
-        return view('frontend_old.auth.register');
+        return view('frontend.auth.register');
     }
 
     /**
@@ -96,13 +101,17 @@ class RegisterController extends Controller
     {
         $user = User::create(
             [
-                'name' => $data['name'],
+                // 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]
         );
         $user->assignRole('user');
-         return $user;
-        // return redirect('/');
+
+//        $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
+//        Mail::to($data['email'])->queue(new VerificationEmail($data));
+
+        return $user;
+         //return redirect('/');
     }
 }

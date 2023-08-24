@@ -79,12 +79,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -104,27 +99,30 @@ class User extends Authenticatable
         'name',
         'login',
         'email',
-        'tel',
-        'tel2',
         'city',
         'foto',
-        'notify_email',
-        'notify_tel',
-        'notify_whatsup',
-        'notify_telegram',
-        'active',
-        'password',
+        'sex',
+        'notify_doc',
         'token',
         'is_verified',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'password',
+    ];
+
+    /**
+     * Атрибуты, которые должны быть скрыты из массивов.
      *
      * @var array
      */
     protected $hidden = [
-        // 'password',
+        'password',
         'remember_token',
     ];
 
@@ -142,38 +140,5 @@ class User extends Authenticatable
         return ($this->foto) ?: '000.png';
     }
 
-    /**
-     * Генерирует login  для массового присвоения <br>
-     * mr000000 - 6 цыфр
-     * @return string
-     */
-    public function generateLogin()
-    {
-        return 'mr' . sprintf('%06d', $this->id);
-    }
 
-    /**
-     * Связь с таблицей объявление
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function board()
-    {
-        return $this->hasOne(Board::class);
-        //return $this->hasMany(Board::class);
-    }
-
-
-    /**
-     * Проверка пользователя на статус администратора
-     *
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        if ($this->is_admin === 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

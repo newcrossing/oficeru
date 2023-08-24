@@ -7,7 +7,7 @@
     <meta name="yandex-verification" content="83051dff11b82da2"/>
 
     <!-- Title -->
-    <title>@yield('title','Главная') / Офицеру.ру</title>
+    <title>@yield('title','Офицеру.ру')</title>
     <meta name="description" content="@yield('description') ">
 
     <!-- Favicon -->
@@ -34,7 +34,7 @@
 <!-- ========== END HEADER ========== -->
 
 <!-- ========== MAIN CONTENT ========== -->
-<main id="content" role="main">
+<main id="content" role="main" class="bg-light">
     @include('frontend.moduls.breadcrumb')
     @yield('content')
 </main>
@@ -68,6 +68,7 @@
 
 <!-- JS Global Compulsory  -->
 <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@yield('vendor-scripts')
 
 <!-- JS Implementing Plugins -->
 <script src="/assets/vendor/hs-header/dist/hs-header.min.js"></script>
@@ -77,6 +78,7 @@
 <script src="/assets/vendor/typed.js/lib/typed.min.js"></script>
 <script src="/assets/vendor/fslightbox/index.js"></script>
 <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+@yield('page-scripts')
 
 <!-- JS Front -->
 <script src="/assets/js/theme.min.js"></script>
@@ -122,6 +124,11 @@
         // =======================================================
         new HSGoTo('.js-go-to')
 
+        // INITIALIZATION OF FILE ATTACH
+        // =======================================================
+        new HSFileAttach('.js-file-attach')
+
+
 
         // INITIALIZATION OF TEXT ANIMATION (TYPING)
         // =======================================================
@@ -165,6 +172,7 @@
         });
     })()
 </script>
+
 @include('frontend.moduls.metrika')
 </body>
 </html>

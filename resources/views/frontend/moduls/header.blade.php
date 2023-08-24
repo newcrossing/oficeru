@@ -50,39 +50,41 @@
                     <div class="dropdown">
                         <a href="#" id="navbarShoppingCartDropdown" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false" data-bs-dropdown-animation>
-                            <img class="avatar avatar-xs avatar-circle" src="../assets/img/160x160/img9.jpg"
-                                 alt="Image Description">
+                            <img class="avatar avatar-xs avatar-circle"
+                                 src="{{ Storage::url('/avatars/300/'.Auth::user()->getFoto()) }}"
+                            >
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarShoppingCartDropdown"
                              style="min-width: 16rem;">
-                            {{--                            <a class="d-flex align-items-center p-2" href="#">--}}
-                            {{--                                <div class="flex-shrink-0">--}}
-                            {{--                                    <img class="avatar" src="../assets/img/160x160/img9.jpg" alt="Image Description">--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="flex-grow-1 ms-3">--}}
-                            {{--                                    <span class="d-block fw-semi-bold">Lida Reidy <span class="badge bg-primary ms-1">Pro</span></span>--}}
-                            {{--                                    <span class="d-block text-muted small">lidareidy@gmail.com</span>--}}
-                            {{--                                </div>--}}
-                            {{--                            </a>--}}
+                            <a class="d-flex align-items-center p-2" href="{{route('profile.settings')}}">
+                                <div class="flex-shrink-0">
+                                    <img class="avatar"
+                                         src="{{ Storage::url('/avatars/300/'.Auth::user()->getFoto()) }}">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <span class="d-block fw-semi-bold">{{Auth::user()->name}}</span>
+                                    <span class="d-block text-muted small">{{Auth::user()->email}}</span>
+                                </div>
+                            </a>
 
-                            {{--                            <div class="dropdown-divider my-3"></div>--}}
+                            <div class="dropdown-divider my-3"></div>
 
-                            {{--                             <a class="dropdown-item" href="#">--}}
-                            {{--                <span class="dropdown-item-icon">--}}
-                            {{--                  <i class="bi-chat-left-dots"></i>--}}
-                            {{--                </span> Messages--}}
+                            {{--                            <a class="dropdown-item" href="#">--}}
+                            {{--                                            <span class="dropdown-item-icon">--}}
+                            {{--                                              <i class="bi-chat-left-dots"></i>--}}
+                            {{--                                            </span> Messages--}}
                             {{--                            </a>--}}
                             {{--                            <a class="dropdown-item" href="#">--}}
                             {{--                <span class="dropdown-item-icon">--}}
                             {{--                  <i class="bi-wallet2"></i>--}}
                             {{--                </span> Purchase history--}}
                             {{--                            </a>--}}
-                            {{--                            <a class="dropdown-item" href="#">--}}
-                            {{--                <span class="dropdown-item-icon">--}}
-                            {{--                  <i class="bi-person"></i>--}}
-                            {{--                </span> Account--}}
-                            {{--                            </a>--}}
+                            <a class="dropdown-item" href="{{route('profile.settings')}}">
+                                            <span class="dropdown-item-icon">
+                                              <i class="bi-person"></i>
+                                            </span> Настройки
+                            </a>
 
                             {{--                            <a class="dropdown-item" href="#">                <span class="dropdown-item-icon">--}}
                             {{--                  <i class="bi-credit-card"></i>--}}
@@ -91,10 +93,13 @@
 
                             <div class="dropdown-divider"></div>
 
+                            @role('admin')
                             <a class="dropdown-item" href="/admin/">
                                 <span class="dropdown-item-icon"><i class="bi-question-circle"></i></span>
                                 Перейти в админку
                             </a>
+                            @endrole
+
                             <a class="dropdown-item" href="{{route('logout')}}">
                                 <span class="dropdown-item-icon"><i class="bi-box-arrow-right"></i></span>
                                 Выйти

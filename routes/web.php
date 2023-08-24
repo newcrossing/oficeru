@@ -46,6 +46,9 @@ Route::post('/subscribe', [SubscribeController::class, 'create'])->name('subscri
 Route::get('/unsubscribe', [SubscribeController::class, 'unsubscribe'])->name('unsubscribe');
 Route::get('/unsubscribe/{user}', [SubscribeController::class, 'unsubscribe'])->name('unsubscribe.user');
 
+Route::get('/verification_email/{email}', [ProfileController::class, 'verification_email'])->name('verification_email');
+
+
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
 
@@ -58,45 +61,16 @@ Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+')->name('pdf.download');
 
 
-Route::get('test', function (Request $request) {
-
-    $config = ['host' => '127.0.0.1', 'port' => 9308];
-    $client = new \Manticoresearch\Client($config);
-    $index = $client->index('indexname');
-    //$docs = $index->search('приказ')->get();
-    $s = $request->s;
 
 
-    $results = $index->search($s)->highlight(['name', 'text'], ['highlight_query' => ['match' => ['*' => $s]]])->get();
-    foreach ($results as $doc) {
-        echo 'Document: ' . $doc->getId() . "<br>";
-        echo $doc->name . "<br>";
-        print  $doc->getScore() . "<br>";
-        foreach ($doc->getData() as $field => $value) {
+Route::middleware(['role:admin|user'])->group(
+    function () {
+        Route::get('profile', [ProfileController::class, 'settings'])->name('profile.settings');
+        Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
 
-            //  echo $field . ' : ' . $value . "<br>";
-        }
-        foreach ($doc->getHighlight() as  $snippets) {
-
-            //var_dump($snippets); ;
-            //echo '<pre>' . var_export($snippets, true) . '</pre>';
-           //  print '...'.$snippets[0].'...';
-           // print '...'.$snippets[1].'...';
-            //   echo "Highlight for " . $field . ":<br>";
-            //foreach ($snippets as $snippet) {
-                // echo "- " . $snippet . "<br>";
-            //}
-        }
-        print "<br>";
+        Route::get('/verification-email/', [ProfileController::class, 'verification_email_send'])->name('verification_email.send');
     }
-});
-
-//    $pdo = new PDO(
-//        'mysql:host=127.0.0.1;port=9306',
-//
-//
-//    );
-
+);
 
 Route::middleware(['role:admin'])->prefix('admin')->group(
     function () {
@@ -109,12 +83,6 @@ Route::middleware(['role:admin'])->prefix('admin')->group(
         Route::post('/doc-izm/{id}', [\App\Http\Controllers\Adm\DocController::class, 'list_table_update'])->name('admin.doc.izm.update');
         Route::resource('content', App\Http\Controllers\Adm\ContentController::class);
         Route::resource('user', App\Http\Controllers\Adm\UserController::class);
-        Route::get('create_many', [\App\Http\Controllers\Adm\UserController::class, 'create_many'])->name('admin.user.create_many');
-        Route::post('create_many', [\App\Http\Controllers\Adm\UserController::class, 'create_many_do']);
-        Route::resource('slider', App\Http\Controllers\Adm\SliderController::class);
-        Route::resource('social', App\Http\Controllers\Adm\SocialController::class);
-        Route::resource('point', App\Http\Controllers\Adm\PointController::class);
-        Route::resource('step', App\Http\Controllers\Adm\StepController::class);
         Route::post('/ajax-slider-del', [App\Http\Controllers\Adm\SliderController::class, 'delete'])->name('ajax-slider-del');
     }
 );
@@ -127,8 +95,8 @@ Auth::routes(
         'logout' => true,
         'register' => true,
         'reset' => true,   // for resetting passwords
-        'confirm' => false,  // for additional password confirmations
-        'verify' => false,  // for email verification
+        'confirm' => true,  // for additional password confirmations
+        'verify' => true,  // for email verification
     ]
 );
 
