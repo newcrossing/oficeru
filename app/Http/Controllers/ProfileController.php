@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Activity;
+use App\Mail\ResetPass;
 use App\Mail\VerificationEmail;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -18,14 +22,94 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use LaravelQRCode\Facades\QRCode;
 
+
 class ProfileController extends Controller
 {
 
+    /**
+     * Форма ввода нового пароля. Проверяет что сюда попали по
+     * правильной ссылке
+     *
+     * @param Request $request
+     * @return Application|Factory|View|void
+     */
+    public function password_reset_edit(Request $request)
+    {
+        // проверка
+        if (!$request->hasValidSignature()) {
+            abort(401);
+        } else {
+            $email = $request->email;
+            $token = $request->token;
+
+            return view('frontend.auth.new_pass', compact('email', 'token'));
+        }
+    }
+
+
+    /**
+     * Обновляет пароль, проверяет на правильность токен
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function password_update(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user->count()) {
+            abort(401);
+        }
+
+        if ($user->remember_token != $request->token) {
+            abort(401);
+        }
+
+        $request->validate([
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+        $text['email'] = $request->email;
+
+        return view('frontend.profile.pass.update-ok', compact('text'));
+    }
+
+    /**
+     * Отправляет на почту ссылку сброса пароля
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function password_request(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ], [
+            'email.exists' => 'Аккаунта с таким e-mail не найдено'
+        ]);
+        // присваиваю токен
+        $user = User::where('email', $request->email)->first();
+        $user->remember_token = Str::random(60);
+        $user->save();
+        // уникальную ссылку с токеном и email
+        $data['resetPassword'] = URL::signedRoute('password_reset_edit',
+            [
+                'email' => $request->email,
+                'token' => $user->remember_token
+            ]);
+        Mail::to($request->email)->queue(new ResetPass($data));
+        $text = ['email' => $request->email];
+
+        return view('frontend.profile.pass.send-ok', compact('text'));
+    }
+
+    /**
+     * Форма ввода email для сброса пароля
+     * @return Application|Factory|View
+     */
     public function password_reset()
     {
-
-       // return view('frontend.auth.reset');
-
+        return view('frontend.auth.reset');
     }
 
 
@@ -109,4 +193,23 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Сохранено');
     }
+
+    public function notification()
+    {
+        return view('frontend.profile.notification');
+    }
+
+    public function notification_update(Request $request)
+    {
+
+        $user = User::find(Auth::user()->id);
+        $user->notify_doc =  $request->boolean('notify_doc');
+        $user->notify_vst =  $request->boolean('notify_vst');
+        $user->notify_edit =  $request->boolean('notify_edit');
+        //$user->fill($request->only(['notify_doc', 'notify_vst', 'notify_edit']));
+        $user->save();
+      //  dd($request->only(['notify_doc', 'notify_vst', 'notify_edit']));
+        return redirect()->back()->with('success', 'Сохранено');
+    }
+
 }

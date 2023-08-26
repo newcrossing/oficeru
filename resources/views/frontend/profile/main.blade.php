@@ -32,7 +32,9 @@
                             </div>
                             @if(!Auth::user()->email_verified_at)
                                 <div class="alert alert-soft-danger text-center card-alert" role="alert">
-                                    Email не подтвержден. <a class="alert-link" href={{route('verification_email.send')}}>Отправить ссылку активации заново</a>
+                                    Email не подтвержден. <a class="alert-link"
+                                                             href={{route('verification_email.send')}}>Отправить ссылку
+                                        активации заново</a>
                                 </div>
                             @endif
 

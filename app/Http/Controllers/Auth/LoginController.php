@@ -56,7 +56,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             Activity::add('Авторизация на сайте');
-            return redirect()->intended('/admin/');
+            return redirect()->intended('/profile/');
         }
 
         Activity::add('Авторизации на сайте. Неверные данные.', 'error');

@@ -48,6 +48,10 @@ Route::get('/unsubscribe/{user}', [SubscribeController::class, 'unsubscribe'])->
 
 Route::get('/verification_email/{email}', [ProfileController::class, 'verification_email'])->name('verification_email');
 
+Route::get('/pass/reset/{email}/{token}', [ProfileController::class, 'password_reset_edit'])->name('password_reset_edit');
+Route::get('/pass/reset', [ProfileController::class, 'password_reset'])->name('pass.reset');
+Route::post('/pass/reset', [ProfileController::class, 'password_request'])->name('pass.request');
+Route::post('/pass/update', [ProfileController::class, 'password_update'])->name('pass.update');
 
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
@@ -61,12 +65,13 @@ Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+')->name('pdf.download');
 
 
-
-
 Route::middleware(['role:admin|user'])->group(
     function () {
         Route::get('profile', [ProfileController::class, 'settings'])->name('profile.settings');
         Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+        Route::get('/profile/notification', [ProfileController::class, 'notification'])->name('profile.notification');
+        Route::post('/profile/notification', [ProfileController::class, 'notification_update'])->name('profile.notification.update');
 
         Route::get('/verification-email/', [ProfileController::class, 'verification_email_send'])->name('verification_email.send');
     }

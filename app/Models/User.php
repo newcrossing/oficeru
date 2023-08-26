@@ -79,7 +79,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
-
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -103,6 +102,8 @@ class User extends Authenticatable
         'foto',
         'sex',
         'notify_doc',
+        'notify_vst',
+        'notify_edit',
         'token',
         'is_verified',
     ];
@@ -133,6 +134,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'notify_doc' => 'boolean',
+        'notify_vst' => 'boolean',
+        'notify_edit' => 'boolean',
     ];
 
     public function getFoto()

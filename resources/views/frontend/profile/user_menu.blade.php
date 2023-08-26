@@ -10,7 +10,7 @@
                              alt="Image Description">
                         @if(Auth::user()->email_verified_at)
                             <img class="avatar-status avatar-lg-status"
-                                 src="./assets/svg/illustrations/top-vendor.svg"
+                                 src="/assets/svg/illustrations/top-vendor.svg"
                                  data-bs-toggle="tooltip" data-bs-placement="top" title="Верифицированный пользователь">
                         @endif
 
@@ -27,19 +27,21 @@
                 <!-- List -->
                 <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
                     <li class="nav-item">
-                        <a class="nav-link active" href="./account-overview.html">
+                        <a class="nav-link  {{ (request()->is('profile')) ? 'active' : '' }}"
+                           href="{{route('profile.settings')}}">
                             <i class="bi-person-badge nav-icon"></i> Личная информация
                         </a>
                     </li>
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link " href="./account-notifications.html">--}}
+                    {{--                            <i class="bi-bell nav-icon"></i> Уведомления--}}
+                    {{--                            <span--}}
+                    {{--                                class="badge bg-soft-dark text-dark rounded-pill nav-link-badge">1</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                     <li class="nav-item">
-                        <a class="nav-link " href="./account-notifications.html">
-                            <i class="bi-bell nav-icon"></i> Уведомления
-                            <span
-                                class="badge bg-soft-dark text-dark rounded-pill nav-link-badge">1</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="./account-preferences.html">
+                        <a class="nav-link {{ (request()->is('profile/notification')) ? 'active' : '' }}"
+                           href="{{route('profile.notification')}}">
                             <i class="bi-sliders nav-icon"></i> Оповещения
                         </a>
                     </li>

@@ -11,4 +11,6 @@ php artisan down --secret=YOUR_SECRET_HERE
 git commit -m "Первый коммит"
 git stash
 
+php artisan optimize:clear
+
 

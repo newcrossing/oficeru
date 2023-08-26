@@ -62,7 +62,7 @@
                         <div class="mb-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <label class="form-label" for="signupModalFormLoginPassword">Пароль</label>
-                                <a class="form-label-link" href="{{route('password.update')}}">Забыли пароль?</a>
+                                <a class="form-label-link" href="{{route('pass.reset')}}">Забыли пароль?</a>
                             </div>
 
                             <div class="input-group input-group-merge" data-hs-validation-validate-class>
