@@ -71,6 +71,7 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         $text['email'] = $request->email;
+        Activity::add('Сбросил пароль ' . $request->email);
 
         return view('frontend.profile.pass.update-ok', compact('text'));
     }

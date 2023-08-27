@@ -52,10 +52,11 @@ class LoginController extends Controller
         // todoo реализовать проверку чекбоксов на сервере
         $credentials = $request->only('email', 'password');
 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            Activity::add('Авторизация на сайте');
+            Activity::add('Авторизация на сайте ' . $request->email);
             return redirect()->intended('/profile/');
         }
 

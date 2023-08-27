@@ -120,7 +120,7 @@ Route::get('/comeback', function () {
     foreach ($users as $user) {
 
         $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
-        Mail::to($user)->queue(new ComebackMail($data));
+        //Mail::to($user)->queue(new ComebackMail($data));
         $countMailing++;
 
     }
