@@ -25,10 +25,9 @@ class MailingDoc
         $docs = Document::where('notify', 1)->where('pub', 1)->get();
 
         // документы вступающие в силу сегодня
-        $docs_today = Document::where('date_vst', Carbon::today())
-            ->where('pub', 1)
-            ->get();
+        $docs_today = Document::where('date_vst', Carbon::today())->where('pub', 1)->get();
 
+        // если есть что оповестить
         if ($docs->count() || $docs_today->count()) {
             $data = [
                 'docs' => '',
@@ -36,27 +35,25 @@ class MailingDoc
             ];
 
             // пользователи, которые хотят получать сообщения
-            $users = User::where('notify_doc', 1)->get();
+            $users = User::where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
 
+            $countMailing = 0;
             $tmpText = '';
-            $tmpBlock = '<div style="margin-left: 20px; margin-bottom: 10px">
-                               <a href="%s" style="color:#555; font-weight: bold;">%s</a><br>
-                                            %s
-                                        </div>';
+            $tmpTextDoc = '';
+            $tmpTextVst = '';
+            $tmpBlock = '<div style="margin-left: 20px; margin-bottom: 10px"><a href="%s" style="color:#555; font-weight: bold;">%s</a><br>%s</div>';
             if ($docs->count()) {
-                $tmpText .= '<h3>Новые документы на сайте</h3>';
+                $tmpTextDoc .= '<h3>Новые документы на сайте</h3>';
                 foreach ($docs as $doc) {
-                    $tmpText .= sprintf($tmpBlock, $doc->getLink().'?utm_medium=email', $doc->getShotName(),
+                    $tmpTextDoc .= sprintf($tmpBlock, $doc->getLink() . '?utm_medium=email', $doc->getShotName(),
                         ' &laquo;' . $doc->short_name . '&raquo;');
                 }
             }
 
             if ($docs_today->count()) {
-                $tmpText .= '<h3>Сегодня вступают в силу</h3>';
+                $tmpTextVst .= '<h3>Сегодня вступают в силу</h3>';
                 foreach ($docs_today as $doc) {
-                    $tmpText .= sprintf($tmpBlock,
-                        $doc->getLink(),
-                        $doc->getShotName(),
+                    $tmpTextVst .= sprintf($tmpBlock, $doc->getLink(), $doc->getShotName(),
                         ' &laquo;' . $doc->short_name . '&raquo;');
                 }
             }
@@ -64,18 +61,30 @@ class MailingDoc
             //php artisan queue:work --queue=high,default
             // для запуска очереди
 
-            $data['docs'] = $tmpText;
+            // $data['docs'] = $tmpText;
             // каждому письмо отдельно
             foreach ($users as $user) {
-                $data['unsubscribe'] = URL::signedRoute('unsubscribe', ['user' => $user->id]);
-                Mail::to($user)->queue(new NewDocMail($data));
+                $data['docs'] = '';
+                if ($user->notify_doc) {
+                    $data['docs'] .= $tmpTextDoc;
+                }
+                if ($user->notify_vst) {
+                    $data['docs'] .= $tmpTextVst;
+                }
+
+                // если есть материал для отправки пользователю
+                if ($data['docs']) {
+                    $data['unsubscribe'] = URL::signedRoute('unsubscribe', ['user' => $user->id]);
+                    Mail::to($user)->queue(new NewDocMail($data));
+                    $countMailing = $countMailing + 1;
+                }
             }
 
             // меняю статус документов на уведомленные
             Document::where('notify', 1)
                 ->where('pub', 1)
                 ->update(['notify' => 2]);
-            return $docs->count();
+            return $countMailing;
         } else {
             return 0;
         }

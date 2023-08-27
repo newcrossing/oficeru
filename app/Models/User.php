@@ -83,10 +83,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles;
-
-    //use  HasApiTokens;
-    use SoftDeletes;
+    use HasFactory, Notifiable, HasRoles, SoftDeletes;
 
 
     /**

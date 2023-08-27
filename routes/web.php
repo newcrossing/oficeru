@@ -1,11 +1,15 @@
 <?php
 
+use App\Helpers\MailingDoc;
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SitemapController;
+use App\Mail\NewDocMail;
+use App\Mail\ComebackMail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -15,6 +19,9 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CKEditorController;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ProfileController;
 use Carbon\Carbon;
@@ -107,4 +114,25 @@ Auth::routes(
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/comeback', function () {
+    $users = User::where('email_verified_at', null)->get();
+    // dd($users);
+    foreach ($users as $user) {
+
+        $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
+        Mail::to($user)->queue(new ComebackMail($data));
+
+    }
+
+
+    //$countMailing = $countMailing + 1;
+
+//    $users = User::where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
+//    dd($users);
+//    if ($i = MailingDoc::send()) {
+//        dd($i);
+//    } else {
+//        dd($i);
+//    }
+});
 

@@ -140,6 +140,7 @@ class ProfileController extends Controller
             }
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->save();
+            Activity::add('Подтвердили почту ' . $request->email);
 
             return view('frontend.profile.verification_email.ok', compact('text'));
         }
@@ -203,12 +204,12 @@ class ProfileController extends Controller
     {
 
         $user = User::find(Auth::user()->id);
-        $user->notify_doc =  $request->boolean('notify_doc');
-        $user->notify_vst =  $request->boolean('notify_vst');
-        $user->notify_edit =  $request->boolean('notify_edit');
+        $user->notify_doc = $request->boolean('notify_doc');
+        $user->notify_vst = $request->boolean('notify_vst');
+        $user->notify_edit = $request->boolean('notify_edit');
         //$user->fill($request->only(['notify_doc', 'notify_vst', 'notify_edit']));
         $user->save();
-      //  dd($request->only(['notify_doc', 'notify_vst', 'notify_edit']));
+        //  dd($request->only(['notify_doc', 'notify_vst', 'notify_edit']));
         return redirect()->back()->with('success', 'Сохранено');
     }
 

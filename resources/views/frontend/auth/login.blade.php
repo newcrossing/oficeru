@@ -44,7 +44,13 @@
                         <p>Вход в аккаунт</p>
                     </div>
                     <!-- End Heading -->
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            @foreach ($errors->all() as $error)
+                                {!! $error !!}
+                            @endforeach
+                        </div>
+                    @endif
                     <!-- Form -->
                     <form class="js-validate needs-validation" novalidate {{ route('login') }} method="POST">
                         @csrf

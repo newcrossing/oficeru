@@ -94,6 +94,8 @@ class SubscribeController extends Controller
         } else {
             $user = User::find($request->user);
             $user->notify_doc = 0;
+            $user->notify_vst = 0;
+            $user->notify_edit = 0;
             $user->save();
             return view('front.subscribe.unsubscribe-ok',
                 compact('breadcrumbs')
