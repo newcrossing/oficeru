@@ -116,13 +116,15 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/comeback', function () {
     $users = User::where('email_verified_at', null)->get();
-    // dd($users);
+    $countMailing = 0;
     foreach ($users as $user) {
 
         $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
         Mail::to($user)->queue(new ComebackMail($data));
+        $countMailing++;
 
     }
+    dd($countMailing);
 
 
     //$countMailing = $countMailing + 1;
