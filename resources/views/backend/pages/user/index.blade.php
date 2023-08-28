@@ -3,8 +3,12 @@
 @section('title','Статьи')
 {{-- vendor style --}}
 @section('vendor-styles')
-    <link rel="stylesheet" type="text/css" href="/adm/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/adm/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('adm/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('adm/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('adm/app-assets/vendors/css/tables/datatable/responsive.bootstrap.min.css')}}">
 @endsection
 {{-- page style --}}
 @section('page-styles')
@@ -13,21 +17,8 @@
 
 @section('content')
 
-    {{--    <div class="container">--}}
-    {{--        <div class="row justify-content-between">--}}
-    {{--            <div class="col-4">--}}
-    {{--                <div class="invoice-create-btn mb-1">--}}
-    {{--                    <a href="/admin/user/create" class="btn btn-primary glow invoice-create" role="button"--}}
-    {{--                       aria-pressed="true">--}}
-    {{--                        Создать пользователя</a>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-
     <!-- Zero configuration table -->
-    <section id="basic-datatable">
+    <section class="invoice-list-wrapper">
         @if(session('success'))
             <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -48,11 +39,12 @@
                     <div class="card-content">
                         <div class="card-body card-dashboard">
                             <div class="table-responsive">
-                                <table class="table zero-configuration">
+                                <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th></th>
 
+                                        <th>ID</th>
                                         <th>Email</th>
                                         <th>Имя</th>
                                         <th>Дата регистрации</th>
@@ -62,6 +54,8 @@
 
                                     @foreach ($users as $user)
                                         <tr class="">
+                                            <td></td>
+
                                             <td>{{$user->id }}</td>
                                             <td>
                                                 <i class="bx bxs-circle {{($user->email_verified_at)?'success':'danger'}}  font-small-1 mr-50"></i>
@@ -90,18 +84,53 @@
 
 {{-- vendor scripts --}}
 @section('vendor-scripts')
-    <script src="/adm/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
-    <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
+    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('/adm/app-assets/vendors/js/tables/datatable/responsive.bootstrap.min.js')}}"></script>
 
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
-    <script src="/adm/app-assets/js/scripts/datatables/datatable.js"></script>
+    <script type="text/javascript">
+        // init data table
+        if ($(".invoice-data-table").length) {
+            var dataListView = $(".invoice-data-table").DataTable({
+                columnDefs: [
+                    { "width": "10%", "targets": 1 },
 
+
+
+                    {
+                        targets: 0,
+                        className: "control"
+                    },
+
+                    {
+                        targets: [0, 1],
+                        orderable: false
+                    },
+                ],
+                order: [1, 'desc'],
+                dom:
+                    '<"top d-flex flex-wrap"<"action-filters flex-grow-1"f><"actions action-btns d-flex align-items-center">><"clear">rt<"bottom"p>',
+                language: {
+                    search: "",
+                    searchPlaceholder: "Поиск"
+                },
+                select: {
+                    style: "multi",
+                    selector: "td:first-child",
+                    items: "row"
+                },
+                responsive: {
+                    details: {
+                        type: "column",
+                        target: 0
+                    }
+                }
+            });
+        }
+    </script>
 @endsection
