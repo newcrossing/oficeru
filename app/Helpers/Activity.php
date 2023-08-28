@@ -34,7 +34,7 @@ class Activity
         $log['result'] = $result;
         $log['agent'] = Request::header('user-agent');
         $log['user_id'] = auth()->check() ? auth()->user()->id : 0;
-        $log['user_login'] = auth()->check() ? auth()->user()->login : null;
+        $log['user_login'] = auth()->check() ? auth()->user()->email : null;
         LogActivityModel::create($log);
     }
 
