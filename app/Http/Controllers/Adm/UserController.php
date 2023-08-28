@@ -24,95 +24,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->sortBy('login');
+        $users = User::all();
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Пользователи"]
         ];
         return view('backend.pages.user.index', compact('users', 'breadcrumbs'));
-    }
-
-    public function create_many()
-    {
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
-            ['name' => " Массовое добавление"]
-        ];
-        return view('backend.pages.user.create_many', compact('breadcrumbs'));
-    }
-
-    public function create_many_do(Request $request)
-    {
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
-            ['name' => " Массовое добавление "]
-        ];
-
-        $arr = array();
-
-        for ($i = 1; $i <= $request['number']; $i++) {
-            $ar = [];
-            $temp = rand(1000000, 9000000);
-            $user = new User();
-
-            $user->login = 'mr' . $temp;
-
-            $pass = Str::lower(Str::random(8));
-            $user->password = Hash::make($pass);
-            $ar['password'] = $pass;
-            $user->name = 'mr' . $temp;
-            $user->save();
-
-            $user->login = $user->generateLogin();
-            $user->name = $user->login;
-            $ar['login'] = $user->login;
-            $ar['name'] = $user->name;
-            $user->save();
-
-            $q = Board::generateQr($user->id);
-            $ar['qr'] = $q;
-
-            $user->board()->create([
-                'name' => 'Моя страница',
-                'text' => 'Если Вы нашли мою вещь убедительно прошу вас связаться со мной одним из указанных способов.',
-                'active' => 1,
-                'slug' => $q,
-                'user_id' => $user->id
-            ]);
-
-            // добавил роль
-            $user->assignRole('user');
-
-            // создать qr
-            QRCode::url(env('APP_URL') . '/' . $q)
-                ->setSize(10)
-                ->setOutfile(Storage::path('/public/qr/') . $user->login . '.png')
-                ->setMargin(1)
-                ->png();
-
-            $arr[] = $ar;
-        }
-
-        Activity::add('Массово добавил ' . $request['number'] . ' пользователей.');
-        return view('backend.pages.user.create_many', compact('breadcrumbs', 'arr'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
-            ['link' => "/admin/user", 'name' => "Пользователи"],
-            ['name' => " Новый пользователь"]
-        ];
-        //создаем объект чтобы было что отправить в форму.
-        // Она же форма редактирования, надо что то отправить.
-        $user = new User();
-        return view('backend.pages.user.edit', compact('breadcrumbs', 'user'));
     }
 
     /**
@@ -176,6 +93,24 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/user", 'name' => "Пользователи"],
+            ['name' => " Новый пользователь"]
+        ];
+        //создаем объект чтобы было что отправить в форму.
+        // Она же форма редактирования, надо что то отправить.
+        $user = new User();
+        return view('backend.pages.user.edit', compact('breadcrumbs', 'user'));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -217,37 +152,19 @@ class UserController extends Controller
         }
         if ($request->redirect == 'delete') {
             $user->delete();
-            return redirect()->route('user.index');
+            return redirect()->route('user.index')->with('success', 'Пользователь ' . $user->email . ' удален');
         }
 
-        //сброс фото
-        if ($request->reset_foto) {
-            $user->foto = null;
-            $user->save();
-            return redirect()->back()->with('success', 'Сохранено');
-        }
 
-        if ($request->hasFile('image')) {
-            $newFileName = time() . '.' . $request['image']->extension();
-            Image::make($request['image'])->widen(300)->save(Storage::path('/public/avatars/300/') . $newFileName);
-            Image::make($request['image'])->widen(100)->save(Storage::path('/public/avatars/50/') . $newFileName);
-            $user->foto = $newFileName;
-        }
-        $request['notify_email'] = $request['notify_email'] ? '1' : null;
-        $request['notify_tel'] = $request['notify_tel'] ? '1' : null;
-        $request['notify_whatsup'] = $request['notify_whatsup'] ? '1' : null;
-        $request['notify_telegram'] = $request['notify_telegram'] ? '1' : null;
-        $request['password'] = Hash::make($request['password']);
-
+        $user->notify_doc = $request->boolean('notify_doc');
+        $user->notify_vst = $request->boolean('notify_vst');
+        $user->notify_edit = $request->boolean('notify_edit');
+        $user->save();
         $user->fill($request->all());
         $user->save();
 
         if ($request->redirect == 'apply') {
             return redirect()->back()->with('success', 'Сохранено');
-        } elseif ($request->redirect == 'save') {
-            return redirect()->route('user.index')->with('success', 'Сохранено');
-        } elseif ($request->redirect == 'saveadd') {
-            return redirect()->route('user.create');
         }
     }
 

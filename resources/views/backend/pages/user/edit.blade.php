@@ -55,8 +55,9 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
                                              aria-labelledby="account-pill-general" aria-expanded="true">
-                                            <form action="{{ (isset($user->id))? route('user.update',$user->id):route('user.store')  }}"
-                                                  method="POST" enctype="multipart/form-data">
+                                            <form
+                                                action="{{ (isset($user->id))? route('user.update',$user->id):route('user.store')  }}"
+                                                method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @if(isset($user->id))
                                                     @method('PUT')
@@ -64,24 +65,16 @@
                                                 <div class="media">
 
                                                     <a href="javascript: void(0);">
-                                                        <img src="{{ Storage::url('/avatars/300/'.(!empty($user->foto)?$user->foto:'000.png')) }}"
-                                                             class="rounded mr-75" alt="profile image" height="64">
+                                                        <img
+                                                            src="{{ Storage::url('/avatars/300/'.(!empty($user->foto)?$user->foto:'000.png')) }}"
+                                                            class="rounded mr-75" alt="profile image" height="100">
                                                     </a>
-                                                    <div class="media-body mt-25">
-                                                        <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                            <label for="select-files"
-                                                                   class="btn btn-sm btn-light-primary ml-50 mb-50 mb-sm-0">
-                                                                <span>Загрузить фото</span>
-                                                                <input id="select-files" type="file" name="image"
-                                                                       hidden>
-                                                            </label>
-                                                            <button type="submit" name="reset_foto" value="1"
-                                                                    class="btn btn-sm btn-light-secondary ml-50">
-                                                                Сбросить
-                                                            </button>
+                                                    <div class="media-body mt-25 ml-1">
+                                                        <div
+                                                            class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
+                                                            <h2 class="{{(!$user->email_verified_at)?'text-danger':'text-success'}}">{{$user->email}}</h2>
                                                         </div>
-                                                        <p class="text-muted ml-1 mt-50">
-                                                            <small>Допускаются фото .jpg , .bmp , .png</small></p>
+                                                        <h3 class="text-muted">{{$user->name}}</h3>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -90,10 +83,9 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <div class="controls">
-                                                                <label>Логин</label>
-                                                                <input type="text" class="form-control" name="login"
-                                                                       value="{{old('login',$user->login)}}" required
-                                                                       @isset($user->id) readonly @endisset >
+                                                                <label>Email</label>
+                                                                <input type="text" class="form-control"
+                                                                       value="{{old('email',$user->email)}}" disabled>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -101,8 +93,8 @@
                                                         <div class="form-group">
                                                             <div class="controls">
                                                                 <label>Пароль</label>
-                                                                <input type="text" class="form-control" name="password"
-                                                                       @empty($user->id) required @endempty >
+                                                                <input type="text" class="form-control"
+                                                                       disabled>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -126,76 +118,50 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label>Телефон</label>
-                                                            <input type="text" class="form-control" name="tel"
-                                                                   value="{{old('tel',$user->tel)}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>E-mail</label>
-                                                                <input type="email" class="form-control" name="email"
-                                                                       value="{{old('email',$user->email)}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
 
                                                     <h6 class="m-1">Уведомления</h6>
                                                     <div class="col-12 mb-1">
                                                         <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_tel"
+                                                            <input type="checkbox" name="notify_doc"
                                                                    class="custom-control-input"
-                                                                   id="accountSwitchTel" {{ $user->notify_tel  ? 'checked' : '' }}>
+                                                                   id="accountSwitchTel" {{ $user->notify_doc  ? 'checked' : '' }}>
                                                             <label class="custom-control-label mr-1"
                                                                    for="accountSwitchTel"></label>
-                                                            <span class="switch-label w-100">Уведомление по телефону</span>
+                                                            <span
+                                                                class="switch-label w-100">Уведомление о новых документах</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 mb-1">
                                                         <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_email"
+                                                            <input type="checkbox" name="notify_vst"
                                                                    class="custom-control-input"
-                                                                   id="accountSwitchEmail" {{ $user->notify_email  ? 'checked' : '' }} >
+                                                                   id="accountSwitchEmail" {{ $user->notify_vst  ? 'checked' : '' }} >
                                                             <label class="custom-control-label mr-1"
                                                                    for="accountSwitchEmail"></label>
-                                                            <span class="switch-label w-100">Уведомление по Email</span>
+                                                            <span class="switch-label w-100">Уведомление о вступающих в силу </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 mb-1">
                                                         <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_whatsup"
+                                                            <input type="checkbox" name="notify_edit"
                                                                    class="custom-control-input"
-                                                                   id="accountSwitchwhatsup" {{ $user->notify_whatsup  ? 'checked' : '' }} >
+                                                                   id="accountSwitchwhatsup" {{ $user->notify_edit  ? 'checked' : '' }} >
                                                             <label class="custom-control-label mr-1"
                                                                    for="accountSwitchwhatsup"></label>
-                                                            <span class="switch-label w-100">Уведомление по Whats Up</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 mb-1">
-                                                        <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_telegram"
-                                                                   class="custom-control-input"
-                                                                   id="accountSwitchtelegram" {{ $user->notify_telegram  ? 'checked' : '' }} >
-                                                            <label class="custom-control-label mr-1"
-                                                                   for="accountSwitchtelegram"></label>
-                                                            <span class="switch-label w-100">Уведомление по Telegram </span>
+                                                            <span
+                                                                class="switch-label w-100">Уведомление о изменении документа</span>
                                                         </div>
                                                     </div>
 
 
-                                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                    <div
+                                                        class="col-12 d-flex flex-sm-row flex-column justify-content-end">
                                                         <button type="submit" name="redirect" value="apply"
                                                                 class="btn btn-primary glow mr-sm-1 mb-1">
-                                                            Применить
+                                                            Сохранить
                                                         </button>
 
-                                                        <button type="submit" name="redirect" value="saveadd"
-                                                                class="btn btn-primary glow mr-sm-1 mb-1">
-                                                            Сохранить & Добавить
-                                                        </button>
 
                                                         <button type="submit" name="redirect" value="delete"
                                                                 class="btn btn-danger glow mr-sm-1 mb-1">
@@ -221,9 +187,6 @@
     </section>
     <!-- account setting page ends -->
 
-
-
-
 @endsection
 
 {{-- vendor scripts --}}
@@ -236,7 +199,6 @@
     <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-
 
 @endsection
 {{-- page scripts --}}

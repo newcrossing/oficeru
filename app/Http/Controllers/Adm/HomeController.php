@@ -17,17 +17,24 @@ class HomeController extends Controller
     {
         $breadcrumbs = [
         ];
-        $users = DB::table('users')->count();
-        $users_ver = DB::table('users')->orWhereNotNull('email_verified_at')->count();
+        $user['all'] = DB::table('users')->count();
+        $user['verif'] = DB::table('users')->orWhereNotNull('email_verified_at')->count();
+        $user['noVerif'] = DB::table('users')->orWhereNull('email_verified_at')->count();
+
+        $job['jobs'] = DB::table('jobs')->count();
+        $job['failed_jobs'] = DB::table('failed_jobs')->count();
+
+
         $docs = DB::table('documents')->count();
 
-        $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
+        $logs = Activity::limit(200)->orderByDesc('created_at')->get();
+
 
         return view('backend.pages.home.index',
             compact(
                 'breadcrumbs',
-                'users',
-                'users_ver',
+                'user',
+                'job',
                 'docs',
                 'logs',
             )

@@ -34,7 +34,7 @@
                                 <a href="{{route('user.index')}}"> Всего пользователей</a>
                             </p>
                             <h2 class="mb-0">
-                                {{$users}}
+                                {{$user['all']}}
                             </h2>
                         </div>
                     </div>
@@ -51,8 +51,7 @@
                             <p class="text-muted mb-0 line-ellipsis">
                                 <a href="/admin/doc"> Активированные</a>
                             </p>
-
-                            <h2 class="mb-0">{{$users_ver}}</h2>
+                            <h2 class="mb-0">{{$user['verif']}}</h2>
                         </div>
                     </div>
                 </div>
@@ -64,12 +63,45 @@
                             <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
                                 <i class="bx bx-user-minus font-medium-5"></i>
                             </div>
-                            <p class="text-muted mb-0 line-ellipsis">Документы </p>
-                            <h2 class="mb-0">{{$docs}}</h2>
+                            <p class="text-muted mb-0 line-ellipsis">Не активированные </p>
+                            <h2 class="mb-0">{{$user['noVerif']}}</h2>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <!-- Widgets Statistics End -->
+    <!-- Widgets Statistics start -->
+    <section id="dashboard-ecommerce">
+        <div class="row">
+            <div class="col-sm-3 col-12 dashboard-users-success">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
+                                <i class="bx bx-list-ul font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">Очередь</div>
+                            <h3 class="mb-0">{{$job['jobs']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-12 dashboard-users-danger">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                <i class="bx bx-error-circle font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">Неудачные задачи</div>
+                            <h3 class="mb-0">{{$job['failed_jobs']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     <!-- Widgets Statistics End -->

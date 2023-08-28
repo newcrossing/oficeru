@@ -13,23 +13,32 @@
 
 @section('content')
 
-    <div class="container">
-
-        <div class="row justify-content-between">
-            <div class="col-4">
-                <div class="invoice-create-btn mb-1">
-                    <a href="/admin/user/create" class="btn btn-primary glow invoice-create" role="button"
-                       aria-pressed="true">
-                        Создать пользователя</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    {{--    <div class="container">--}}
+    {{--        <div class="row justify-content-between">--}}
+    {{--            <div class="col-4">--}}
+    {{--                <div class="invoice-create-btn mb-1">--}}
+    {{--                    <a href="/admin/user/create" class="btn btn-primary glow invoice-create" role="button"--}}
+    {{--                       aria-pressed="true">--}}
+    {{--                        Создать пользователя</a>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
 
     <!-- Zero configuration table -->
     <section id="basic-datatable">
+        @if(session('success'))
+            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-like"></i>
+                    <span>  {{session('success')}}  </span>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -43,7 +52,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Логин</th>
+
                                         <th>Email</th>
                                         <th>Имя</th>
                                         <th>Дата регистрации</th>
@@ -55,21 +64,18 @@
                                         <tr class="">
                                             <td>{{$user->id }}</td>
                                             <td>
-                                                <i class="bx bxs-circle {{($user->active)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                                <a href="{{route('user.edit',$user->id)}}">{{$user->login}}</a><br>
-
+                                                <i class="bx bxs-circle {{($user->email_verified_at)?'success':'danger'}}  font-small-1 mr-50"></i>
+                                                <a href="{{route('user.edit',$user->id)}}">{{$user->email}}</a>
                                             </td>
-                                            <td>{{$user->email}}<br></td>
                                             <td>
                                                 {{$user->name }}
-
-
                                             </td>
                                             <td>
-                                                <small>{{$user->created_at->format('d.m.Y')}}</small></td>
+                                                <small>{{$user->created_at->format('d.m.Y')}}</small>
+                                            </td>
                                         </tr>
                                     @endforeach
-                                    </tfoot>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -92,7 +98,6 @@
     <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-
 
 @endsection
 {{-- page scripts --}}
