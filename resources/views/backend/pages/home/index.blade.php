@@ -49,9 +49,10 @@
                                 <i class="bx bx-user-check font-medium-5"></i>
                             </div>
                             <p class="text-muted mb-0 line-ellipsis">
-                                <a href="/admin/doc"> Документы</a>
+                                <a href="/admin/doc"> Активированные</a>
                             </p>
-                            <h2 class="mb-0">{{$docs}}</h2>
+
+                            <h2 class="mb-0">{{$users_ver}}</h2>
                         </div>
                     </div>
                 </div>
@@ -63,8 +64,8 @@
                             <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
                                 <i class="bx bx-user-minus font-medium-5"></i>
                             </div>
-                            <p class="text-muted mb-0 line-ellipsis">Неактивированные </p>
-                            <h2 class="mb-0"></h2>
+                            <p class="text-muted mb-0 line-ellipsis">Документы </p>
+                            <h2 class="mb-0">{{$docs}}</h2>
                         </div>
                     </div>
                 </div>

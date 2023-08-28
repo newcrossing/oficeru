@@ -18,6 +18,7 @@ class HomeController extends Controller
         $breadcrumbs = [
         ];
         $users = DB::table('users')->count();
+        $users_ver = DB::table('users')->orWhereNotNull('email_verified_at')->count();
         $docs = DB::table('documents')->count();
 
         $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
@@ -26,6 +27,7 @@ class HomeController extends Controller
             compact(
                 'breadcrumbs',
                 'users',
+                'users_ver',
                 'docs',
                 'logs',
             )
