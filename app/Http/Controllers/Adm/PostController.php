@@ -112,6 +112,7 @@ class PostController extends Controller
         $sTags = $post->tags->pluck('id')->toArray();
 
 
+
         return view('backend.pages.post.edit', compact(
             'post',
             'tags',

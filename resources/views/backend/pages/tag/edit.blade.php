@@ -1,6 +1,6 @@
 @extends('backend.layouts.contentLayoutMaster')
 {{-- page title --}}
-@section('title','Редактирование статьи')
+@section('title','Редактирование')
 {{-- vendor styles --}}
 @section('vendor-styles')
     <link rel="stylesheet" type="text/css" href="/adm/app-assets/vendors/css/forms/select/select2.min.css">
@@ -41,9 +41,9 @@
                 </div>
             </div>
         @endif
-        <form action="{{ (isset($post->id))? route('post.update',$post->id):route('post.store')  }}" method="POST">
+        <form action="{{ (isset($tag->id))? route('tag.update',$tag->id):route('tag.store')  }}" method="POST">
             @csrf
-            @if(isset($post->id))
+            @if(isset($tag->id))
                 @method('PUT')
             @endif
             <div class="row">
@@ -58,61 +58,18 @@
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
                                         <h4 class="text-primary">Название </h4>
                                         <input type="text" name="name" class="form-control"
-                                               value="{{old('name',$post->name)}}"
-                                               placeholder="Название статьи">
-                                    </div>
-
-                                </div>
-                                <hr>
-                                <!-- invoice address and contact -->
-                                <div class="row invoice-info">
-                                    <div class="col-lg-12 col-md-12 mt-25">
-
-                                    <textarea class="ckeditor" cols="80" id="editor1"
-                                              name="text">{{old('text',$post->text)}}</textarea>
+                                               value="{{old('name',$tag->name)}}"
+                                               placeholder="Название">
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="invoice-subtotal pt-50">
-                                    <div class="row">
-                                        <div class="col-md-5 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Заголовок </h6>
-                                                <input type="text" name="meta_title" class="form-control"
-                                                       value="{{old('text',$post->meta_title)}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <fieldset class="invoice-address form-group">
-                                                    <h6 class="invoice-to">Описание </h6>
-                                                    <textarea name="meta_description" class="form-control" rows="4"
-                                                              placeholder="">{{old('text',$post->meta_description)}}</textarea>
-                                                </fieldset>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Теги </h6>
-                                                <select name="tags[]" class="select2-customize-result form-control"
-                                                        multiple="multiple" id="select2-customize-result">
-                                                    @foreach ($tags as $tag)
-                                                        <option @if(in_array($tag->id,$sTags)) selected
-                                                                @endif value="{{$tag->id}}">{{$tag->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Просмотров за сутки</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">{{(@$post->hits)}}</h6>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Всего</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">-</h6>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                                <!-- logo and title -->
+                                <div class="row mt-25 mb-75">
+                                    <div class="col-sm-12 col-12 order-2 order-sm-1 ">
+                                        <h6 class="text-primary">Ссылка </h6>
+                                        <input type="text" name="slug" class="form-control"
+                                               value="{{old('slug',$tag->slug)}}"
+                                               placeholder="Название">
                                     </div>
                                 </div>
                             </div>
@@ -138,66 +95,124 @@
                                     <span>Сохранить</span>
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                    <div class="invoice-payment">
-                        <div class="invoice-payment-option mb-2">
-                            <p>Тип</p>
-
-                            <fieldset class="form-group">
-                                <select class="form-control" name="type">
-                                    <option value="post" @if($post->type == 'post') selected @endif>Статья</option>
-                                    <option value="news" @if($post->type == 'news') selected @endif>Новость</option>
-                                </select>
-                            </fieldset>
-                        </div>
-
-                        <div class="invoice-payment-option mb-2">
-                            <p>Дата публикации</p>
-
-                            <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" name="date_public" class="form-control pickadate-months-year"
-                                       placeholder="Выберите дату"
-                                       value="{{isset($post->date_public)?$post->date_public->format('d/m/Y'):''}}"/>
-                                <div class="form-control-position"><i class='bx bx-calendar'></i></div>
-                            </fieldset>
-                        </div>
-                        <div class="invoice-terms">
+                            <div class="invoice-action-btn mb-1">
+                                <button type="submit" name="redirect" value="delete" class="btn btn-outline-danger btn-block mr-1 mb-1">
+                                    <i class='bx bx-x-circle'></i>
+                                    Удалить</button>
+                            </div>
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Опубликовать</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="pub" class="custom-control-input"
-                                           id="paymentTerm" {{!empty($post->pub)?'checked':''}}>
+                                    <input type="checkbox" name="active" class="custom-control-input"
+                                           id="paymentTerm" {{!empty($tag->active)?'checked':''}}>
                                     <label class="custom-control-label" for="paymentTerm">
                                     </label>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Уведомить</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" class="custom-control-input" name="notify"
-                                           id="clientNote" {{!empty($post->notify)?'checked':''}}>
-                                    <label class="custom-control-label" for="clientNote">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">На главную</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" class="custom-control-input" id="paymentstub"
-                                           name="in_main" {{!empty($post->in_main)?'checked':''}}>
-                                    <label class="custom-control-label" for="paymentstub">
-                                    </label>
-                                </div>
-                            </div>
                         </div>
-                        <hr>
-
                     </div>
+
                 </div>
             </div>
 
         </form>
+    </section>
+
+
+    <section>
+        <div class="row">
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Документы</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            @if($docs->count())
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Название</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($docs as $doc)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('doc.edit',$doc->id) }}"
+                                                       class=" {{($doc->pub)?'text-success':'text-danger'}}">
+                                                        {{ Str::limit( $doc->name , 400)  }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="alert alert-warning alert-dismissible mb-2" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bx bx-error-circle"></i>
+                                        <span>
+                                                   Документов нет
+                                                </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Статьи</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            @if($posts->count())
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Название</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($posts as $post)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('post.edit',$post->id) }}"
+                                                       class=" {{($post->pub)?'text-success':'text-danger'}}">
+                                                        {{ Str::limit( $post->name , 400)  }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="alert alert-warning alert-dismissible mb-2" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bx bx-error-circle"></i>
+                                        <span>
+                                                   Статей нет
+                                                </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 @endsection
 
@@ -224,22 +239,4 @@
     <script src="/adm/app-assets/js/scripts/forms/select/form-select2.js"></script>
     <!-- END: Page JS-->
 
-    <script type="text/javascript" src="/CKE/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/CKE/ckfinder.js"></script>
-
-    <script type="text/javascript">
-        if (typeof CKEDITOR == 'undefined') {
-            document.write('Error');
-        } else {
-            var editor = CKEDITOR.replace('editor1',
-                {
-                    toolbar:
-                        [
-                            ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
-                        ]
-                });
-            CKFinder.setupCKEditor(editor, '/CKE/');
-        }
-
-    </script>
 @endsection

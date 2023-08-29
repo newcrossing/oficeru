@@ -75,7 +75,7 @@
                                       "mode": "image",
                                       "targetAttr": "src",
                                       "resetTarget": ".js-file-attach-reset-img",
-                                      "resetImg": "./assets/img/160x160/img1.jpg",
+                                      "resetImg": "/assets/img/160x160/img1.jpg",
                                       "allowTypes": [".png", ".jpeg", ".jpg"]
                                    }'>
                                                 </div>
@@ -257,7 +257,7 @@
 
 @section('page-scripts')
     @parent
-    <script src="./assets/vendor/hs-file-attach/dist/hs-file-attach.min.js"></script>
+    <script src="/assets/vendor/hs-file-attach/dist/hs-file-attach.min.js"></script>
 @endsection
 
 

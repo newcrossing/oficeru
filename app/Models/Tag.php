@@ -43,6 +43,18 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'hits',
+        'active',
+
+    ];
+    protected $casts = [
+
+        'active' => 'boolean',
+    ];
+
     protected $dates = ['deleted_at'];
 
     /**

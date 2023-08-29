@@ -18,11 +18,22 @@
 @section('content')
     <!-- invoice list -->
     <section class="invoice-list-wrapper">
+        @if(session('success'))
+            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-like"></i>
+                    <span>  {{session('success')}}  </span>
+                </div>
+            </div>
+        @endif
         <!-- create invoice button-->
         <div class="invoice-create-btn mb-1">
             <a href="/admin/tag/create" class="btn btn-primary glow invoice-create" role="button"
                aria-pressed="true">
-                Создать тег</a>
+                Создать</a>
         </div>
         <!-- Options and filter dropdown button-->
         <div class="table-responsive">
@@ -30,7 +41,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th></th>
+
                     <th>
                         <span class="align-middle">ID #</span>
                     </th>
@@ -44,9 +55,9 @@
                 @foreach ($tags as $tag)
                     <tr>
                         <td></td>
-                        <td></td>
+
                         <td>
-                            <a href="{{asset('app-invoice-view')}}">{{ $tag->id }}</a>
+                            {{ $tag->id }}
                         </td>
                         <td>
                             <i class="bx bxs-circle {{($tag->active)?'success':'danger'}}  font-small-1 mr-50"></i>
@@ -79,7 +90,7 @@
         if ($(".invoice-data-table").length) {
             var dataListView = $(".invoice-data-table").DataTable({
                 columnDefs: [
-                    { "width": "10%", "targets": 2 },
+                    {"width": "10%", "targets": 0},
 
 
                     {
@@ -88,11 +99,11 @@
                     },
 
                     {
-                        targets: [0, 1, 2],
+                        targets: [0, 1],
                         orderable: false
                     },
                 ],
-                order: [2, 'desc'],
+                order: [1, 'desc'],
                 dom:
                     '<"top d-flex flex-wrap"<"action-filters flex-grow-1"f><"actions action-btns d-flex align-items-center">><"clear">rt<"bottom"p>',
                 language: {
@@ -107,7 +118,7 @@
                 responsive: {
                     details: {
                         type: "column",
-                        target: 0
+                        target: 1
                     }
                 }
             });
