@@ -7,6 +7,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -56,8 +57,7 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'slug' => 'required|min:3|unique:tags',
-            //'slug' => ['required', Rule::unique('tags')->ignore($tag->id),
+            'slug' => 'nullable|min:3|unique:tags',
 
         ], [
             'name.required' => 'Название должно быть заполнено!',
@@ -66,10 +66,17 @@ class TagController extends Controller
         ]);
         $tag = new Tag();
         $tag->active = $request->boolean('active');
+        $tag->name = $request->name;
+        if (empty($request->slug)) {
+            $tag->slug = Str::slug($request->name, '-');
+        } else {
+            $tag->slug = $request->slug;
+        }
+
         $tag->save();
 
         //dd($request->tags);
-        $tag->fill($request->all())->save();
+        //$tag->fill($request->all())->save();
 
 
         if ($request->redirect == 'apply') {
