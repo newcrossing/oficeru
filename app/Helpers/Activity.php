@@ -11,7 +11,12 @@ use App\Models\Activity as LogActivityModel;
 class Activity
 
 {
-    public static function add($subject, $result = 'info')
+    const ERROR = 'danger';
+    const WARNING = 'warning';
+    const INFO = 'info';
+    const SUCCESS = 'success';
+
+    public static function add($subject, $result = self::INFO)
     {
         $log = [];
 

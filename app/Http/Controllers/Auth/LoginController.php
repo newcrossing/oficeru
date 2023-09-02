@@ -56,11 +56,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            Activity::add('Авторизация на сайте ' . $request->email);
+            Activity::add('Авторизация на сайте: ' . $request->email);
             return redirect()->intended('/profile/');
         }
 
-        Activity::add('Авторизации на сайте. Неверные данные.', 'error');
+        Activity::add('Авторизации на сайте. Неверные данные.', Activity::WARNING);
         return back()->withErrors([
             'login' => 'Неверный логин или пароль.',
         ]);

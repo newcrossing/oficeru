@@ -129,7 +129,7 @@
                                     @foreach ($logs as $log)
                                         <tr>
                                             <td style="width: 50%"
-                                                class="@if($log->result== 'error') text-danger @endif ">
+                                                class=" text-{{($log->result!='info')?$log->result:''}} ">
                                                 {{$log->subject}}
                                             </td>
                                             <td>

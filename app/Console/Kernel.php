@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // документы для рассылки
             if (MailingDoc::send()) {
-                Activity::add('Рассылка документов успешна');
+                Activity::add('Рассылка документов успешна', Activity::SUCCESS);
             } else {
                 Activity::add('Рассылка документов пустая ');
             }

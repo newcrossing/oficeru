@@ -63,6 +63,7 @@ class SubscribeController extends Controller
 
         // если есть такой пользователь
         if (User::where('email', $request->email)->get()->count()) {
+
             return redirect('/subscribe')
                 ->withErrors(['msg' => 'Пользователь с таким e-mail уже существует.<br>Для настройки рассылки зайдите в <a href="/login"> личный кабинет.</a>'])
                 ->withInput();
@@ -75,7 +76,7 @@ class SubscribeController extends Controller
         $user->notify_doc = 1;
         $user->save();
 
-        Activity::add('Новый пользователь на рассылку: ' . $request->email);
+        Activity::add('Новый пользователь на рассылку: ' . $request->email, Activity::SUCCESS);
 
         return view('frontend.subscribe.ok',
             compact('breadcrumbs')
@@ -90,6 +91,7 @@ class SubscribeController extends Controller
 
         // проверка отписки
         if (!$request->hasValidSignature()) {
+            Activity::add('Попытка отписаться по невалидной ссылке', Activity::ERROR);
             abort(401);
         } else {
             $user = User::find($request->user);
@@ -97,6 +99,7 @@ class SubscribeController extends Controller
             $user->notify_vst = 0;
             $user->notify_edit = 0;
             $user->save();
+            Activity::add('Отписался от рассылки: ' . $request->email, Activity::WARNING);
             return view('front.subscribe.unsubscribe-ok',
                 compact('breadcrumbs')
             );

@@ -141,7 +141,7 @@ class ProfileController extends Controller
             }
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->save();
-            Activity::add('Подтвердили почту ' . $request->email);
+            Activity::add('Подтвердили почту: ' . $request->email, Activity::SUCCESS);
 
             return view('frontend.profile.verification_email.ok', compact('text'));
         }
