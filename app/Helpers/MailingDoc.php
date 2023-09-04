@@ -35,7 +35,7 @@ class MailingDoc
             ];
 
             // пользователи, которые хотят получать сообщения
-            $users = User::whereNotNull('email_verified_at')->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
+            $users = User::whereNotNull('email_verified_at')->wherenu->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
 
             $countMailing = 0;
             $tmpText = '';

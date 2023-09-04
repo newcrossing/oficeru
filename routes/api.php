@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/newuser/{email}/{from}', [\App\Http\Controllers\Api\NewUserController::class, 'create']);
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

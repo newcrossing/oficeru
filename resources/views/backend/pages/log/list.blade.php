@@ -17,7 +17,6 @@
 
 @section('content')
 
-
     <!-- Zero configuration table -->
     <section id="basic-datatable">
         <div class="row">
@@ -46,7 +45,8 @@
                                             <td>{{$log->id }}</td>
                                             <td>
                                                 @isset($log->user_login)
-                                                    <div class="badge badge-primary d-inline-flex align-items-center mr-1 mb-1">
+                                                    <div
+                                                        class="badge badge-primary d-inline-flex align-items-center mr-1 mb-1">
                                                         <i class="bx bx-user    font-size-small mr-25"></i>
                                                         <span>{{$log->user_login}}</span>
                                                     </div>
@@ -54,15 +54,16 @@
 
                                             </td>
                                             <td>
-                                                <div class="@if ($log->result == "error") text-danger @endif  ">{{$log->subject}}</div>
+                                                <div
+                                                    class="  text-{{ ($log->result!='info')?$log->result:''  }} ">{{$log->subject}}</div>
                                                 <small class="">{{$log->url}}</small>
                                                 <a href="#" class="font-small-1 basic-alert"
-                                                   dtext = "IP:{{$log->ip}}, Метод:{{$log->method}}, Браузер: {{$log->agent}}, {{$log->parametrs}}">параметры</a>
+                                                   dtext="IP:{{$log->ip}}, Метод:{{$log->method}}, Браузер: {{$log->agent}}, {{$log->parametrs}}">параметры</a>
                                             </td>
                                             <td class="font-small-1">{{$log->created_at->format('H:i  d.m.Y ')}}</td>
                                         </tr>
                                     @endforeach
-                                    </tfoot>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -85,7 +86,6 @@
     <script src="/adm/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
     <script src="/adm/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-
 
 @endsection
 {{-- page scripts --}}

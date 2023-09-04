@@ -14,10 +14,12 @@ class LogController extends Controller
     {
         $users = User::all()->sortBy('login');
         $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
+
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Действия пользователя"]
         ];
+
         return view('backend.pages.log.list', compact('logs', 'users', 'breadcrumbs'));
     }
 }

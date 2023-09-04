@@ -14,7 +14,7 @@ class DocumentController extends Controller
     {
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
-            ['name' => " Поиск"],
+            ['name' => " Документы "],
         ];
 
         $docs = Doc::where('pub', '1')->orderBy('id', 'desc')->paginate(15);
@@ -34,18 +34,18 @@ class DocumentController extends Controller
         $config = ['host' => '127.0.0.1', 'port' => 9308];
         $client = new \Manticoresearch\Client($config);
         $index = $client->index('indexname');
-       // $docs = $index->search($text)->get();
+        // $docs = $index->search($text)->get();
         $docs = $index->search($text)->highlight(
             ['name', 'text'],
-           // ['limit'=>200],
-           //['snippet_separator'=>'..'],
-         //   ['pre_tags'=>'before_','post_tags'=>'_after']
-            ['number_of_fragments'=>10],
-            ['limits_per_field'=>20]
+            // ['limit'=>200],
+            //['snippet_separator'=>'..'],
+            //   ['pre_tags'=>'before_','post_tags'=>'_after']
+            ['number_of_fragments' => 10],
+            ['limits_per_field' => 20]
         )->get();
         foreach ($docs as $doc) {
             $arrFind[] = $doc->getId();
-          //  dd($doc->getHighlight());;
+            //  dd($doc->getHighlight());;
         }
 
         //$docs = Doc::whereIn('id', $arrFind)->paginate(30);
