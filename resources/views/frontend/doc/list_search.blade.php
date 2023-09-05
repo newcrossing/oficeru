@@ -1,7 +1,7 @@
 @extends('frontend.layouts.index')
 
-@section('title', $breadcrumbs[1]['name'])
-@section('h1',$breadcrumbs[1]['name'])
+@section('title', "Результаты поиска: «".$breadcrumbs[2]['name']."»")
+@section('h1',"Поиск: «".$breadcrumbs[2]['name']."»")
 
 @section('vendor-styles')
 @endsection

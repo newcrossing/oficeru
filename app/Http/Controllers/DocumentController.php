@@ -27,6 +27,7 @@ class DocumentController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Главная"],
             ['name' => " Поиск"],
+            ['name' => $request->s],
         ];
 
         $arrFind = [];
