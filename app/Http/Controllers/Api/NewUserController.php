@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Activity;
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationEmail;
 use App\Models\Foto;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -39,6 +43,9 @@ class NewUserController extends Controller
             ]
         );
         $user->assignRole('user');
+
+        $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
+        Mail::to($data['email'])->queue(new VerificationEmail($data));
 
 
         Activity::add(sprintf('Регистрация на сайте (удаленная с сайта %s): %s', $from, $email), Activity::SUCCESS);
