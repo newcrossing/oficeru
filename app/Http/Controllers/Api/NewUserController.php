@@ -25,18 +25,16 @@ class NewUserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $err = implode(",", $validator->errors()->all());
             Log::error('Ошибка регистрации', $validator->errors()->all());
-
             Activity::add(sprintf('Ошибка регистрации (удаленная с сайта %s): %s ', $from, $email), Activity::ERROR);
-            abort(404);
+            return 0;
         }
 
 
         $user = User::create(
             [
                 'email' => $data['email'],
-                'password' => Hash::make(Str::random(40))
+                'password' => Hash::make(Str::random(10))
             ]
         );
         $user->assignRole('user');

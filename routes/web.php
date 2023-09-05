@@ -114,17 +114,50 @@ Auth::routes(
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/comeback', function () {
-    $users = User::where('email_verified_at', null)->get();
-    $countMailing = 0;
-    foreach ($users as $user) {
+Route::get('/test2', function () {
 
-        $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
-        //Mail::to($user)->queue(new ComebackMail($data));
-        $countMailing++;
 
-    }
-    dd($countMailing);
+    $t = file_get_contents('https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/');
+    echo $t;
+//    $curl = curl_init();
+//
+//    curl_setopt_array($curl, array(
+//        CURLOPT_URL => "https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/",// your preferred link
+//        CURLOPT_RETURNTRANSFER => true,
+//        CURLOPT_ENCODING => "",
+//        CURLOPT_TIMEOUT => 30000,
+//        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//        CURLOPT_CUSTOMREQUEST => "GET",
+//        CURLOPT_HTTPHEADER => array(
+//            // Set Here Your Requesred Headers
+//            'Content-Type: application/json',
+//        ),
+//    ));
+//    $response = curl_exec($curl);
+//
+//    echo $response;
+
+
+    //$is_ok = http_response('https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/');
+
+//    $ch = curl_init('https://oficeru.ru/api/newuser/newcrossing144511@gmail.com/fizo2023/');
+//
+//    $html = curl_exec($ch);
+//    curl_close($ch);
+//
+//    echo $html;
+
+
+//    $users = User::where('email_verified_at', null)->get();
+//    $countMailing = 0;
+//    foreach ($users as $user) {
+//
+//        $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
+//        //Mail::to($user)->queue(new ComebackMail($data));
+//        $countMailing++;
+//
+//    }
+//    dd($countMailing);
 
 
     //$countMailing = $countMailing + 1;
