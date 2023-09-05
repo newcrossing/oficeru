@@ -35,8 +35,8 @@ class Kernel extends ConsoleKernel
         // Щупается кроном каждую минуту. Выполняется по своему расписанию
         $schedule->call(function () {
             // документы для рассылки
-            if (MailingDoc::send()) {
-                Activity::add('Рассылка документов успешна', Activity::SUCCESS);
+            if ($num = MailingDoc::send()) {
+                Activity::add(sprintf('Рассылка документов успешна. Отправлено %s писем.', $num), Activity::SUCCESS);
             } else {
                 Activity::add('Рассылка документов пустая ');
             }

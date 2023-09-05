@@ -75,7 +75,7 @@
     <!-- Widgets Statistics start -->
     <section id="dashboard-ecommerce">
         <div class="row">
-            <div class="col-sm-3 col-12 dashboard-users-success">
+            <div class="col-sm-2 col-12 dashboard-users-success">
                 <div class="card text-center">
                     <div class="card-content">
                         <div class="card-body py-1">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-12 dashboard-users-danger">
+            <div class="col-sm-2 col-12 dashboard-users-danger">
                 <div class="card text-center">
                     <div class="card-content">
                         <div class="card-body py-1">
@@ -101,7 +101,51 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-sm-2 col-12 dashboard-users-danger">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                <i class="bx bx-error-circle font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">
+                                <a href="/admin/doc"> Документы <br>всего</a>
+                            </div>
+                            <h3 class="mb-0">{{$docs['all']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-12 dashboard-users-danger">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                <i class="bx bx-error-circle font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">
+                                <a href="/admin/doc"> Документы<br> опубликованы</a>
+                            </div>
+                            <h3 class="mb-0">{{$docs['pub']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-12 dashboard-users-danger">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                <i class="bx bx-error-circle font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">
+                                <a href="/admin/tag"> Теги</a>
+                            </div>
+                            <h3 class="mb-0">{{$tags['pub']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Widgets Statistics End -->
