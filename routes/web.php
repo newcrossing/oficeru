@@ -117,7 +117,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/test2', function () {
 
 
-    $t = file_get_contents('https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/');
+    $t = file_get_contents('https://oficeru.ru/api/newuser/newcrossing1412224511@gmail.com/fizo2023/');
     echo $t;
 //    $curl = curl_init();
 //
