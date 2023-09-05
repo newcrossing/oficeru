@@ -54,7 +54,7 @@
                                             @elseif($doc->date_vst->format('Y-m-d') > date('Y-m-d'))
                                                 <sup><span class="badge bg-info">Вступает в силу {{\Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY')}} г.</span></sup>
                                             @elseif( !empty($doc->date_end_vst) && $doc->date_end_vst->format('Y-m-d') <= date('Y-m-d') )
-                                                <span class="badge bg-danger">Утратил силу</span>
+                                                <sup> <span class="badge bg-danger">Утратил силу</span></sup>
                                             @endif
                                         </h3>
                                         @if(!empty($doc->short_name))

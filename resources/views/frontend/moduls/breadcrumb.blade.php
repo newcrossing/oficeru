@@ -15,8 +15,8 @@
                         <ol class="breadcrumb breadcrumb-light mb-0">
                             @foreach ($breadcrumbs as $breadcrumb)
                                 @if(isset($breadcrumb['link']))
-                                    <li class="breadcrumb-item">
-                                        <a href="{{asset($breadcrumb['link'])}}"> {{$breadcrumb['name']}} </a>
+                                    <li class="breadcrumb-item ">
+                                        <a href="{{asset($breadcrumb['link'])}}" class="text-light "> <u>{{$breadcrumb['name']}}</u> </a>
                                     </li>
                                 @else
                                     <li class="breadcrumb-item active"

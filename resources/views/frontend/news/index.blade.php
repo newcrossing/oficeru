@@ -26,12 +26,23 @@
             </div>
             <!-- End Row -->
             <p>{!! Str::replace('<hr />', ' ', $post->text) !!}</p>
+            @if($post->tags->count())
+                <!-- Badges -->
+                <div class="mt-0">
+                    @foreach ($post->tags as $tag)
+                        <a class="btn btn-soft-secondary btn-xs m-1"
+                           href="/tag/{{$tag->slug}}">{{$tag->name}}</a>
+                    @endforeach
+                </div>
+                <!-- End Badges -->
+            @endif
         </div>
+
 
         <div class="w-lg-65 mx-lg-auto">
             <!-- Card -->
             <div class="card bg-dark text-center my-4"
-                 style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+                 style="background-image: url('/assets/svg/components/wave-pattern-light.svg');">
                 <div class="card-body">
                     <h4 class="text-white mb-4">Хотите подписаться на свежие статьи?</h4>
 
@@ -55,16 +66,7 @@
             </div>
             <!-- End Card -->
 
-            @if($post->tags->count())
-                <!-- Badges -->
-                <div class="mt-0">
-                    @foreach ($post->tags as $tag)
-                        <a class="btn btn-soft-secondary btn-xs m-1"
-                           href="/tag/{{$tag->slug}}">{{$tag->name}}</a>
-                    @endforeach
-                </div>
-                <!-- End Badges -->
-            @endif
+
             <!-- End Row -->
         </div>
     </div>

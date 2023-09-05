@@ -65,8 +65,8 @@
                     <!-- End Badges -->
                 @endif
 
-                <div class="card bg-dark text-center my-4"
-                     style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+                <div class="card bg-dark text-center my-10"
+                     style="background-image: url('/assets/svg/components/wave-pattern-light.svg');">
                     <div class="card-body">
                         <h4 class="text-white mb-4">Хотите подписаться на свежие документы?</h4>
 
