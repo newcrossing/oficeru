@@ -25,12 +25,9 @@ class NewUserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            //Log::error('Ошибка регистрации', $validator->errors()->all());
+            Log::error('Ошибка регистрации', $validator->errors()->all());
+            Activity::add(sprintf('Ошибка регистрации (с сайта %s): %s ', $from, $email), Activity::ERROR);
 
-
-            Activity::add(sprintf('Ошибка регистрации (удаленная с сайта %s): %s ', $from, $email), Activity::ERROR);
-            //abort(404);
-            // return err;
             return response()->json(array('success' => false));
         }
 
