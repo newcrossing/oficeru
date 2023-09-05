@@ -31,10 +31,8 @@ class NewUserController extends Controller
         if ($validator->fails()) {
             Log::error('Ошибка регистрации', $validator->errors()->all());
             Activity::add(sprintf('Ошибка регистрации (с сайта %s): %s ', $from, $email), Activity::ERROR);
-
             return response()->json(array('success' => false));
         }
-
 
         $user = User::create(
             [
@@ -44,13 +42,13 @@ class NewUserController extends Controller
         );
         $user->assignRole('user');
 
+        // отправка подтверждения
         $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
         Mail::to($data['email'])->queue(new VerificationEmail($data));
 
+        Activity::add(sprintf('Регистрация на сайте (с сайта %s): %s', $from, $email), Activity::SUCCESS);
 
-        Activity::add(sprintf('Регистрация на сайте (удаленная с сайта %s): %s', $from, $email), Activity::SUCCESS);
-
-        return $email;
+        return response()->json(array('success' => true));
 
     }
 }
