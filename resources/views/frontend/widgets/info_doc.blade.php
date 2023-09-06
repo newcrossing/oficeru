@@ -1,6 +1,7 @@
 
 <aside class="widget widget-categories">
-    <a class="button orange " href="/pdf/{{$doc->id}}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Скачать (.pdf)</a>
+    <a class="button orange " href="/pdf/{{$doc->id}}" target="_blank"><i class="fa fa-file-pdf-o"
+                                                                          aria-hidden="true"></i> Скачать (.pdf)</a>
 </aside>
 
 <aside class="widget widget-categories">

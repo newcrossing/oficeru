@@ -118,60 +118,8 @@ Auth::routes(
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/test2', function () {
-
-
-    $t = file_get_contents('https://oficeru.ru/api/newuser/newcrossing1412224511@gmail.com/fizo2023/');
-    echo $t;
-//    $curl = curl_init();
-//
-//    curl_setopt_array($curl, array(
-//        CURLOPT_URL => "https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/",// your preferred link
-//        CURLOPT_RETURNTRANSFER => true,
-//        CURLOPT_ENCODING => "",
-//        CURLOPT_TIMEOUT => 30000,
-//        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//        CURLOPT_CUSTOMREQUEST => "GET",
-//        CURLOPT_HTTPHEADER => array(
-//            // Set Here Your Requesred Headers
-//            'Content-Type: application/json',
-//        ),
-//    ));
-//    $response = curl_exec($curl);
-//
-//    echo $response;
-
-
-    //$is_ok = http_response('https://oficeru.ru/api/newuser/newcrossing14124511@gmail.com/fizo2023/');
-
-//    $ch = curl_init('https://oficeru.ru/api/newuser/newcrossing144511@gmail.com/fizo2023/');
-//
-//    $html = curl_exec($ch);
-//    curl_close($ch);
-//
-//    echo $html;
-
-
-//    $users = User::where('email_verified_at', null)->get();
-//    $countMailing = 0;
-//    foreach ($users as $user) {
-//
-//        $data['link'] = URL::signedRoute('verification_email', ['email' => $user->email]);
-//        //Mail::to($user)->queue(new ComebackMail($data));
-//        $countMailing++;
-//
-//    }
-//    dd($countMailing);
-
-
-    //$countMailing = $countMailing + 1;
-
-//    $users = User::where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
-//    dd($users);
-//    if ($i = MailingDoc::send()) {
-//        dd($i);
-//    } else {
-//        dd($i);
-//    }
+Route::get('/test', function () {
+    //print        \Carbon\Carbon::parse('2023-09-05')->isoFormat('D MMMM YYYY');
+    print        \Carbon\Carbon::parse('2022-08-23')->diffForHumans();
 });
 
