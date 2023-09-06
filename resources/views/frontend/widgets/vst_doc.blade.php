@@ -1,6 +1,6 @@
 <div class="mb-7">
     <div class="mb-3">
-        <h3>Вступили в силу</h3>
+        <h3>Вступают в силу</h3>
     </div>
 
     <div class="d-grid gap-2">

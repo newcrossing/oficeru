@@ -10,13 +10,25 @@
                 <div class="d-flex align-items-center">
 
                     <div class="flex-grow-1 ">
-                        <p class="text-inherit mb-0"><small>{{$doc->getShotName()}}</small></p>
-                        @if($doc->date_pub->format('Y-m-d') == date('Y-m-d'))
-                            <span class="mark green" title="Опубликован сегодня">Сегодня</span>
-                        @endif
+                        <p class="text-inherit mb-0"><small>{{$doc->getShotName()}}</small>
+                            @if($doc->date_pub->format('Y-m-d') == date('Y-m-d'))
+                                <sup>
+                                    <span class="badge bg-success" title="Опубликован сегодня">
+                                        Сегодня
+                                    </span>
+                                </sup>
+                            @else
+                                <sup>
+                                    <span class="badge bg-info">
+                                        {{\Carbon\Carbon::parse($doc->date_pub)->diffForHumans()}}
+                                    </span>
+                                </sup>
+                            @endif
+                        </p>
                     </div>
                 </div>
             </a>
+            <p class="text-inherit mb-0" style="font-size: 12px"><small>{!! $doc->short_name !!}</small></p>
             <!-- End Card -->
 
         @endforeach

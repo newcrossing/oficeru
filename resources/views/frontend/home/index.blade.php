@@ -193,7 +193,21 @@
             @foreach ($freshPubDoc as $doc)
                 <div class="d-flex pe-md-5">
                     <div class="flex-grow-1 ms-3">
-                        <h5>{{$doc->getShotName()}}</h5>
+                        <h5>{{$doc->getShotName()}}
+                            @if($doc->date_pub->format('Y-m-d') == date('Y-m-d'))
+                                <sup>
+                                    <span class="badge bg-success" title="Опубликован сегодня">
+                                        Сегодня
+                                    </span>
+                                </sup>
+                            @else
+                                <sup>
+                                    <span class="badge bg-info">
+                                        {{\Carbon\Carbon::parse($doc->date_pub)->diffForHumans()}}
+                                    </span>
+                                </sup>
+                            @endif
+                        </h5>
                         <p class="justify-content-lg-center">{{ $doc->short_name }}  </p>
                     </div>
                 </div>
@@ -207,7 +221,21 @@
             @foreach ($freshVstDoc as $doc)
                 <div class="d-flex pe-md-5">
                     <div class="flex-grow-1 ms-3">
-                        <h5>{{$doc->getShotName()}}</h5>
+                        <h5>{{$doc->getShotName()}}
+                            @if($doc->date_vst->format('Y-m-d') == date('Y-m-d'))
+                                <sup>
+                                    <span class="badge bg-success" title="Сегодня вступил в силу">
+                                        Сегодня
+                                    </span>
+                                </sup>
+                            @else
+                                <sup>
+                                    <span class="badge bg-info">
+                                        {{\Carbon\Carbon::parse($doc->date_vst)->diffForHumans()}}
+                                    </span>
+                                </sup>
+                            @endif
+                        </h5>
                         <p class="justify-content-lg-center">{{ $doc->short_name }}  </p>
                     </div>
                 </div>
