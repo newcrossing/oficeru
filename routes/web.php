@@ -60,6 +60,10 @@ Route::get('/pass/reset', [ProfileController::class, 'password_reset'])->name('p
 Route::post('/pass/reset', [ProfileController::class, 'password_request'])->name('pass.request');
 Route::post('/pass/update', [ProfileController::class, 'password_update'])->name('pass.update');
 
+Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
+Route::get('/contact/ok', [\App\Http\Controllers\ContactController::class, 'ok'])->name('contact.ok');
+
 Route::get('/news', [NewsController::class, 'listing'])->name('news.list');
 Route::get('/news/{id}', [NewsController::class, 'single'])->where('id', '[0-9]+')->name('news.single');
 

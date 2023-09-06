@@ -12,7 +12,7 @@
         <div class="row">
             <div
                 class="col-lg-5 col-xl-4 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-dark"
-                style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+                style="background-image: url('/assets/svg/components/wave-pattern-light.svg');">
                 <div class="flex-grow-1 p-5">
                     <!-- Blockquote -->
                     <figure class="text-center">

@@ -12,8 +12,31 @@
 
 
 @section('content')
+
     <!-- Hero -->
     <div class="container content-space-t-1 content-space-t-lg-1 content-space-b-1 content-space-b-lg-1">
+        <!-- Search -->
+        <div class="mb-4">
+            <form method="get" action="/s/">
+                <!-- Input Card -->
+                <div class="input-card border">
+                    <div class="input-card-form">
+                        <div class="input-group input-group-merge">
+          <span class="input-group-prepend input-group-text">
+            <i class="bi-search"></i>
+          </span>
+                            <input type="text" name="s" class="form-control" id="searchAppsForm"
+                                   placeholder="Что ищем?" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi-arrow-right"></i>
+                    </button>
+                </div>
+                <!-- End Input Card -->
+            </form>
+        </div>
+        <!-- End Search -->
         <div class="row justify-content-lg-between align-items-lg-center mb-10">
             <div class="col-md-6 col-lg-5">
                 <!-- Heading -->

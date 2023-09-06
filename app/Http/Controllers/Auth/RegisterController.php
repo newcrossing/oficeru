@@ -110,8 +110,8 @@ class RegisterController extends Controller
         $user->assignRole('user');
         Activity::add('Регистрация на сайте ' . $data['email']);
 
-//        $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
-//        Mail::to($data['email'])->queue(new VerificationEmail($data));
+        $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
+        Mail::to($data['email'])->queue(new VerificationEmail($data));
 
         return $user;
          //return redirect('/');

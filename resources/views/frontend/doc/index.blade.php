@@ -48,7 +48,7 @@
                     </div>
                     <!-- End Col -->
                 </div>
-                <div class="d-grid document" style="display:  block!important;">
+                <div class="d-grid document mb-10" style="display:  block!important;">
                     {!! $curText   !!}
                 </div>
                 <!-- Sticky Block End Point -->

@@ -7,7 +7,7 @@
         <nav class="js-mega-menu navbar-nav-wrap">
             <!-- Default Logo -->
             <a class="navbar-brand" href="/" aria-label="Front">
-                <img class="navbar-brand-logo" src="/assets/img/logo.png" alt="Logo">
+                <img class="navbar-brand-logo" src="/assets/img/logo.png" alt="офицеру.ру">
             </a>
             <!-- End Default Logo -->
 
@@ -134,44 +134,21 @@
                             <i class="bi-files-alt dropdown-item-icon"></i> Документы
                         </a>
                     </li>
-
-                    <!-- Courses -->
-                    <li class="hs-has-sub-menu nav-item">
-                        <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#"
-                           role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                class="bi-journals me-2"></i> Материалы</a>
-
-                        <!-- Mega Menu -->
-                        <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu"
-                             style="min-width: 17rem;">
-                            <!-- Development -->
-
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/post">
-                                <i class="bi-file-text dropdown-item-icon"></i> Статьи
-                            </a>
-
-                            <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item " href="/news">
-                                <i class="bi-exclamation dropdown-item-icon"></i> Новости
-                            </a>
-
-                            <!-- End Development -->
-                            <!-- End Music -->
-                        </div>
-                        <!-- End Mega Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link " href="/post">
+                            <i class="bi-file-text dropdown-item-icon"></i> Статьи
+                        </a>
                     </li>
-                    <!-- End Courses -->
-
-                    <!-- Search Form -->
-                    <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
-                        <form class="input-group input-group-merge" method="get" action="/s/">
-                            <div class="input-group-prepend input-group-text">
-                                <i class="bi-search"></i>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Что ищем?"
-                                   name="s">
-                        </form>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/news">
+                            <i class="bi bi-newspaper dropdown-item-icon"></i> Новости
+                        </a>
                     </li>
-                    <!-- End Search Form -->
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{route('contact.index')}}">
+                            <i class="bi bi-send-fill dropdown-item-icon"></i> Контакт
+                        </a>
+                    </li>
 
                     <!-- Dropdown -->
                     <li class="hs-has-sub-menu nav-item">
