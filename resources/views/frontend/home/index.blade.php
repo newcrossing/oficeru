@@ -188,12 +188,12 @@
     <div class="row justify-content-lg-center mt-3">
 
         <div class="col-md-6 col-lg-5 mb-3 mb-md-5 mb-lg-7">
-            <h2 class="text-center mb-5">Свежие документы</h2>
+            <h2 class="text-center mb-5">Свежие публикации</h2>
             <!-- Icon Blocks -->
             @foreach ($freshPubDoc as $doc)
                 <div class="d-flex pe-md-5">
                     <div class="flex-grow-1 ms-3">
-                        <h5>{{$doc->getShotName()}}
+                        <h5><a href="{{route('document.single',$doc->id)}}" class="h5">{{$doc->getShotName()}}</a>
                             @if($doc->date_pub->format('Y-m-d') == date('Y-m-d'))
                                 <sup>
                                     <span class="badge bg-success" title="Опубликован сегодня">
@@ -221,7 +221,7 @@
             @foreach ($freshVstDoc as $doc)
                 <div class="d-flex pe-md-5">
                     <div class="flex-grow-1 ms-3">
-                        <h5>{{$doc->getShotName()}}
+                        <h5><a href="{{route('document.single',$doc->id)}}" class="h5">{{$doc->getShotName()}}</a>
                             @if($doc->date_vst->format('Y-m-d') == date('Y-m-d'))
                                 <sup>
                                     <span class="badge bg-success" title="Сегодня вступил в силу">

@@ -43,7 +43,8 @@
                                         <div class="card-footer">
                                             <div class="d-flex">
                                                 <div class="flex-grow-1 ">
-                                                    <p class="card-text small">{{ \Carbon\Carbon::parse($post->date_public)->isoFormat('D MMMM Y', 'Do MMMM')}}</p>
+                                                    <p class="card-text small mb-2">{{ \Carbon\Carbon::parse($post->date_public)->isoFormat('D MMMM Y', 'Do MMMM')}}</p>
+                                                    {{--                                                    <p class="card-text small mb-2">{{ \Carbon\Carbon::parse($post->date_public)->diffForHumans()}}</p>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -92,8 +93,6 @@
 
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
-
-
 
 @endsection
 

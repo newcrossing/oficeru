@@ -7,7 +7,7 @@
     <meta name="yandex-verification" content="83051dff11b82da2"/>
 
     <!-- Title -->
-    <title>@yield('title','Офицеру.ру')</title>
+    <title>@yield('title','Офицеру.ру - Правовая поддержка военнослужащих')</title>
     <meta name="description" content="@yield('description') ">
 
     <!-- Favicon -->

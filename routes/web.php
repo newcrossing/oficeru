@@ -120,6 +120,10 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/test', function () {
     //print        \Carbon\Carbon::parse('2023-09-05')->isoFormat('D MMMM YYYY');
-    print        \Carbon\Carbon::parse('2022-08-23')->diffForHumans();
+   // print        \Carbon\Carbon::parse('2023-09-06')->diffForHumans(['options' => Carbon::JUST_NOW]);
+    print        \Carbon\Carbon::parse('2023-09-06')->diffForHumans([
+        'parts' => 0,
+        'join' => ', '
+    ]);
 });
 
