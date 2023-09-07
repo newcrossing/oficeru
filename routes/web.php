@@ -120,10 +120,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/test', function () {
     //print        \Carbon\Carbon::parse('2023-09-05')->isoFormat('D MMMM YYYY');
-   // print        \Carbon\Carbon::parse('2023-09-06')->diffForHumans(['options' => Carbon::JUST_NOW]);
-    print        \Carbon\Carbon::parse('2023-09-06')->diffForHumans([
-        'parts' => 0,
-        'join' => ', '
-    ]);
+    // print        \Carbon\Carbon::parse('2023-09-06')->diffForHumans(['options' => Carbon::JUST_NOW]);
+    $users = User::whereNotNull('email_verified_at')->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
+    print $users->count();
 });
 

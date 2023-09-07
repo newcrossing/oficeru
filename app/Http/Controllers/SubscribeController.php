@@ -99,7 +99,7 @@ class SubscribeController extends Controller
             $user->notify_vst = 0;
             $user->notify_edit = 0;
             $user->save();
-            Activity::add('Отписался от рассылки: ' . $request->email, Activity::WARNING);
+            Activity::add('Отписался от рассылки: ' . $user->email, Activity::WARNING);
             return view('front.subscribe.unsubscribe-ok',
                 compact('breadcrumbs')
             );
