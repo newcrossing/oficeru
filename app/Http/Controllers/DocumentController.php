@@ -95,7 +95,7 @@ class DocumentController extends Controller
             // если нет изменений
             if (empty($doc->date_pod)) {
                 $messageTop = "Документ не подписан";
-            } elseif ($doc->date_pod > date('Y-m-d') || empty($doc->date_pub)) {
+            } elseif ($doc->date_pub > date('Y-m-d') || empty($doc->date_pub)) {
                 $messageTop = "Документ не опубликован";
             } elseif (empty($doc->date_vst)) {
                 $messageTop = "Документ не вступил в силу";
