@@ -95,11 +95,11 @@ class DocumentController extends Controller
             // если нет изменений
             if (empty($doc->date_pod)) {
                 $messageTop = "Документ не подписан";
-            } elseif ($doc->date_pub > date('Y-m-d') || empty($doc->date_pub)) {
-                $messageTop = "Документ не опубликован";
+            } elseif ($doc->date_pub->format('Y-m-d') > date('Y-m-d') || empty($doc->date_pub)) {
+                $messageTop = "Документ не опубликован".$doc->date_pub;
             } elseif (empty($doc->date_vst)) {
                 $messageTop = "Документ не вступил в силу";
-            } elseif ($doc->date_vst > date('Y-m-d')) {
+            } elseif ($doc->date_vst->format('Y-m-d') > date('Y-m-d')) {
                 $messageTop = sprintf('Документ вступает в силу %s г.',
                     \Carbon\Carbon::parse($doc->date_vst)->isoFormat('Do MMMM YYYY'));
             } elseif (strtotime($doc->date_end_vst) <= strtotime(date('Y-m-d')) && $doc->date_end_vst) {
