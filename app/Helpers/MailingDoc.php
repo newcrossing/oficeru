@@ -13,7 +13,6 @@ use Request;
 
 
 class MailingDoc
-
 {
     /**
      * Рассылка новых документов
@@ -35,7 +34,7 @@ class MailingDoc
             ];
 
             // пользователи, которые хотят получать сообщения
-           // $users = User::whereNotNull('email_verified_at')->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
+            // $users = User::whereNotNull('email_verified_at')->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
 
             $users = User::whereNotNull('email_verified_at')
                 ->where(function ($query) {
@@ -78,8 +77,8 @@ class MailingDoc
                     $data['docs'] .= $tmpTextVst;
                 }
 
-                // если есть материал для отправки пользователю
-                if ($data['docs']) {
+                // если есть материал для отправки пользователю и продакшн
+                if ($data['docs'] && App::environment('production')) {
                     $data['unsubscribe'] = URL::signedRoute('unsubscribe', ['user' => $user->id]);
                     Mail::to($user)->queue(new NewDocMail($data));
                     $countMailing = $countMailing + 1;
