@@ -31,12 +31,6 @@
             "icon": "bxs-file"
         },
         {
-            "url": "admin/doc/create",
-            "name": "Добавить",
-            "i18n": "Invoice",
-            "icon": "bxs-file-plus"
-        },
-        {
             "navheader": "Статьи / Новости"
         },
         {
@@ -44,12 +38,6 @@
             "name": "Список",
             "i18n": "Invoice",
             "icon": "bxs-book-content"
-        },
-        {
-            "url": "admin/post/create",
-            "name": "Добавить",
-            "i18n": "Invoice",
-            "icon": "bx-bookmark-plus"
         },
         {
             "navheader": "Прочее"
