@@ -37,7 +37,10 @@ class NewUserController extends Controller
         $user = User::create(
             [
                 'email' => $data['email'],
-                'password' => Hash::make(Str::random(10))
+                'password' => Hash::make(Str::random(10)),
+                'notify_vst' => 1,
+                'notify_edit' => 1,
+                'notify_doc' => 1,
             ]
         );
         $user->assignRole('user');

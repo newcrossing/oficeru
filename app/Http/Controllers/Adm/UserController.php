@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $users = User::all();
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Пользователи"]
         ];
         return view('backend.pages.user.index', compact('users', 'breadcrumbs'));
@@ -100,7 +100,7 @@ class UserController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/user", 'name' => "Пользователи"],
             ['name' => " Новый пользователь"]
         ];
@@ -130,7 +130,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/user", 'name' => "Пользователи"],
             ['name' => " Изменить пользователь"]
         ];

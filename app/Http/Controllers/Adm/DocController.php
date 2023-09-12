@@ -26,7 +26,7 @@ class DocController extends Controller
         $docs = Doc::all()->sortBy('id');;
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Документы"]
         ];
         return view('backend.pages.doc.index', compact('docs', 'breadcrumbs'));
@@ -40,7 +40,7 @@ class DocController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/doc", 'name' => "Документы"],
             ['name' => " Создать"]
         ];
@@ -115,7 +115,7 @@ class DocController extends Controller
     public function edit(Document $doc, Request $request)
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/doc", 'name' => "Документы"],
             ['name' => " Редактирование"]
         ];
@@ -261,7 +261,7 @@ class DocController extends Controller
     {
         $doc = Doc::find($id);
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/doc", 'name' => "Документы"],
             ['name' => " Редактирование"]
         ];

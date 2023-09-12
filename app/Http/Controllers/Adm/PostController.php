@@ -19,7 +19,7 @@ class PostController extends Controller
         $posts = Post::all()->sortBy('id');;
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Статьи "]
         ];
         return view('backend.pages.post.index2', compact('posts', 'breadcrumbs'));
@@ -33,7 +33,7 @@ class PostController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/post", 'name' => "Статьи"],
             ['name' => " Создать"]
         ];
@@ -103,7 +103,7 @@ class PostController extends Controller
     public function edit(Post $post, Request $request)
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/post", 'name' => "Статьи"],
             ['name' => " Редактирование"]
         ];

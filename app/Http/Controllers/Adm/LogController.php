@@ -16,7 +16,7 @@ class LogController extends Controller
         $logs = Activity::limit(1000)->orderByDesc('created_at')->get();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Действия пользователя"]
         ];
 

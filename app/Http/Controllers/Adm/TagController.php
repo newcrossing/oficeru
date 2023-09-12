@@ -21,7 +21,7 @@ class TagController extends Controller
         $tags = Tag::all()->sortBy('id');
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Теги "]
         ];
         return view('backend.pages.tag.index', compact('tags', 'breadcrumbs'));
@@ -35,7 +35,7 @@ class TagController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/tag", 'name' => "Теги"],
             ['name' => " Новый "]
         ];
@@ -107,7 +107,7 @@ class TagController extends Controller
     {
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/tag", 'name' => "Теги"],
             ['name' => " Редактирование"]
         ];

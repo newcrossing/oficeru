@@ -17,7 +17,7 @@ class ContentController extends Controller
     {
         $contents = Content::all();
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['name' => " Контент"]
         ];
         return view('backend.pages.content.index', compact('contents', 'breadcrumbs'));
@@ -64,7 +64,7 @@ class ContentController extends Controller
     public function edit(Content $content)
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Главная"],
+            ['link' => "/admin/", 'name' => "Главная"],
             ['link' => "/admin/content", 'name' => "Контент"],
             ['name' => " Изменить"]
         ];
