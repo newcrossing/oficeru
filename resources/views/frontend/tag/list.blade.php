@@ -1,13 +1,7 @@
 @extends('frontend.layouts.index')
 
-@section('title','Теги')
-@section('h1',$tag->name)
-
-@if(Request::get('page'))
-    @section('canonical')
-        <link rel='canonical' href='https://oficeru.ru/news'/>
-    @endsection
-@endif
+@section('title','Тег: '.$tag->name)
+@section('h1','Тег: '.$tag->name)
 
 @section('vendor-styles')
 @endsection
@@ -98,7 +92,8 @@
                                                 @elseif(empty($content->date_vst))
                                                     <sup><span class="badge bg-info">Не вступил в силу</span></sup>
                                                 @elseif($content->date_vst->format('Y-m-d') == date('Y-m-d'))
-                                                    <sup><span class="badge bg-success">Сегодня вступил в силу</span></sup>
+                                                    <sup><span
+                                                            class="badge bg-success">Сегодня вступил в силу</span></sup>
                                                 @elseif($content->date_vst->format('Y-m-d') > date('Y-m-d'))
                                                     <sup><span class="badge bg-info">Вступает в силу {{\Carbon\Carbon::parse($content->date_vst)->isoFormat('Do MMMM YYYY')}} г.</span></sup>
                                                 @elseif( !empty($content->date_end_vst) && $content->date_end_vst->format('Y-m-d') <= date('Y-m-d') )
@@ -137,8 +132,6 @@
                 <div id="stickyBlockEndPoint"></div>
 
 
-
-
             </div>
             <!-- End Col -->
 
@@ -153,13 +146,6 @@
 
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
-
-
-
-
-
-
-
 
 @endsection
 
