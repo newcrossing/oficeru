@@ -25,7 +25,7 @@
                 <!-- End Col -->
             </div>
             <!-- End Row -->
-            <p>{!! Str::replace('<hr />', ' ', $post->text) !!}</p>
+            <div style="text-align: justify">{!! Str::replace('<hr />', ' ', $post->text) !!}</div>
             @if($post->tags->count())
                 <!-- Badges -->
                 <div class="mt-0">
