@@ -1,6 +1,6 @@
 @extends('frontend.layouts.index')
 
-@section('title', 'Главная')
+@section('title', 'Офицеру.ру - Правовая поддержка военнослужащих')
 @section('h1','')
 
 @section('vendor-styles')
@@ -167,14 +167,15 @@
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
             @foreach ($news as $new)
-                <div class="col mb-5">
+                <div class="col mb-5 ">
                     <!-- Card -->
-                    <div class="card ">
+                    <div class="card h-100">
                         <div class="card-body">
                             <div class="mb-3">
                                 <a class="card-link" href="/news/">Новости</a>
                             </div>
-                            <p class="card-text">{{ $new->name }}</p>
+                            <p class="card-text small mb-2">{{ \Carbon\Carbon::parse($new->date_public)->isoFormat('D MMMM Y', 'Do MMMM')}}</p>
+                            <p class="card-text">{{Str::limit($new->name,150)  }}</p>
                         </div>
 
                         <div class="card-footer pt-0">

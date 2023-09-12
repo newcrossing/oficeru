@@ -1,7 +1,7 @@
 @extends('frontend.layouts.index')
 
 @section('title',$doc->getShotName())
-@section('description',Str::ucfirst(Str::lower(str_replace("\r\n","",$doc->name))))
+@section('description',Str::ucfirst(Str::lower(str_replace("\r\n","",$doc->short_name))))
 
 @section('page-styles')
     <link rel="stylesheet" href="/assets/css/my.css">
@@ -42,7 +42,8 @@
                     <div class="col-sm-5">
                         <div class="d-flex justify-content-sm-end align-items-center">
                             <div class="d-flex gap-2">
-                                <a class="text-secondary"  href="/pdf/{{$doc->id}}">Скачать <i class="bi bi-file-earmark-pdf-fill"></i></a>
+                                <a class="text-secondary" href="/pdf/{{$doc->id}}">Скачать <i
+                                        class="bi bi-file-earmark-pdf-fill"></i></a>
                             </div>
                         </div>
                     </div>
