@@ -1,7 +1,7 @@
 @extends('frontend.layouts.index')
 @section('title',$post->name)
 
-@section('description',Str::ucfirst(Str::lower(str_replace("\r\n","",$post->meta_description))))
+@section('description',Str::ucfirst(Str::lower(str_replace("\r\n"," ",$post->meta_description))))
 
 @section('content')
     <!-- Article Description -->

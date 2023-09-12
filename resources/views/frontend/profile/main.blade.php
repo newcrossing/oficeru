@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="row mb-4">
                                     <label for="currentPasswordLabel2" class="col-sm-3 col-form-label form-label">
-                                       Повторите новый пароль
+                                        Повторите новый пароль
                                     </label>
 
                                     <div class="col-sm-9">
@@ -207,7 +207,7 @@
                             <!-- Footer -->
                             <div class="card-footer pt-0">
                                 <div class="d-flex justify-content-end gap-3">
-                                    <button type="submit" class="btn btn-success">Изменить </button>
+                                    <button type="submit" class="btn btn-success">Изменить</button>
                                 </div>
                             </div>
                             <!-- End Footer -->
