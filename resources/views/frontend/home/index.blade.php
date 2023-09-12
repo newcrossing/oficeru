@@ -66,6 +66,7 @@
     <!-- End Hero -->
     <!-- Hero -->
 
+
     <div class="container content-space-t-0 content-space-t-lg-0 content-space-b-2 position-relative zi-2">
         <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-3 mb-md-3">
             <h1>Сервисы</h1>
@@ -154,9 +155,48 @@
         </div>
         <!-- End Row -->
     </div>
-    <!-- End Hero -->
 
-    <!-- Icon Blocks -->
+    {{--    Новости--}}
+    <div class="container content-space-2 content-space-lg-1">
+        <!-- Heading -->
+        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+            <span class="text-cap">Не пропусти</span>
+            <h2>Новости</h2>
+        </div>
+        <!-- End Heading -->
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
+            @foreach ($news as $new)
+                <div class="col mb-5">
+                    <!-- Card -->
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <a class="card-link" href="/news/">Новости</a>
+                            </div>
+                            <p class="card-text">{{ $new->name }}</p>
+                        </div>
+
+                        <div class="card-footer pt-0">
+                            <a class="card-link" href="/news/{{$new->id}}">Читать <i
+                                    class="bi-chevron-right small ms-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <!-- End Col -->
+            @endforeach
+
+
+        </div>
+        <!-- End Row -->
+
+        <div class="text-center">
+            <a class="btn btn-outline-primary" href="/news">Все новости</a>
+        </div>
+    </div>
+
+
     <div class="container">
         <div class="border-bottom content-space-1 content-space-lg-1">
             <!-- Heading -->
@@ -184,7 +224,8 @@
             </div>
         </div>
     </div>
-    <!-- End Icon Blocks -->
+
+
     <div class="row justify-content-lg-center mt-3">
 
         <div class="col-md-6 col-lg-5 mb-3 mb-md-5 mb-lg-7">

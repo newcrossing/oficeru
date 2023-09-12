@@ -9,6 +9,7 @@ use App\Models\Slider;
 use App\Models\Social;
 use App\Models\Tag;
 use App\Helpers\Activity;
+use Carbon\Carbon;
 use QrCode;
 use Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,6 @@ class HomeController extends Controller
     }
 
 
-
     /**
      * Show the application dashboard.
      *
@@ -39,14 +39,29 @@ class HomeController extends Controller
 
 
         $countDoc = Document::all()->count();
-        $freshPubDoc = Document::whereNotNull('date_pub')->orderByDesc('date_pub')->limit(3)->get();
-        $freshVstDoc = Document::whereNotNull('date_vst')->orderByDesc('date_vst')->limit(3)->get();
+        $freshPubDoc = Document::whereNotNull('date_pub')
+            ->orderByDesc('date_pub')
+            ->limit(3)
+            ->get();
+
+        $news = Post::whereNotNull('date_public')
+            ->where('pub','1')
+            ->where('type','news')
+            ->orderByDesc('date_public')
+            ->limit(3)
+            ->get();
+
+        $freshVstDoc = Document::whereNotNull('date_vst')
+            ->where('date_vst', '>=', Carbon::now()->format('Y-m-d'))
+            ->orderBy('date_vst')
+            ->limit(3)
+            ->get();
         $inMainDoc = Document::where('in_main', '1')->orderByDesc('id')->limit(6)->get();
 
-        //  return view('front.home.index',compact('breadcrumbs','countDoc','freshPubDoc','freshVstDoc'));
         return view('frontend.home.index', compact('countDoc', 'freshPubDoc',
             'freshVstDoc',
-            'inMainDoc'
+            'inMainDoc',
+            'news'
         ));
 
     }
