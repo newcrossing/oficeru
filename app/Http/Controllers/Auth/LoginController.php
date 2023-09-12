@@ -49,7 +49,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // todoo реализовать проверку чекбоксов на сервере
+
         $credentials = $request->only('email', 'password');
 
 

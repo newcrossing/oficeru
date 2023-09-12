@@ -38,6 +38,7 @@ class MailingDoc
             // $users = User::whereNotNull('email_verified_at')->where('notify_doc', 1)->orWhere('notify_vst', 1)->get();
 
             $users = User::whereNotNull('email_verified_at')
+                ->whereNull('unsubscribe_at')
                 ->where(function ($query) {
                     $query->where('notify_doc', 1)
                         ->orWhere('notify_vst', 1);

@@ -1,42 +1,25 @@
-@extends('front.layouts.full')
+@extends('frontend.layouts.index')
+@section('title','')
 
-@section('title','Подписка')
-
-@section('vendor-styles')
-@endsection
-
-@section('page-styles')
-@endsection
-
-@section('widgets')
-
-@endsection
+@section('description','')
 
 @section('content')
-
-    <div class="rw-row subtle large ">
-        <div class="grid-container">
-            <div class="grid desk-6">
+    <!-- Article Description -->
+    <div class="container content-space-t-1  content-space-b-2">
+        <div class="w-lg-65 mx-lg-auto">
+            <div class="mb-4">
+                <h1 class="h2"></h1>
             </div>
-
-            <div class="grid desk-6">
-
-            </div>
-            <div class="clear"></div>
-            <div class="" style="text-align: center; margin-top: 20px">
-                <h2 class="text-primary">Вы отписались от уведомлений </h2>
-                <div class="clear"></div>
-            </div>
+            <h2 class="display-4 text-center">Вы отписались от всех <br><span
+                    class="text-primary text-highlight-warning">уведомлений  </span></h2>
+            <!-- End Row -->
         </div>
 
-    </div> <!-- .rw-row -->
+
+    </div>
+    <!-- End Article Description -->
 
 @endsection
 
-@section('vendor-scripts')
-    @parent
-@endsection
 
-@section('page-scripts')
-    @parent
-@endsection
+

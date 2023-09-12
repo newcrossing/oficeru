@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -85,9 +86,7 @@ class SubscribeController extends Controller
 
     public function unsubscribe(Request $request)
     {
-        $breadcrumbs = [
-            ['name' => "Главная"],
-        ];
+
 
         // проверка отписки
         if (!$request->hasValidSignature()) {
@@ -98,11 +97,10 @@ class SubscribeController extends Controller
             $user->notify_doc = 0;
             $user->notify_vst = 0;
             $user->notify_edit = 0;
+            $user->unsubscribe_at = Carbon::now();
             $user->save();
             Activity::add('Отписался от рассылки: ' . $user->email, Activity::WARNING);
-            return view('front.subscribe.unsubscribe-ok',
-                compact('breadcrumbs')
-            );
+            return view('frontend.subscribe.unsubscribe-ok');
         }
     }
 }

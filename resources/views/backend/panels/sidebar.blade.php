@@ -11,7 +11,7 @@
                             <img src="{{asset('adm/app-assets/images/logo/logo.png')}}" class="logo" alt="">
                         </div>
                         <h2 class="brand-text mb-0">
-                            {{ config('admin.templateTitle')?: 'Маша'  }}
+                            {{ config('admin.templateTitle')?: 'Офицеру.ру'  }}
                         </h2>
                     </a>
                 </li>
