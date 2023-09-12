@@ -26,6 +26,9 @@ class HomeController extends Controller
         $docs['pub'] = DB::table('documents')->where('pub', 1)->count();
         $docs['all'] = DB::table('documents')->count();
 
+        $posts = DB::table('posts')->where('type', 'post')->where('pub', '1')->count();
+        $news = DB::table('posts')->where('type', 'news')->where('pub', '1')->count();
+
         $job['jobs'] = DB::table('jobs')->count();
         $job['failed_jobs'] = DB::table('failed_jobs')->count();
 
@@ -38,6 +41,8 @@ class HomeController extends Controller
                 'user',
                 'job',
                 'docs',
+                'posts',
+                'news',
                 'tags',
                 'logs',
             )

@@ -14,64 +14,34 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/adm/app-assets/css/pages/widgets.css')}}">
 @endsection
 @section('content')
-    <!-- Widgets Statistics start -->
-    <section id="widgets-Statistics">
+    <section id="basic-button-icons">
         <div class="row">
-            <div class="col-12 mt-1 mb-2">
-                <h4>Пользователи </h4>
-                <hr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-4 col-md-4 col-sm-6">
-                <div class="card text-center">
+            <div class="col-12">
+                <div class="card">
                     <div class="card-content">
                         <div class="card-body">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-info mx-auto my-1">
-                                <i class="bx bx-user font-medium-5"></i>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Buttons with Icon -->
+                                    <a href="{{ route('doc.create') }}" class="btn  btn-outline-primary mr-1 mb-1"><i
+                                            class="bx bxs-plus-square"></i><span
+                                            class="align-middle ml-25">Документ</span></a>
+                                    <a href="{{ route('post.create') }}" class="btn  btn-outline-primary mr-1 mb-1"><i
+                                            class="bx bxs-plus-square"></i><span
+                                            class="align-middle ml-25">Статья / Новость</span></a>
+                                    <a href="{{ route('tag.create') }}" class="btn  btn-outline-primary mr-1 mb-1"><i
+                                            class="bx bxs-plus-square"></i><span
+                                            class="align-middle ml-25">Тег</span></a>
+                                </div>
                             </div>
-                            <p class="text-muted mb-0 line-ellipsis">
-                                <a href="{{route('user.index')}}"> Всего пользователей</a>
-                            </p>
-                            <h2 class="mb-0">
-                                {{$user['all']}}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4 col-md-4 col-sm-6">
-                <div class="card text-center">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto my-1">
-                                <i class="bx bx-user-check font-medium-5"></i>
-                            </div>
-                            <p class="text-muted mb-0 line-ellipsis">
-                                <a href="/admin/doc"> Активированные</a>
-                            </p>
-                            <h2 class="mb-0">{{$user['verif']}}</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-4 col-sm-6">
-                <div class="card text-center">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
-                                <i class="bx bx-user-minus font-medium-5"></i>
-                            </div>
-                            <p class="text-muted mb-0 line-ellipsis">Не активированные </p>
-                            <h2 class="mb-0">{{$user['noVerif']}}</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Widgets Statistics End -->
+
+
     <!-- Widgets Statistics start -->
     <section id="dashboard-ecommerce">
         <div class="row">
@@ -80,9 +50,24 @@
                     <div class="card-content">
                         <div class="card-body py-1">
                             <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
-                                <i class="bx bx-list-ul font-medium-5"></i>
+                                <i class="bx bx-user-check font-medium-5"></i>
                             </div>
-                            <div class="text-muted line-ellipsis">Очередь</div>
+                            <div class="text-muted line-ellipsis">
+                                <a href="{{ route('user.index') }}"> Активные</a>
+                            </div>
+                            <h3 class="mb-0">{{$user['verif']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-12 dashboard-users-success">
+                <div class="card text-center">
+                    <div class="card-content">
+                        <div class="card-body py-1">
+                            <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
+                                <i class="bx bxs-calendar-check font-medium-5"></i>
+                            </div>
+                            <div class="text-muted line-ellipsis">Задачи</div>
                             <h3 class="mb-0">{{$job['jobs']}}</h3>
                         </div>
                     </div>
@@ -93,7 +78,7 @@
                     <div class="card-content">
                         <div class="card-body py-1">
                             <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                <i class="bx bx-error-circle font-medium-5"></i>
+                                <i class="bx bxs-calendar-x font-medium-5"></i>
                             </div>
                             <div class="text-muted line-ellipsis">Неудачные задачи</div>
                             <h3 class="mb-0">{{$job['failed_jobs']}}</h3>
@@ -105,11 +90,11 @@
                 <div class="card text-center">
                     <div class="card-content">
                         <div class="card-body py-1">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                <i class="bx bx-error-circle font-medium-5"></i>
+                            <div class="badge-circle badge-circle-lg  mx-auto mb-50">
+                                <i class="bx bxs-file font-medium-5"></i>
                             </div>
                             <div class="text-muted line-ellipsis">
-                                <a href="/admin/doc"> Документы <br>всего</a>
+                                <a href="/admin/doc"> Документы</a>
                             </div>
                             <h3 class="mb-0">{{$docs['all']}}</h3>
                         </div>
@@ -120,13 +105,13 @@
                 <div class="card text-center">
                     <div class="card-content">
                         <div class="card-body py-1">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                <i class="bx bx-error-circle font-medium-5"></i>
+                            <div class="badge-circle badge-circle-lg  mx-auto mb-50">
+                                <i class="bx bxs-book-content font-medium-5"></i>
                             </div>
                             <div class="text-muted line-ellipsis">
-                                <a href="/admin/doc"> Документы<br> опубликованы</a>
+                                <a href="{{ route('post.index') }}"> Статьи</a>
                             </div>
-                            <h3 class="mb-0">{{$docs['pub']}}</h3>
+                            <h3 class="mb-0">{{$posts}}</h3>
                         </div>
                     </div>
                 </div>
@@ -135,13 +120,13 @@
                 <div class="card text-center">
                     <div class="card-content">
                         <div class="card-body py-1">
-                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                <i class="bx bx-error-circle font-medium-5"></i>
+                            <div class="badge-circle badge-circle-lg  mx-auto mb-50">
+                                <i class="bx bxs-book-content font-medium-5"></i>
                             </div>
                             <div class="text-muted line-ellipsis">
-                                <a href="/admin/tag"> Теги</a>
+                                <a href="{{ route('post.index') }}"> Новости</a>
                             </div>
-                            <h3 class="mb-0">{{$tags['pub']}}</h3>
+                            <h3 class="mb-0">{{$news}}</h3>
                         </div>
                     </div>
                 </div>
