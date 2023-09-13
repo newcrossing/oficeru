@@ -23,6 +23,7 @@
         "manticoresoftware/manticoresearch-php": "^3.0",
         "mpdf/mpdf": "^8.1",
         "nicolaslopezj/searchable": "^1.13",
+        "opcodesio/log-viewer": "^3.1",
         "spatie/laravel-permission": "^5.5.0",
         "werneckbh/laravel-qr-code": "^0.1.3"
     },
