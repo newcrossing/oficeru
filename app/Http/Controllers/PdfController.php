@@ -19,14 +19,14 @@ class PdfController extends Controller
 //            return Storage::download('public/docs/pdf/' . $doc->id . '.pdf', $doc->getShotName() . '.pdf');
 //        } else {
 
-            $mpdf = new \Mpdf\Mpdf();
-            $stylesheet = file_get_contents(public_path('assets/css/styles-for-pdf.css'));
-            $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
-            $mpdf->WriteHTML('<div class="document">' . $doc->text . '</div>', \Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => storage_path('tempdir')]);
+        $stylesheet = file_get_contents(public_path('assets/css/styles-for-pdf.css'));
+        $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML('<div class="document">' . $doc->text . '</div>', \Mpdf\HTMLParserMode::HTML_BODY);
 
-            $mpdf->OutputFile(public_path('storage/docs/pdf/' . $doc->id . '.pdf'));
+        $mpdf->OutputFile(public_path('storage/docs/pdf/' . $doc->id . '.pdf'));
 
-            return Storage::download('public/docs/pdf/' . $doc->id . '.pdf', $doc->getShotName() . '.pdf');
+        return Storage::download('public/docs/pdf/' . $doc->id . '.pdf', $doc->getShotName() . '.pdf');
 //        }
 
     }
