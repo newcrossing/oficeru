@@ -120,13 +120,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/test', function () {
     //echo URL::signedRoute('unsubscribe', ['user' => 3549]);
-    $users = User::whereNotNull('email_verified_at')
-        ->whereNull('unsubscribe_at')
-        ->where(function ($query) {
-            $query->where('notify_doc', 1)
-                ->orWhere('notify_vst', 1);
-        })->get();
-    print $users->count();
+    phpinfo();
     //print  App::environment('local');
 });
 

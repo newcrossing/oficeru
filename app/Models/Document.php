@@ -109,6 +109,7 @@ class Document extends Model
         'pub',
         'notify',
         'in_main',
+        'meta_title',
         'meta_disc'
     ];
     /**

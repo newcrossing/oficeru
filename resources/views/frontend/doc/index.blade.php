@@ -1,7 +1,7 @@
 @extends('frontend.layouts.index')
 
-@section('title',$doc->getShotName())
-@section('description',Str::ucfirst(Str::lower(str_replace("\r\n"," ",$doc->short_name))))
+@section('title',($doc->meta_title)?:$doc->getShotName())
+@section('description',    ($doc->meta_disc)?: Str::ucfirst(Str::lower(str_replace("\r\n"," ",$doc->short_name))))
 
 @section('page-styles')
     <link rel="stylesheet" href="/assets/css/my.css">
