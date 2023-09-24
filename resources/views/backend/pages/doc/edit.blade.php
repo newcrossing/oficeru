@@ -154,35 +154,23 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <hr>
+
                                 <div class="invoice-subtotal pt-50">
 
                                     <div class="row">
-                                        <div class="col-md-5 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <h6 class="invoice-to">Мета заголовок </h6>
                                                 <input type="text" name="meta_title" class="form-control"
                                                        value="{{old('meta_title',$doc->meta_title)}}">
                                             </div>
-
-                                            <div class="form-group">
-                                                <h6 class="invoice-to">Описание</h6>
-                                                <textarea name="meta_disc" class="form-control"
-                                                          rows="2">{{old('text',$doc->meta_disc)}}</textarea>
-                                            </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
-
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Просмотров за сутки</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">{{(@$doc->hits)}}</h6>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between border-0 pb-0">
-                                                    <span class="invoice-subtotal-title">Всего</span>
-                                                    <h6 class="invoice-subtotal-value mb-0">-</h6>
-                                                </li>
-                                            </ul>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <h6 class="invoice-to">Мета описание</h6>
+                                                <textarea name="meta_disc" class="form-control"
+                                                          rows="5">{{old('text',$doc->meta_disc)}}</textarea>
+                                            </div>
                                         </div>
 
                                     </div>
