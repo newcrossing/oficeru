@@ -8,4 +8,12 @@
             <priority>0.6</priority>
         </url>
     @endforeach
+    @foreach ($news as $pro)
+        <url>
+            <loc>https://oficeru.ru/{{(($pro->type=='news')?'news':'post')}}/{{ $pro->id }}</loc>
+            <lastmod>{{ $pro->updated_at->tz('UTC')->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+        </url>
+    @endforeach
 </urlset>
