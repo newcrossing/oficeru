@@ -13,4 +13,7 @@ git stash
 
 php artisan optimize:clear
 
+для перезапуска мантикоры
+searchd --stop
+searchd
 
