@@ -132,18 +132,15 @@ return [
     'include_files' => [
         '*.log',
         '**/*.log',
+        '/var/www/httpd-logs/oficeru.ru.error.log',
+        '/var/www/httpd-logs/oficeru.ru.access.log',
+        '/var/www/httpd-logs/fizo2023.oficeru.ru.error.log',
+        '/var/www/httpd-logs/vt4.oficeru.ru.error.log',
 
         // You can include paths to other log types as well, such as apache, nginx, and more.
-        '/var/log/httpd/*',
-        '/var/log/nginx/*',
+        //'/var/log/httpd/*',
+        //'/var/log/nginx/*',
 
-        // MacOS Apple Silicon logs
-        '/opt/homebrew/var/log/nginx/*',
-        '/opt/homebrew/var/log/httpd/*',
-        '/opt/homebrew/var/log/php-fpm.log',
-        '/opt/homebrew/var/log/postgres*log',
-        '/opt/homebrew/var/log/redis*log',
-        '/opt/homebrew/var/log/supervisor*log',
 
         // '/absolute/paths/supported',
     ],
