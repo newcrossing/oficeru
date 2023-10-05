@@ -37,6 +37,8 @@ class ContactController extends Controller
         ], [
             'name.required' => 'Название должно быть заполнено!',
             'name.min' => 'Минимальная длина поля 3 символа!',
+            'captcha.required' => 'Капчу надо заполнить!',
+            'captcha.captcha' => 'Неверно введена капча. Робот?',
         ]);
 
         $data['name'] = $request->name;

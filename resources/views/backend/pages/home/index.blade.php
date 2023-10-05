@@ -32,6 +32,9 @@
                                     <a href="{{ route('tag.create') }}" class="btn  btn-outline-primary mr-1 mb-1"><i
                                             class="bx bxs-plus-square"></i><span
                                             class="align-middle ml-25">Тег</span></a>
+                                    <a href="/log-viewer" class="btn  btn-outline-primary mr-1 mb-1"><i
+                                            class="bx bxs-widget"></i><span
+                                            class="align-middle ml-25">Логи</span></a>
                                 </div>
                             </div>
                         </div>
