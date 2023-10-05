@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\ProfileController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CaptchaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,8 @@ Route::get('/sitemap-document.xml', [SitemapController::class, 'document']);
 
 Route::get('/pdf/{id}', [PdfController::class, 'download'])->where('id', '[0-9]+')->name('pdf.download');
 
+
+Route::get('reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
 
 Route::middleware(['role:admin|user'])->group(
     function () {

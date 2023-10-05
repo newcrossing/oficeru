@@ -184,7 +184,7 @@ return [
 
         LaravelQRCode\Providers\QRCodeServiceProvider::class,
 
-
+        Mews\Captcha\CaptchaServiceProvider::class,
 
 
 
@@ -243,6 +243,8 @@ return [
        // 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'LogActivity' => App\Helpers\LogActivity::class,
         'QRCode' => LaravelQRCode\Facades\QRCode::class,
+
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
 
     ],

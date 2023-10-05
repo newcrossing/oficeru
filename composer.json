@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "manticoresoftware/manticoresearch-php": "^3.0",
+        "mews/captcha": "^3.3",
         "mpdf/mpdf": "^8.1",
         "nicolaslopezj/searchable": "^1.13",
         "opcodesio/log-viewer": "^3.1",

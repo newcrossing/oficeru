@@ -21,6 +21,13 @@
                     <div class="card zi-2">
                         <div class="card-body">
                             <!-- Form -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger ms-3 me-3 mt-3" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
                             <form action="{{route('contact.send')}}" method="post">
                                 @csrf
                                 <div class="row">
@@ -30,7 +37,7 @@
                                         <!-- Form -->
                                         <div class="mb-4">
                                             <label class="form-label" for="hireUsFormLasttNameEg1">Имя</label>
-                                            <input type="text"  class="form-control form-control-lg"
+                                            <input type="text" class="form-control form-control-lg"
                                                    name="name" id="hireUsFormLasttNameEg1"
                                                    placeholder="Ваше имя" required>
                                         </div>
@@ -54,7 +61,21 @@
                                     <label class="form-label" for="hireUsFormDetailsEg1">Текст</label>
                                     <textarea class="form-control form-control-lg" name="text"
                                               id="hireUsFormDetailsEg1" placeholder="Текст..."
-                                               rows="4" required ></textarea>
+                                              rows="4" required></textarea>
+                                </div>
+
+                                <div class="form-group mt-4 mb-4">
+                                    <div class="captcha">
+                                        <span>{!! captcha_img() !!}</span>
+                                        <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                            ↻
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <input id="captcha" type="text" class="form-control" placeholder="Введите капчу"
+                                           name="captcha">
                                 </div>
                                 <!-- End Form -->
 
@@ -82,8 +103,31 @@
         </div>
         <!-- End Shape -->
     </div>
+
+
     <!-- End Contacts -->
 
+@endsection
+
+@section('page-scripts')
+    @parent
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        $('#reload').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'reload-captcha',
+                success: function (data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
+
+
+
+    </script>
 @endsection
 
 

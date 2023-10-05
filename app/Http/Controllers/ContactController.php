@@ -19,6 +19,8 @@ class ContactController extends Controller
         return view('frontend.contact.index');
     }
 
+
+
     public function ok()
     {
         return view('frontend.contact.ok');
@@ -31,6 +33,7 @@ class ContactController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email',
             'text' => 'required',
+            'captcha' => 'required|captcha',
         ], [
             'name.required' => 'Название должно быть заполнено!',
             'name.min' => 'Минимальная длина поля 3 символа!',
