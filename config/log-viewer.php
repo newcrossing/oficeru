@@ -135,7 +135,9 @@ return [
         '/var/www/httpd-logs/oficeru.ru.error.log',
         '/var/www/httpd-logs/oficeru.ru.access.log',
         '/var/www/httpd-logs/fizo2023.oficeru.ru.error.log',
+        '/var/www/httpd-logs/fizo2023.oficeru.ru.access.log',
         '/var/www/httpd-logs/vt4.oficeru.ru.error.log',
+        '/var/www/httpd-logs/vt4.oficeru.ru.access.log'
 
         // You can include paths to other log types as well, such as apache, nginx, and more.
         //'/var/log/httpd/*',
