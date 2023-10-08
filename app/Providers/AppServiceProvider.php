@@ -6,14 +6,17 @@ use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\URL;
+use Opcodes\LogViewer\Facades\LogViewer;
 
-class AppServiceProvider extends ServiceProvider {
+class AppServiceProvider extends ServiceProvider
+{
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         //
         if (env('APP_ENV') === 'production') {
             $this->app['request']->server->set('HTTPS', true);
@@ -25,9 +28,16 @@ class AppServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
+
+
         URL::forceScheme('https');
 
+
+        LogViewer::auth(function ($request) {
+            return $request->user() && in_array($request->user()->email, ['newcrossing@gmail.com',]);
+        });
 
         setlocale(LC_ALL, 'ru_RU.UTF-8');
 
@@ -35,17 +45,13 @@ class AppServiceProvider extends ServiceProvider {
         $Carbone = Carbon::now()->locale('ru_RU');
 
 
-
         $verticalMenuJson = file_get_contents(base_path('resources/admin/data/menus/vertical-menu.json'));
         $verticalMenuData = json_decode($verticalMenuJson);
 
 
-
         // share all menuData to all the views
-        \View::share('menuData',[$verticalMenuData]);
-        \View::share('Carbone',$Carbone);
-
-
+        \View::share('menuData', [$verticalMenuData]);
+        \View::share('Carbone', $Carbone);
 
 
     }
