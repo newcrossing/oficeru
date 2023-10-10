@@ -30,10 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-
         URL::forceScheme('https');
-
 
         LogViewer::auth(function ($request) {
             return $request->user() && in_array($request->user()->email, ['newcrossing@gmail.com',]);

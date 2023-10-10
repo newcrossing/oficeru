@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Activity;
 use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Log;
 use App\Mail\NewDocMail;
 use App\Mail\VerificationEmail;
 use App\Models\User;
@@ -17,8 +18,8 @@ class ContactController extends Controller
     public function index()
     {
         return view('frontend.contact.index');
-    }
 
+    }
 
 
     public function ok()
@@ -28,7 +29,6 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
-
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
@@ -44,11 +44,12 @@ class ContactController extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['text'] = $request->text;
+
         Mail::to('newcrossing@gmail.com')->queue(new ContactMail($data));
 
         Activity::add('Отправлено сообщение через Контакт от  ' . $request->email);
+        Log::info('Отправлено сообщение через Контакт', $request->headers->all());
 
         return redirect()->route('contact.ok')->with('success', 'Сохранено.');
-
     }
 }
