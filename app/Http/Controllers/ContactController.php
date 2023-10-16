@@ -29,6 +29,7 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
+        Log::notice('Отправка сообщения через контакт', $request->all());
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',

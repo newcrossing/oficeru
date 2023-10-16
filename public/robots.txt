@@ -12,5 +12,6 @@ Disallow: /vendor*
 Disallow: /package*
 Disallow: /phpunit*
 Disallow: /unsubscribe*
+Disallow: /s?*
 Disallow: /verification_email/*
 
