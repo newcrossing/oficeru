@@ -111,21 +111,38 @@
 
 @section('page-scripts')
     @parent
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
 
     <script type="text/javascript">
+        let rel = document.getElementById('reload');
+        rel.onclick = function (event) {
+            fetch('reload-captcha')
+                .then(
+                    function (response) {
+                        if (response.status !== 200) {
+                            console.log('Ошибочка: ' + response.status);
+                            return;
+                        }
 
-        $('#reload').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: 'reload-captcha',
-                success: function (data) {
-                    $(".captcha span").html(data.captcha);
-                }
-            });
-        });
+                        response.json().then(function (data) {
+                            document.querySelector('.captcha span').innerHTML = data.captcha;
+                        });
+                    }
+                )
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        };
 
-
+        // $('#reload').click(function () {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: 'reload-captcha',
+        //         success: function (data) {
+        //             $(".captcha span").html(data.captcha);
+        //         }
+        //     });
+        // });
 
     </script>
 @endsection
