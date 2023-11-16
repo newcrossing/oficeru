@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -108,7 +109,9 @@ class RegisterController extends Controller
             ]
         );
         $user->assignRole('user');
+
         Activity::add('Регистрация на сайте ' . $data['email']);
+        Log::info('Регистрация на сайте ', $data);
 
         $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
         Mail::to($data['email'])->queue(new VerificationEmail($data));
