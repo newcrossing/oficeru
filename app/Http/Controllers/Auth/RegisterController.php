@@ -110,7 +110,7 @@ class RegisterController extends Controller
         );
         $user->assignRole('user');
 
-        Activity::add('Регистрация на сайте ' . $data['email']);
+        Activity::add('Регистрация на сайте ' . $data['email'], Activity::SUCCESS);
         Log::info('Регистрация на сайте ', $data);
 
         $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);

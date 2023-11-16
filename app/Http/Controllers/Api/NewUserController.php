@@ -29,7 +29,7 @@ class NewUserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            Log::info(sprintf('Ошибка регистрации (с сайта %s): %s ', $from, $email), $validator->errors()->all());
+            Log::notice(sprintf('Ошибка регистрации (с сайта %s): %s ', $from, $email), $validator->errors()->all());
             return response()->json(array('success' => false));
         }
 
