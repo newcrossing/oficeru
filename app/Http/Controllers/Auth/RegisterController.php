@@ -64,6 +64,7 @@ class RegisterController extends Controller
                 // 'name' => ['required', 'string', 'max:60', 'min:3'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'captcha' => 'required|captcha',
             ],
             [
 //                'name.required' => 'Поле обязательно для заполнения',
@@ -77,6 +78,8 @@ class RegisterController extends Controller
                 'password.required' => 'Поле обязательно для заполнения',
                 'password.min' => 'Минимальный размер пароля 6 символа',
                 'password.confirmed' => 'Пароли не совпадают',
+                'captcha.required' => 'Капчу надо заполнить!',
+                'captcha.captcha' => 'Неверно введена капча. Робот?',
             ]
         );
     }

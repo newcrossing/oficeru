@@ -66,7 +66,7 @@
 
 <!-- JS Front -->
 <script src="/assets/js/theme.min.js"></script>
-
+@yield('page-scripts')
 <!-- JS Plugins Init. -->
 <script>
     (function () {

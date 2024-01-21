@@ -48,9 +48,7 @@ class NewUserController extends Controller
         $data['VerificationEmail'] = URL::signedRoute('verification_email', ['email' => $data['email']]);
         Mail::to($data['email'])->queue(new VerificationEmail($data));
 
-        //Activity::add(sprintf('Регистрация на сайте (с сайта %s): %s', $from, $email));
         Log::info(sprintf('Регистрация на сайте (с сайта %s): %s', $from, $email));
         return response()->json(array('success' => true));
-
     }
 }

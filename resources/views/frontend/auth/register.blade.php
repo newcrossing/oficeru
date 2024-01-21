@@ -47,7 +47,7 @@
                     @if ($errors->any())
                         <div class="alert alert-danger" role="alert">
                             @foreach ($errors->all() as $error)
-                                {!! $error !!}
+                                <div> {!! $error !!}</div>
                             @endforeach
                         </div>
                     @endif
@@ -125,6 +125,19 @@
 
                         </div>
                         <!-- End Check -->
+                        <div class="form-group mt-4 mb-4">
+                            <div class="captcha">
+                                <span>{!! captcha_img() !!}</span>
+                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                    ↻
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <input id="captcha" type="text" class="form-control" placeholder="Введите капчу"
+                                   name="captcha">
+                        </div>
 
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
@@ -145,5 +158,42 @@
 
 @endsection
 
+@section('page-scripts')
+    @parent
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
+
+    <script type="text/javascript">
+        let rel = document.getElementById('reload');
+        rel.onclick = function (event) {
+            fetch('reload-captcha')
+                .then(
+                    function (response) {
+                        if (response.status !== 200) {
+                            console.log('Ошибочка: ' + response.status);
+                            return;
+                        }
+
+                        response.json().then(function (data) {
+                            document.querySelector('.captcha span').innerHTML = data.captcha;
+                        });
+                    }
+                )
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        };
+
+        // $('#reload').click(function () {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: 'reload-captcha',
+        //         success: function (data) {
+        //             $(".captcha span").html(data.captcha);
+        //         }
+        //     });
+        // });
+
+    </script>
+@endsection
 
 
