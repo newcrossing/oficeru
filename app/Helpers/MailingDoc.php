@@ -22,7 +22,10 @@ class MailingDoc
     public static function send()
     {
         // документы отмеченные для уведомления
-        $docs = Document::where('notify', 1)->where('pub', 1)->get();
+        $docs = Document::where('notify', 1)
+            ->whereNull('notify_at')
+            ->where('pub', 1)
+            ->get();
 
         // документы вступающие в силу сегодня
         $docs_today = Document::where('date_vst', Carbon::today())->where('pub', 1)->get();
@@ -89,8 +92,9 @@ class MailingDoc
 
             // меняю статус документов на уведомленные
             Document::where('notify', 1)
+                ->whereNull('notify_at')
                 ->where('pub', 1)
-                ->update(['notify' => 2]);
+                ->update(['notify_at' => Carbon::now()->toDateTimeString()]);
             return $countMailing;
         } else {
             return 0;

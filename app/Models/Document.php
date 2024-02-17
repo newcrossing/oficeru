@@ -108,6 +108,7 @@ class Document extends Model
         'date_kpub',
         'pub',
         'notify',
+        'notify_at',
         'in_main',
         'meta_title',
         'meta_disc'

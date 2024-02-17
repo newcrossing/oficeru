@@ -403,7 +403,8 @@
                                 <span class="invoice-terms-title">Уведомить </span>
                                 <div class="custom-control custom-switch custom-switch-glow">
                                     <input type="checkbox" class="custom-control-input" name="notify" id="clientNote"
-                                        {{!empty($doc->notify)?'checked':''}}  {{($doc->notify===2)?'disabled':''}} >
+                                        {{!empty($doc->notify)?'checked':''}}
+                                        {{($doc->notify_at)?'disabled':''}} >
                                     <label class="custom-control-label" for="clientNote"> </label>
                                 </div>
                             </div>
