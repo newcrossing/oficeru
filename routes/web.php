@@ -45,6 +45,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
 Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
 
+Route::get('/docs/{id}', function($id){
+    return Redirect::to('/doc/'.$id, 301);
+});
+
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');
 Route::get('/post/{id}', [PostController::class, 'single'])->where('id', '[0-9]+')->name('post.single');
 

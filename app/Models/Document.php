@@ -148,7 +148,8 @@ class Document extends Model
         'date_kpub'
     ];
     protected $casts = [
-        //'notify' => 'boolean',
+        'notify' => 'boolean',
+        'pub' => 'boolean',
         'in_main' => 'boolean',
     ];
 
