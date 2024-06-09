@@ -55,7 +55,7 @@
                                             </td>
                                             <td>
                                                 <div
-                                                    class="  text-{{ ($log->result!='info')?$log->result:''  }} ">{{$log->subject}}</div>
+                                                    class="  text-{{ ($log->result!='info')?$log->result:''  }} ">{!! $log->subject!!}</div>
                                                 <small class="">{{$log->url}}</small>
                                                 <a href="#" class="font-small-1 basic-alert"
                                                    dtext="IP:{{$log->ip}}, Метод:{{$log->method}}, Браузер: {{$log->agent}}, {{$log->parametrs}}">параметры</a>

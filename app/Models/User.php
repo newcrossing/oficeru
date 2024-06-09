@@ -140,6 +140,14 @@ class User extends Authenticatable
     {
         return ($this->foto) ?: '000.png';
     }
+    public function getLogin()
+    {
+        return ($this->login) ?: 'Пользователь';
+    }
+    public function getName()
+    {
+        return ($this->name) ?: 'Пользователь';
+    }
 
 
 }

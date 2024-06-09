@@ -162,7 +162,7 @@
                                         <tr>
                                             <td style="width: 50%"
                                                 class=" text-{{($log->result!='info')?$log->result:''}} ">
-                                                {{$log->subject}}
+                                                {!! $log->subject!!}
                                             </td>
                                             <td>
                                                 {{$log->user_login}}
