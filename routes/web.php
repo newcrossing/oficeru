@@ -4,6 +4,7 @@ use App\Helpers\MailingDoc;
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SitemapController;
@@ -47,6 +48,18 @@ Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-
 
 Route::get('/docs/{id}', function($id){
     return Redirect::to('/doc/'.$id, 301);
+});
+
+Route::prefix('comments')->group(function() {
+    Route::post('store', [CommentController::class, 'store']);
+});
+
+Route::get('/test2', function(){
+    $article = \App\Models\Post::find(630);
+//    print $article->comments;
+    foreach($article->comments as $comment){
+        print $comment->content;
+    }
 });
 
 Route::get('/post', [PostController::class, 'listing'])->name('post.list');

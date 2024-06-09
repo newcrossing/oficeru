@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasComments;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +67,7 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
     use SearchableTrait;
+    use HasComments;
 
     protected $fillable = [
         'name',

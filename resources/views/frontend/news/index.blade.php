@@ -17,7 +17,7 @@
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ">
                            <span
-                                class="d-block small"> <i class="bi bi-calendar2-date"></i> {{ \Carbon\Carbon::parse($post->date_public)->isoFormat('D MMMM Y', 'Do MMMM')}}</span>
+                               class="d-block small"> <i class="bi bi-calendar2-date"></i> {{ \Carbon\Carbon::parse($post->date_public)->isoFormat('D MMMM Y', 'Do MMMM')}}</span>
                         </div>
                     </div>
                     <!-- End Media -->
@@ -54,7 +54,7 @@
                                 <div class="input-card-form">
                                     <label for="subscribeForm" class="form-label visually-hidden">Укажите
                                         email</label>
-                                    <input type="email" name="email"  class="form-control" id="subscribeForm"
+                                    <input type="email" name="email" class="form-control" id="subscribeForm"
                                            placeholder="Введите email" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Подписаться</button>
@@ -69,11 +69,101 @@
 
             <!-- End Row -->
         </div>
+        <div class="container content-space-1 content-space-lg-3">
+            <!-- Heading -->
+            <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                <h2>3 comments</h2>
+            </div>
+            <!-- End Heading -->
+
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-8">
+                    <!-- Comment -->
+                    <ul class="list-comment">
+                        <!-- Item -->
+
+                        <!-- End Item -->
+                        @foreach ($post->comments as $comment)
+                            <li class="list-comment-item">
+                                <!-- Media -->
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0">
+                                        <img class="avatar avatar-circle" src="./assets/img/160x160/img8.jpg"
+                                             alt="Image Description">
+                                    </div>
+
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h6>Hanna Wolfe</h6>
+                                            <span class="d-block small text-muted">2 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Media -->
+
+                                <p>{{$comment->content}}</p>
+
+
+                            </li>
+                        @endforeach
+                        <!-- Item -->
+
+                        <!-- End Item -->
+                    </ul>
+                    <!-- End Comment -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+
+        <div class="container content-space-b-2">
+            <!-- Heading -->
+            <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                <h2>Post a comment</h2>
+            </div>
+            <!-- End Heading -->
+
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-8">
+                    <!-- Card -->
+                    <div class="card card-lg border shadow-none">
+                        <div class="card-body">
+                            <form action="/comments/store" method="POST">
+                                @csrf
+                                <div class="d-grid gap-4">
+                                    <!-- Form -->
+                                    <input type="hidden" name="commentable_id" value="630">
+                                    <input type="hidden" name="commentable_type" value="App\Models\Post">
+                                    <!-- End Form -->
+
+
+                                    <!-- End Form -->
+
+                                    <!-- Form -->
+                                    <span class="d-block">
+                    <label class="form-label" for="blogContactsFormComment">Comment</label>
+                    <textarea class="form-control form-control-lg"
+                              name="content"
+                              rows="5">234234233</textarea>
+                  </span>
+                                    <!-- End Form -->
+
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
     </div>
     <!-- End Article Description -->
-
-
-
 
 @endsection
 

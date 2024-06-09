@@ -50,6 +50,11 @@ class AppServiceProvider extends ServiceProvider
         \View::share('menuData', [$verticalMenuData]);
         \View::share('Carbone', $Carbone);
 
+//        Relation::enforceMorphMap([
+////            'documents' => 'App\Models\Document',
+////            'posts' => 'App\Models\Post',
+//        ]);
+
 
     }
 }

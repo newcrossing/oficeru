@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasComments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -89,13 +90,14 @@ class Content extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasComments;
 
     /**
      * ничего не защищать
      * @var array
      */
     protected $guarded = [];
-    
+
     /**
      * Атрибуты, которые должны быть преобразованы в дату
      *
