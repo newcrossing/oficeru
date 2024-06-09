@@ -158,7 +158,7 @@
                     <!-- End Heading -->
                     @guest()
                         <div class="row justify-content-lg-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <!-- Card -->
                                 <div class="card card-lg border shadow-none">
                                     <div class="card-body">
