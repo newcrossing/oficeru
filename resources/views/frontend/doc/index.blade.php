@@ -106,7 +106,7 @@
                     <!-- End Heading -->
 
                     <div class="row justify-content-lg-center">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <!-- Comment -->
                             <ul class="list-comment">
                                 <!-- Item -->
@@ -126,9 +126,11 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <h6>
                                                         {{$comment->user->getName()}}
-                                                        @if(Auth::user()->id == $comment->user->id)
-                                                            <span class="badge bg-success">Я</span>
-                                                        @endif
+                                                        @auth()
+                                                            @if(Auth::user()->id == $comment->user->id)
+                                                                <span class="badge bg-success">Я</span>
+                                                            @endif
+                                                        @endauth
                                                     </h6>
                                                     <span class="d-block small text-muted">
                                                 {{ $comment->created_at->diffForHumans() }}
@@ -150,7 +152,7 @@
                     <!-- End Row -->
                 </div>
 
-                <div class="container content-space-b-2">
+                <div class="container content-space-b-2" style="padding: 0px">
                     <!-- Heading -->
                     <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
                         <h2>Написать комментарий</h2>
@@ -180,7 +182,7 @@
                             <div class="col-lg-12">
                                 <!-- Card -->
                                 <div class="card card-lg border shadow-none">
-                                    <div class="card-body">
+                                    <div class="card-body" style="padding: 1rem 1rem">
                                         <form action="/comments/store" method="POST">
                                             @csrf
                                             <div class="d-grid gap-4">

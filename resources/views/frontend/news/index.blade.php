@@ -105,9 +105,11 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h6>
                                                 {{$comment->user->getName()}}
-                                                @if(Auth::user()->id == $comment->user->id)
-                                                    <span class="badge bg-success">Я</span>
-                                                @endif
+                                                @auth()
+                                                    @if(Auth::user()->id == $comment->user->id)
+                                                        <span class="badge bg-success">Я</span>
+                                                    @endif
+                                                @endauth
                                             </h6>
                                             <span class="d-block small text-muted">
                                                 {{ $comment->created_at->diffForHumans() }}
