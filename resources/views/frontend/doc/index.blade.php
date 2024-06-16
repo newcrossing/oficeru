@@ -97,7 +97,7 @@
                     <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
                         <h2>
                             @if($doc->comments->count())
-                                {{$doc->comments->count() }} комментария
+                              {{$doc->comments->count()}}  {{trans_choice('комментарий|комментария|комментариев',$doc->comments->count())   }}
                             @else
                                 Комментариев пока нет
                             @endif
@@ -139,7 +139,7 @@
                                             </div>
                                         </div>
                                         <!-- End Media -->
-                                        <p>{!! nl2br($comment->content) !!}</p>
+                                        <p>{!! ($comment->content) !!}</p>
                                     </li>
                                 @endforeach
                                 <!-- Item -->

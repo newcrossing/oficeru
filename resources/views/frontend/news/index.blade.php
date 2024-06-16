@@ -76,7 +76,7 @@
             <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
                 <h2>
                     @if($post->comments->count())
-                        {{$post->comments->count() }} комментария
+                        {{$post->comments->count()}}  {{trans_choice('комментарий|комментария|комментариев',$post->comments->count())   }}
                     @else
                         Комментариев пока нет
                     @endif
@@ -88,14 +88,11 @@
                 <div class="col-lg-8">
                     <!-- Comment -->
                     <ul class="list-comment">
-                        <!-- Item -->
-
                         <!-- End Item -->
                         @foreach ($post->comments->sortBy('created_at') as $comment)
                             <li class="list-comment-item">
                                 <!-- Media -->
                                 <a name="comment{{$comment->id}}"></a>
-
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="flex-shrink-0">
                                         <img class="avatar avatar-circle"
@@ -118,7 +115,7 @@
                                     </div>
                                 </div>
                                 <!-- End Media -->
-                                <p>{!! nl2br($comment->content) !!}</p>
+                                <p>{!! ($comment->content) !!}</p>
                             </li>
                         @endforeach
                         <!-- Item -->

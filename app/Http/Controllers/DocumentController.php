@@ -46,8 +46,9 @@ class DocumentController extends Controller
         )->get();
         foreach ($docs as $doc) {
             $arrFind[] = $doc->getId();
-            //  dd($doc->getHighlight());;
         }
+
+        Activity::add('Поисковый запрос: ' . $text, Activity::INFO);
 
         //$docs = Doc::whereIn('id', $arrFind)->paginate(30);
 
@@ -95,8 +96,8 @@ class DocumentController extends Controller
             // если нет изменений
             if (empty($doc->date_pod)) {
                 $messageTop = "Документ не подписан";
-            } elseif (empty($doc->date_pub) || $doc->date_pub->format('Y-m-d') > date('Y-m-d')  ) {
-                $messageTop = "Документ не опубликован".$doc->date_pub;
+            } elseif (empty($doc->date_pub) || $doc->date_pub->format('Y-m-d') > date('Y-m-d')) {
+                $messageTop = "Документ не опубликован" . $doc->date_pub;
             } elseif (empty($doc->date_vst)) {
                 $messageTop = "Документ не вступил в силу";
             } elseif ($doc->date_vst->format('Y-m-d') > date('Y-m-d')) {
