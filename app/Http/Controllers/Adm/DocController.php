@@ -23,7 +23,7 @@ class DocController extends Controller
      */
     public function index()
     {
-        $docs = Doc::all()->sortBy('id');;
+        $docs = Doc::all()->sortByDesc('id');;
 
         $breadcrumbs = [
             ['link' => "/admin/", 'name' => "Главная"],

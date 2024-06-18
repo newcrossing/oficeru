@@ -52,6 +52,10 @@ class TagController extends Controller
         $posts = $tag->posts;
         $docs = $tag->docs;
         $contents = collect()->merge($posts)->merge($docs)->sortByDesc('updated_at');
+//        $contents = collect()->merge($posts)->merge($docs)->sortByDesc([
+//            ['date_vst', 'desc'],
+//            ['date_public', 'desc'],
+//        ]);
 
         return view('frontend.tag.list', compact('contents', 'tag', 'breadcrumbs'));
     }

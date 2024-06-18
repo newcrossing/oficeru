@@ -6,19 +6,21 @@
 @section('page-styles')
     <link rel="stylesheet" href="/assets/css/my.css">
 @endsection
+
 @section('widgets')
     {{ Widget::run('search') }}
     {{ Widget::run('vst_doc') }}
     {{ Widget::run('fresh_doc') }}
     {{ Widget::run('subscribe') }}
 @endsection
+
 @section('content')
     <div class="container content-space-t-1 content-space-b-2 content-space-b-lg-3">
         <div class="row justify-content-lg-between">
             <div class="col-lg-8 mb-10 mb-lg-0">
                 @if(!empty($doc->annotation))
                     <div class="alert alert-info" role="alert">
-                        {{ $doc->annotation }}
+                        {!! $doc->annotation  !!}
                     </div>
                 @endempty
                 @isset($messageTop)
@@ -34,16 +36,28 @@
                     </div>
                 @endisset
                 <div class="row align-items-sm-center mb-5">
-                    <div class="col-sm-7 mb-4 mb-sm-0">
-
+                    <div class="col-7 mb-4 mb-sm-0">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex gap-2">
+                                <a class="text-secondary" href="#comments">
+                                    <i class="bi bi-chat-right-text"></i>
+                                    @if($doc->comments->count())
+                                        {{$doc->comments->count()}}  {{trans_choice('комментарий|комментария|комментариев',$doc->comments->count())   }}
+                                    @else
+                                        Комментариев нет
+                                    @endif
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <!-- End Col -->
 
-                    <div class="col-sm-5">
+                    <div class="col-5">
                         <div class="d-flex justify-content-sm-end align-items-center">
                             <div class="d-flex gap-2">
-                                <a class="text-secondary" href="/pdf/{{$doc->id}}">Скачать <i
-                                        class="bi bi-file-earmark-pdf-fill"></i></a>
+                                <a class="text-secondary" href="/pdf/{{$doc->id}}">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> Скачать
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +84,6 @@
                      style="background-image: url('/assets/svg/components/wave-pattern-light.svg');">
                     <div class="card-body">
                         <h4 class="text-white mb-4">Хотите подписаться на свежие документы?</h4>
-
                         <div class="w-lg-75 mx-lg-auto">
                             <form action="{{ route('subscribe.create') }}" method="post">
                                 @csrf
@@ -88,16 +101,16 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Комментрии -->
-                <div class="container content-space-1 content-space-lg-3">
+                <div class="container content-space-1 content-space-lg-1">
+                    <a name="comments"></a>
                     <!-- Heading -->
                     <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
                         <h2>
                             @if($doc->comments->count())
-                              {{$doc->comments->count()}}  {{trans_choice('комментарий|комментария|комментариев',$doc->comments->count())   }}
+                                {{$doc->comments->count()}}  {{trans_choice('комментарий|комментария|комментариев',$doc->comments->count())   }}
                             @else
                                 Комментариев пока нет
                             @endif
