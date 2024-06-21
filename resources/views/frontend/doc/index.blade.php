@@ -54,7 +54,7 @@
 
                     <div class="col-5">
                         <div class="d-flex justify-content-sm-end align-items-center">
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 ">
                                 <a class="text-secondary" href="/pdf/{{$doc->id}}">
                                     <i class="bi bi-file-earmark-pdf-fill"></i> Скачать
                                 </a>

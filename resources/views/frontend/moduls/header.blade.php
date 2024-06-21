@@ -130,7 +130,7 @@
                         <a class="nav-link active" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="/doc">
+                        <a class="nav-link " href="{{route('doc.list')}}">
                             <i class="bi-files-alt dropdown-item-icon"></i> Документы
                         </a>
                     </li>

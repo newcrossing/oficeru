@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\FizoController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SitemapController;
 use App\Mail\NewDocMail;
@@ -41,23 +42,31 @@ use App\Http\Controllers\CaptchaController;
 */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');;
+Route::domain('fizo.oficeru' )->group(function () {
+    Route::get('/', [FizoController::class, 'index'])->name('home.fizo');;
 
-Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
-Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
-
-Route::get('/docs/{id}', function($id){
-    return Redirect::to('/doc/'.$id, 301);
 });
 
-Route::prefix('comments')->group(function() {
+Route::domain('oficeru' )->group(function () {
+    Route::get('/doc', [DocumentController::class, 'listing'])->name('doc.list');
+});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');;
+
+Route::get('/doc/{id}', [DocumentController::class, 'single'])->where('id', '[0-9]+')->name('document.single');
+
+Route::get('/docs/{id}', function ($id) {
+    return Redirect::to('/doc/' . $id, 301);
+});
+
+Route::prefix('comments')->group(function () {
     Route::post('store', [CommentController::class, 'store']);
 });
 
-Route::get('/test2', function(){
+Route::get('/test2', function () {
     $article = \App\Models\Post::find(630);
 //    print $article->comments;
-    foreach($article->comments as $comment){
+    foreach ($article->comments as $comment) {
         print $comment->content;
     }
 });
