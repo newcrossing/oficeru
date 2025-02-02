@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\Activity;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificationEmail;
-use App\Models\Foto;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NewUserController extends Controller
@@ -50,5 +48,25 @@ class NewUserController extends Controller
 
         Log::info(sprintf('Регистрация на сайте (с сайта %s): %s', $from, $email));
         return response()->json(array('success' => true));
+    }
+
+    public function db()
+    {
+        // $t =  DB::setDatabaseName('fizo23')->table('upr_1')->get();
+        //DB::setDatabaseName('fi3zo23');
+        //  echo DB::getDatabaseName();
+        //DB::reconnect();
+
+        $data = [];
+
+        $tables = DB::select('show tables  LIKE "upr_%"');
+        foreach ($tables as $table) {
+            foreach ($table as $key => $value)
+
+                $data[$value] =  DB::table($value)->get();
+              //  echo $value;
+            //dd($table);
+        }
+         return response()->json($data);
     }
 }
